@@ -57,11 +57,11 @@ JQuery and Bootstrap are not listed as dependencies as the necessary files are i
 
 
 
-## Installation Instructions
+## Installation Instructions - TODO
 
 
 
-### LAMP Stack
+### LAMP Stack - NEEDS EDITING
 
 
 
@@ -77,7 +77,7 @@ These three steps are detailed more fully [here](https://www.digitalocean.com/co
 
 
 
-### Project Specific Instructions
+### Project Specific Instructions - NEEDS EDITING
 
 
 
@@ -167,7 +167,7 @@ from the command line. The file should execute without error.
 
 
 
-## Continued Development
+## Continued Development - NEEDS EDITING
 
 
 
@@ -177,7 +177,7 @@ All code changes made over the course of the 2017 Spring Semester development ha
 
 
 
-## Fall 2017 Updates
+## Fall 2017 Updates - NEEDS UPDATING
 
 
 
