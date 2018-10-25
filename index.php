@@ -1,44 +1,118 @@
-<?php
-include 'src/views/header.php';
 
-//header('Location: src/modules/login/login_view.php');
+<!DOCTYPE html>
 
-//exit();
+<html lang="en">
 
 
-?>
 
-<html>
     <head>
-        <title>Login</title>
-        <meta charset='UTF-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <!--
-        <link rel = "stylesheet" type = "text/css" href = "SourceFiles/Views/css/bootstrap.css" />
-        <link rel = "stylesheet" type = "text/css" href = "SourceFiles/Views/css/main.css" />
-        <link rel = "stylesheet" type = "text/css" href = "SourceFiles/Views/css/style.css" />
-        -->
+
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+
+        <meta name="author" content="Connor">
+
+
+
+        <!-- Bootstrap core CSS -->
+
+        <link href="src/assets/css/bootstrap.css" rel="stylesheet">
+
+        <link href="src/assets/css/main.css" rel="stylesheet">
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="src/assets/js/jquery.min.js"><\/script>')</script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                if($(window).width() > 767){
+                    $('.navbar .dropdown').hover(function() {
+                        $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+
+                    }, function() {
+                        $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp();
+
+                    });
+
+                    $('.navbar .dropdown > a').click(function(){
+                        location.href = this.href;
+                    });
+                }
+            });
+        </script>
+
     </head>
+
     <body>
 
-        <h3>
-            Please select sign in or sign up
-        </h3>
-        <form action = 'src/modules/login/login_controller.php' method='post'>
+        <div id="heading2">
 
-                    <label for='username'>Username: </label>
-                    <input type='text' name='username' placeholder = 'Please enter your Linkblue Username...' autofocus>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <label for='password'>Password: </label>
-                    <input type='password' name='password' placeholder = 'Please enter Linkblue Password...'>
-
-                    <input id='submit' type='submit' name = 'login' value='Login'>
-
+                <div class="col-md-10">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li><a class="nav-link" href="./">Home </a></li>
 
 
-        </form>
-    <form action="src/modules/sign_up/sign_up_controller.php" method="post">
-        <input id='submit' type='submit' name = 'login' value='New User'>
-    </form>
+                            <li><a class="nav-link" href="src/modules/sign_in/sign_in_controller.php">Sign in</a></li>
+                            <li><a class="nav-link" href="src/modules/sign_up/sign_up_controller.php">Sign up</a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a href="./"><img id="header-img" src="src/assets/images/logo.png" alt="SQS logo"></a>
+                </div>
+            </nav>
+
+
+        </div>
+
+
+
+
+    <!-- Bootstrap core JavaScript
+
+    ================================================== -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="src/assets/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+    <script src="src/assets/js/ie10-viewport-bug-workaround.js"></script>
+
     </body>
+
+</html>
+
+
+<html>
+    <div id="home_page">
+        <body>
+            <div>
+                <div class="welcome">
+                    <h1 id="WelcomeHead">Welcome to the SQS Training Website!</h1>
+                    <p id="DirectionPara">This website is for testing automated script to find different errors throughout the site. Sign in or sign up to begin!</p><br><br>
+                    <button class="btn" id="LoginBut" onclick="location.href='src/modules/sign_in/sign_in_controller.php'">Sign In</button>
+                    <button class="btn" id="RegisterBut" onclick="location.href='src/modules/sign_up/sign_up_controller.php'">Sign Up</button>
+                </div>
+            </div>
+        </body>
+    </div>
 </html>

@@ -11,27 +11,27 @@ require_once(__DIR__.'/../config/config.php');
 
 class Connector extends PDO{
 
-    private $conn;
+    private static $conn;
 
     public function __construct(){
 
-        $config = parse_ini_file("../config/config.ini");
+        //$config = parse_ini_file("../config/config.ini");
 
-        $db = $config['db'];
-        $dbhost = $config['dbhost'];
-        $dbport = $config['dbport'];
-        $dbname = $config['dbname'];
-        $dbuser = $config['dbuser'];
-        $dbpass = $config['dbpass'];
+        //$db = $config['db'];
+        //$dbhost = $config['dbhost'];
+        //$dbport = $config['dbport'];
+        //$dbname = $config['dbname'];
+        //$dbuser = $config['dbuser'];
+        //$dbpass = $config['dbpass'];
 
-        $db_dsn = "$db:dbname=$dbname;host=$dbhost;port=$dbport";
+        //$db_dsn = "$db:dbname=$dbname;host=$dbhost;port=$dbport";
         //$db_dsn = "$db:dbname=$dbname;host=$dbhost";
 
         try{
             //$this->conn = new PDO($db_dsn, $dbuser, $dbpass);
-            $this->conn = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//            $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES,TRUE);
+            parent::__construct(DB_DSN, DB_USER, DB_PASSWORD);
+            $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->setAttribute(PDO::ATTR_EMULATE_PREPARES,TRUE);
         } catch (PDOException $e) {
             echo $e->getMessage();
             die();
@@ -39,7 +39,12 @@ class Connector extends PDO{
     }
 
     public function getDatabase(){
-        return $this->conn;
+        // Create the connection if not already created
+        if (self::$conn == null) {
+            self::$conn = new self();
+        }
+        // And return a reference to that connection
+        return self::$conn;
     }
 
 }

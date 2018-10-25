@@ -6,11 +6,15 @@
  * Time: 1:35 AM
  */
 
-define('DB_SERVER', '127.0.0.1');
+define('DB_SERVER', '10.163.140.98');
 
-define('DB_USER', 'root');
+//define('DB_SERVER', 'localhost');
 
-define('DB_PASSWORD', 'root');
+//define('DB_USER', 'dev');
+
+define('DB_USER', 'remote');
+
+define('DB_PASSWORD', 'password123');
 
 define('DB_NAME', 'SQSTrainingDB');
 
