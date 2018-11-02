@@ -17,14 +17,13 @@
         background-color: #f5f5f5;
       }
 
-
       /* Custom page CSS
       -------------------------------------------------- */
       /* Not required for template or sticky footer method. */
 
       .container {
         width: auto;
-        max-width: 680px;
+        max-width: 780px;
         padding: 0 15px;
       }
     </style>
