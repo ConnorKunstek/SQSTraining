@@ -1,2 +1,4 @@
 # Trying to ignore files created by PhpStorm
 .idea/*
+
+.DS_Store
