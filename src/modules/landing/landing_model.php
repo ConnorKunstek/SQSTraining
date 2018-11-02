@@ -6,12 +6,8 @@
  */
 class LandingModel {
 
-  private $username;
-  private $userid;
-
-  private $youtube_video;
-  private $google_map;
-  private $phone_alerts;
+    private $username;
+    private $userid;
 
   public function __construct($userid)
   {
@@ -21,14 +17,9 @@ class LandingModel {
 
   public function get_username()
   {
-    return $this->username;;
+    return $this->username;
   }
 
-  public function get_youtube_video()
-  {
-    $filepath = "youtube_video_0.php";
-    return $filepath;
-  }
 }
 
 $model = new LandingModel($userid);
