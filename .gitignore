@@ -5,4 +5,7 @@
 
 .phpintel/
 
+# Excluding log files
 log/*
+# Allows for empty log direcotry to be kept in version control
+!log/.gitkeep
