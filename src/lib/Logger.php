@@ -16,11 +16,11 @@ class Logger {
 
 	/**
 	 * Default Constructor
-	 * @todo  check to see if backup location works
+	 * @todo  Check to see if backup location will work.
 	 */
 	public function __construct()
 	{
-		//$this->log("Log file initialized.");
+		
 	}
 
 	/**
@@ -81,8 +81,6 @@ class Logger {
 	}
 
 }
-$logger = new Logger();
-$logger->log("another test");
 
 
 ?>
