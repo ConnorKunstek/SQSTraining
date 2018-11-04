@@ -9,10 +9,10 @@
 class Logger {
 
 	/** @var string name of log file (with extension)*/
-	private $filename = 'log.txt'; 
+	private $filename = 'log'; 
 
 	/** @var string directory to where log file(s) reside */
-	private $directory = '../../';
+	private $directory = '../../log/';
 
 	/**
 	 * Default Constructor
@@ -20,10 +20,7 @@ class Logger {
 	 */
 	public function __construct()
 	{
-		// Provide backup location if defined directory cannot be reached 
-		if (!file_exists($this->directory.$this->filename)){
-			$this->directory = '/';
-		}
+		//$this->log("Log file initialized.");
 	}
 
 	/**
@@ -33,13 +30,13 @@ class Logger {
 	public function log($msg)
 	{
 
+		// Prefixing message with datetime stamp
 		$date = date('Y-m-d H:i:s');
 		$txt = $date." ".$msg;
 
-		echo "in function";
-		//$myfile = fopen("logs.txt", "a") or die("Unable to open file!");
+		// Appending message to log file with EOL character, and locking file while being written to prevent 
+		// writings at the same time.  I got this off the internet, but it seems to work lmao.
 		$myfile = file_put_contents($this->directory.$this->filename, $txt.PHP_EOL , FILE_APPEND | LOCK_EX);
-		//fclose($myfile);
 	}
 
 	/**
@@ -84,6 +81,8 @@ class Logger {
 	}
 
 }
+$logger = new Logger();
+$logger->log("another test");
 
 
 ?>

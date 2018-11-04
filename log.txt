@@ -1,2 +1,0 @@
-2018-11-04 21:33:04 this is a test message
-2018-11-04 21:45:38 [custom]this is a custom message
