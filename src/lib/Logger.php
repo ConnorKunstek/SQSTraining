@@ -1,10 +1,14 @@
 <?php
+/**
+ * Logger class
+ */
 
 /**
  * A custom logger to be able to log messages while the application is running.
  * @author  Stephen Ritchie <stephen.ritchie@uky.edu>
- * @todo  Add constructor for defining a custom filename and directory
- * @version GIT: $Id$
+ * @todo  Add ability to set custom directory or log file name
+ * @todo  Add support for logs to be generated for just warnings, just errors, etc
+ * @version  GIT: $Id$
  */
 class Logger {
 
@@ -81,7 +85,6 @@ class Logger {
 	}
 
 }
-
 
 ?>
 

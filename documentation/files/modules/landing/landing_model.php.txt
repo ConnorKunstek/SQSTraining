@@ -1,4 +1,6 @@
 <?php
+require_once ("../../lib/Connector.php");
+require_once ("../../lib/Logger.php");
 
 /**
  *
