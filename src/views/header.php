@@ -18,7 +18,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
 
-    <title>SQS Training</title>
+    <title>SQS Training - </title>
 
     <style>
       body {
