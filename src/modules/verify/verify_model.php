@@ -7,7 +7,7 @@
  * @param type $email 
  * @return type
  */
-function verifyAccount($email){
+function activateAccount($email){
 
 
 

@@ -12,9 +12,8 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
-    <title>SQS Training - </title>
+    <title>SQS Training - Verify Account</title>
     <style> .alert { margin-top: 5%; }</style>
-    <script>document.title += "ERROR";</script>
   </head>
 
   <body>
@@ -27,7 +26,7 @@ session_start();
 	</nav>
 
 	<?php
-		if (verifyAccount($email)){
+		if (activateAccount($email)){
 			include ("success.html");
 		} else {
 			include ("failure.html"); 
