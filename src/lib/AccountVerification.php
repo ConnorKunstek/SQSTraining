@@ -126,7 +126,7 @@ class AccountVerification {
      */
     private function createURL($email){
 
-        $filename = "verify.php"; // TODO: Figure out how to better define the URL handler than a hard-coded value.
+        $filename = "src/modules/verify/verify_controller.php"; // TODO: Figure out how to better define the URL handler than a hard-coded value.
         $hash = md5( rand(0,1000) ); // TODO: Get the user's hash from the database based instead of hard-coding.
 
         // TODO: Verify that the HTTP_POST server variable creates the right value for the url.
