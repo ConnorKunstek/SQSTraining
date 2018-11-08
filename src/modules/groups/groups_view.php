@@ -137,7 +137,7 @@
         <form id="AddUserModalForm" name="AddUserGroupModalForm" class="" action="../groups/groups_controller.php" method="post">
           <div class="modal-body">
             <br>
-Which User? &nbsp;
+            Which User? &nbsp;
             <select class="form-control" id="dropdownUser" class="user-select" name="user">
               <option value='6'> </option><option value='50'>Admin Admin</option>
                 <option value='23'>Alfred the Great</option>
