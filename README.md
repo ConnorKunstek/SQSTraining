@@ -2,7 +2,7 @@
 
 
 
-Code in this repository represents efforts of Connor Kunstek @ConnorKunstek, Nick Sladic @Nickademius, Luke Andrews, and Stephen Richie 
+Code in this repository represents efforts of Connor Kunstek @ConnorKunstek, Nick Sladic @Nickademius, Luke Andrews, and Stephen Ritchie
 
 
 
