@@ -25,13 +25,13 @@ session_start();
 
         <meta name="author" content="Connor">
 
-        <link href="../../assets/css/bootstrap.css" rel="stylesheet">
+        <link href="../../../assets/css/bootstrap.css" rel="stylesheet">
 
-        <link href="../../assets/css/main.css" rel="stylesheet">
+        <link href="../../../assets/css/main.css" rel="stylesheet">
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="../../assets/js/jquery.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="../../../assets/js/jquery.min.js"><\/script>')</script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
 
@@ -80,7 +80,7 @@ session_start();
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a href="./"><img id="header-img" src="../../assets/images/logo.png" alt="SQS logo"></a>
+                    <a href="./"><img id="header-img" src="../../../assets/images/logo.png" alt="SQS logo"></a>
                 </div>
             </nav>
 
@@ -96,11 +96,11 @@ session_start();
 
         <!-- Placed at the end of the document so the pages load faster -->
 
-        <script src="../../assets/js/bootstrap.min.js"></script>
+        <script src="../../../assets/js/bootstrap.min.js"></script>
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="../../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
     </body>
 
@@ -132,7 +132,7 @@ session_start();
                 <input id="hidden" type='hidden' name = 'hidden' value="sign_up_view_1">
                 <div class="container-fluid">
                     <br><h5 id="SignUpWelcomeHead">Welcome to the SQS Training Site, please sign up.</h5><br>
-                    <img src="../../assets/images/logo.png" alt="" style="width:50%;display:block;margin-left:auto;margin-right:auto;"><br>
+                    <img src="../../../assets/images/logo.png" alt="" style="width:50%;display:block;margin-left:auto;margin-right:auto;"><br>
                     <div class="row">
                         <div class="col-md-6">
                             <label for="first_name">First Name:</label><br>
