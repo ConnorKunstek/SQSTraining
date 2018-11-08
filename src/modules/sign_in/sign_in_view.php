@@ -26,13 +26,13 @@
 
     <!-- Bootstrap core CSS -->
 
-    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../assets/css/bootstrap.css" rel="stylesheet">
 
-    <link href="../../assets/css/main.css" rel="stylesheet">
+    <link href="../../../assets/css/main.css" rel="stylesheet">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/jquery.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="../../../assets/js/jquery.min.js"><\/script>')</script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
 
@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="col-md-2">
-            <a href="./"><img id="header-img" src="../../assets/images/logo.png" alt="SQS logo"></a>
+            <a href="./"><img id="header-img" src="../../../assets/images/logo.png" alt="SQS logo"></a>
         </div>
         </nav>
     </div>
@@ -88,11 +88,11 @@
 
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="../../../assets/js/bootstrap.min.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
   </body>
 
@@ -103,7 +103,7 @@
     <div class="login">
   	    <form method="post" action="">
             <br><h5 id="LogInWelcomeHead">Welcome to the SQS Training Site, please log in.</h5><br>
-            <img id="LogInImage" src="../../assets/images/logo.png" alt="" style="width:50%;display:block;margin-left:auto;margin-right:auto;"><br>
+            <img id="LogInImage" src="../../../assets/images/logo.png" alt="" style="width:50%;display:block;margin-left:auto;margin-right:auto;"><br>
 	        <label for="email_Signin">Email:</label><br>
 	     	<input class="form-control" type="email" name="email" placeholder="Email" maxlength="30" id="email_Signin" autofocus autocomplete="email"/><br>
 	    	<label for="password">Password:</label><br>

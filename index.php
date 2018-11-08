@@ -21,13 +21,13 @@
 
         <!-- Bootstrap core CSS -->
 
-        <link href="src/assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
 
-        <link href="src/assets/css/main.css" rel="stylesheet">
+        <link href="assets/css/main.css" rel="stylesheet">
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="src/assets/js/jquery.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
 
@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a href="./"><img id="header-img" src="src/assets/images/logo.png" alt="SQS logo"></a>
+                    <a href="./"><img id="header-img" src="assets/images/logo.png" alt="SQS logo"></a>
                 </div>
             </nav>
 
@@ -91,11 +91,11 @@
 
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script src="src/assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
-    <script src="src/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 
     </body>
 

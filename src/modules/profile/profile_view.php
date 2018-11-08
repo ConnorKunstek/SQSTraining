@@ -31,13 +31,13 @@
 
     <!-- Bootstrap core CSS -->
 
-    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../assets/css/bootstrap.css" rel="stylesheet">
 
-    <link href="../../assets/css/main.css" rel="stylesheet">
+    <link href="../../../assets/css/main.css" rel="stylesheet">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/jquery.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="../../../assets/js/jquery.min.js"><\/script>')</script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
 
@@ -93,7 +93,7 @@
       </div>
     </div>
     <div class="col-md-2">
-      <a href="./"><img id="header-img" src="../../assets/images/logo.png" alt="SQS logo"></a>
+      <a href="./"><img id="header-img" src="../../../assets/images/logo.png" alt="SQS logo"></a>
     </div>
   </nav>
 
@@ -109,18 +109,18 @@
 
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="../../../assets/js/bootstrap.min.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../../assets/js/ie10-viewport-bug-workaround.js"></script>
 
   </body>
 
 </html>
 
 
-<script type=text/javascript src="../../assets/js/jquery.min.js"></script>
+<script type=text/javascript src="../../../assets/js/jquery.min.js"></script>
 <html>
 	<body>
 		<div class="container">
@@ -141,7 +141,7 @@
 							<label class="control-label" >Photo&emsp;</label>
 						</div>
 						<div class="profile-inputs">
-							<img src="../../assets/images/uploads/" alt="Profile Photo" height="175" width="175">&emsp;<br><br>
+							<img src="../../../assets/images/uploads/" alt="Profile Photo" height="175" width="175">&emsp;<br><br>
 						</div>
 					</div>
 					<div class="col-md-4">
