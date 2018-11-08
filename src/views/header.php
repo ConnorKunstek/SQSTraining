@@ -1,93 +1,62 @@
-
-<!-- Loaded into every file - Contains all includes for every library used throughout the site -->
 <?php
-  //error_reporting(0);
+  /**
+   *
+   *
+   *
+   */
   session_start();
-  //require_once("../feature_connector.php");
 ?>
 
 
-
 <!DOCTYPE html>
-
 <html lang="en">
-
-
-
   <head>
-
+    <!-- Required meta tags -->
     <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SQS Training - </title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content="">
-
-    <meta name="author" content="">
-
-
-
-    <!-- Bootstrap core CSS -->
-
-    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
-
-    <link href="../../assets/css/main.css" rel="stylesheet">
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-
-
-    <script type="text/javascript">
-      $(document).ready(function(){
-
-        if($(window).width() > 767){
-          $('.navbar .dropdown').hover(function() {
-            $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
-
-          }, function() {
-            $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp();
-
-          });
-
-          $('.navbar .dropdown > a').click(function(){
-            location.href = this.href;
-          });
-        }
-      });
-    </script>
-
+    <style>
+      body {
+          padding-top: 5rem;
+      }
+    </style>
 
   </head>
-
-
-
   <body>
 
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
-    <?php
-      //feature_loader("navigation", isset($_SESSION['user']) ? $_SESSION['user'] : -1);
-     ?>
+      <a class="navbar-brand" href="#"><img src="/assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Groups</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.sqs.com/en/index.php" target="_blank">Corporate Site</a>
+          </li>
+        </ul>
+         <form class="form-inline my-2 my-lg-0">
+           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+         </form>
+      </div>
+    </nav>
 
 
-
-
-    <!-- Bootstrap core JavaScript
-
-    ================================================== -->
-
-    <!-- Placed at the end of the document so the pages load faster -->
-
-    <script src="../../assets/js/bootstrap.min.js"></script>
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-
-    <!-- <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-    -->
-  </body>
-
-</html>
 
