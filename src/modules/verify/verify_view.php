@@ -1,4 +1,7 @@
 <?php
+/**
+ * 
+ */
 
 
 session_start();
@@ -18,6 +21,7 @@ session_start();
 
   <body>
 
+  	<!-- Blank Navbar -->
 	<nav class="navbar navbar-dark bg-dark">
 	  <a class="navbar-brand" href="/index.php">
 	    <img src="/assets/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="alien spaceship">
@@ -26,7 +30,8 @@ session_start();
 	</nav>
 
 	<?php
-		if (activateAccount($email)){
+		// Choose message to display based on if account can be verified.
+		if (activateAccount($email, $conn)){
 			include ("success.html");
 		} else {
 			include ("failure.html"); 

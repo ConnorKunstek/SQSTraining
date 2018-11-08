@@ -75,6 +75,7 @@ class AccountVerification {
         echo '<h1>Account Verification Email</h1><hr>';
         echo '<p><b>to:</b> '.$to.'</p>';
         echo '<p><b>subject:</b> '.$subject.'</p>';
+        echo '<p><b>headers:</b> '.$headers.'</p>';
         echo '<p><b>url:</b> '.$url.'</p>';
         
 
