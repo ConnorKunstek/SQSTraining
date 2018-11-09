@@ -39,7 +39,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="/src/modules/landing/landing_controller.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Profile</a>
