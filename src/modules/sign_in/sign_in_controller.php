@@ -12,25 +12,17 @@ session_start();
 
 $_SESSION['errorMessage'] = null;
 
-
-//echo "snowing";
-
 if(isset($_POST['email']) && isset($_POST['password'])) {
-
-    //echo "here";
 
     // error checking 
     sanitized();
 
     noneMissing(); 
-    //passwordsChecked();
-
     verifyLogin();
 
     header("Location: ../home/home_controller.php");
     exit();
 } else {
-    //echo "here";
     header("Location: sign_in_view.php");
     exit();
 }
@@ -54,12 +46,6 @@ function noneMissing() {
         if(empty($element)){
             error("Error: One or more required fields are empty");
         }
-    }
-}
-
-function passwordsChecked() {
-    if($_POST['password'] != $_POST['password']){
-        error("Error: Passwords do not match");
     }
 }
 
