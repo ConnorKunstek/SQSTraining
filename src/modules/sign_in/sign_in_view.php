@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: connor
+ * User: luke
  * Date: 10/24/18
  * Time: 7:47 PM
  */
@@ -101,14 +101,14 @@
 
 <html>
     <div class="login">
-  	    <form method="post" action="">
+  	    <form method="post" action="sign_in_controller.php">
             <br><h5 id="LogInWelcomeHead">Welcome to the SQS Training Site, please log in.</h5><br>
             <img id="LogInImage" src="../../../assets/images/logo.png" alt="" style="width:50%;display:block;margin-left:auto;margin-right:auto;"><br>
 	        <label for="email_Signin">Email:</label><br>
-	     	<input class="form-control" type="email" name="email" placeholder="Email" maxlength="30" id="email_Signin" autofocus autocomplete="email"/><br>
+	     	<input class="form-control" type="email" name="email" placeholder="Email" maxlength="30" id="email" autofocus autocomplete="email"/><br>
 	    	<label for="password">Password:</label><br>
-	        <input class="form-control" type="password" name="password" placeholder="Password" maxlength="30" id="password_Signin"/>
-            <input class="btn btn-success" type="submit" name="submit" value="Sign in" id="submit_Signin"/>
+	        <input class="form-control" type="password" name="password" placeholder="Password" maxlength="30" id="password"/>
+            <input class="btn btn-success" type="submit" name="submit" value="Sign in" id="submit"/>
 	    </form>
 	</div>
 </html>
