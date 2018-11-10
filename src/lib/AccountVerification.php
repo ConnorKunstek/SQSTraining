@@ -41,7 +41,7 @@ class AccountVerification {
      * @param string $type Verification method (currently always overridden to 'email')
      * @return void
      */
-    public function __construct($id, $type)
+    public function __construct($id)
     {
         $this->id = $id;
         $this->verificationType = "email"; //overriding verification type to email since that's the only method currently implemented
@@ -135,7 +135,7 @@ class AccountVerification {
     }
 }
 
-$verification = new AccountVerification("1234", 'email');
-$verification->sendVerification_TEST();
+//$verification = new AccountVerification("1234", 'email');
+//$verification->sendVerification_TEST();
 
 ?>
