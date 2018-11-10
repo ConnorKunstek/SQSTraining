@@ -60,7 +60,7 @@ function createNewUser(){
         $_SESSION['UID'] = $returned;
         try {
             $verification = new AccountVerification($array['email']);
-            //$verification->sendVerification();
+            $verification->sendVerification();
             //$verification->sendVerification_TEST();
         }catch(Exception $e){
             error("Error: " . $e);

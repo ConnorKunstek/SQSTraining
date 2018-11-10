@@ -16,7 +16,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href=<?php echo __DIR__."../../assets/css/bootstrap.css"?>>
 
     <title>SQS Training Site - </title>
 
@@ -32,7 +32,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
-      <a class="navbar-brand" href="#"><img src="assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
+      <a class="navbar-brand" href="#"><img src="<?php echo __DIR__.'../../assets/img/logo.png'?>" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
