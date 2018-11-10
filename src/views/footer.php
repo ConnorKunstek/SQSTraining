@@ -32,7 +32,7 @@
     <footer class="footer bg-dark">
       <div class="container">
         <span class="text-muted">Copyright &copy; <?php echo date("Y"); ?> SQS. All rights reserved.</span>
-        <span class="text-muted float-right">version [X.X.X]</span>
+        <span class="text-muted float-right">v<?php echo $_SESSION['version']." ".$_SESSION['env']; ?></span>
       </div>
     </footer>
 
