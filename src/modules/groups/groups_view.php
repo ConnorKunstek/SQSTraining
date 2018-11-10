@@ -9,9 +9,12 @@
     include('../../views/header.php');
 ////    $_SESSION['role'] = "ROLE_SUPERUSER";
 ////    $_SESSION['role'] = "ROLE_USER";
-//    $_SESSION['uid'] = 6;
+    $_SESSION['uid'] = 6;
 ////    $_SESSION['role'] = "ROLE_RESTRICTED";
-//    $_SESSION['role'] = "ROLE_ADMIN";
+    $_SESSION['role'] = "ROLE_ADMIN";
+//    print_r($_SESSION);
+//    echo $_SESSION['first_name'];
+//    echo $_SESSION['role'];
 ?>
 <div class="container">
     <h3 id="GroupHead">My Groups</h3>
@@ -68,18 +71,45 @@
           </div>
         ";
         $allGroups = getAllGroups();
-        print_r($allGroups);
+//        print_r($allGroups);
         $count = 0;
-        foreach($allGroups as $group){
-            echo "
-                <div class=\"groups\">
+        //renders groups
+        if(sizeof($allGroups) > 0){
+            foreach($allGroups as $group){
+                echo "<div class=\"groups\">
                     <div class='row'>
                         <h5 id=\"Group".$group['name']."Namehead\"><u>".$group['name']."</h5>";
-            echo "<button onclick=\"injectGroup(this)\" id=\"".$count."\" style=\"display:inline-block;margin-left:20px;\" type=\"button\" name=\"addUserGroup\" class=\"btn btn-sm btn-success\" data-toggle=\"modal\" data-target=\"#addUserGroupModal\" data-group=\"". $group['UID'] ."\">Add User</button>";
-            echo "<form action=\"group_operations/remove_group.php\" id=\"RemoveGroup".$count."\" method=\"post\">";
-            echo "<input type=\"text\" id=\"Group".$group['name']."\" name=\"group\" value=\"".$group['UID']."\" style=\"display:none;\">";
-            echo "<button style=\"display:inline-block;margin-left:10px;\" id=\"removeGroup".$count."\" type=\"submit\" name=\"removeGroup\" class=\"btn btn-sm btn-danger\" data-group=\"".$group['UID']."\">Remove Group</button>";
-            echo "</form></div></div>";
+                echo "<button onclick=\"injectGroup(this)\" id=\"".$count."\" style=\"display:inline-block;margin-left:20px;\" type=\"button\" name=\"addUserGroup\" class=\"btn btn-sm btn-success\" data-toggle=\"modal\" data-target=\"#addUserGroupModal\" data-group=\"". $group['UID'] ."\">Add User</button>";
+                echo "<form action=\"group_operations/remove_group.php\" id=\"RemoveGroup".$count."\" method=\"post\">";
+                echo "<input type=\"text\" id=\"Group".$group['name']."\" name=\"group\" value=\"".$group['UID']."\" style=\"display:none;\">";
+                echo "<button style=\"display:inline-block;margin-left:10px;\" id=\"removeGroup".$count."\" type=\"submit\" name=\"removeGroup\" class=\"btn btn-sm btn-danger\" data-group=\"".$group['UID']."\">Remove Group</button>";
+                echo "</form></div><br>";
+                $innerGroups = getInnerGroups($group['UID']);
+                //renders inner groups by groupID
+                if(sizeof($innerGroups) > 0){
+                    foreach ($innerGroups as $innerGroup) {
+                        $leadership = "";
+                        if ($innerGroup['leader'] == 1) {
+                            $leadership = "(Leader) ";
+                        }
+                        echo "
+                         <div class=\"row\">
+                            <div class=\"group-info\">" . $leadership . $innerGroup['first_name'] . "</div>
+                         </div>
+                         <div>
+                         " . $innerGroup['Email'] . "
+                         </div>";
+
+                    }
+                    echo "</div>";
+                }
+                else{
+                    echo "<h5>No Current Users</h5>";
+                }
+            }
+        }
+        else{
+            echo "<h5>No Current Groups</h5>";
         }
     }
     else{

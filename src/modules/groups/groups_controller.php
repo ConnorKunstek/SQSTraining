@@ -19,3 +19,7 @@ function getAllGroups(){
     $result = getGroups();
     return $result;
 }
+function getInnerGroups($uid){
+    $result = getInnerGroupMembers($uid);
+    return $result;
+}
