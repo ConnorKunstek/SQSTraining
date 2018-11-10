@@ -10,6 +10,7 @@
  * @todo  Add support for logs to be generated for just warnings, just errors, etc
  * @version  GIT: $Id$
  */
+
 class Logger {
 
 	/** @var string name of log file (with extension)*/
@@ -24,7 +25,8 @@ class Logger {
 	 */
 	public function __construct()
 	{
-		$this->directory = $_SERVER["DOCUMENT_ROOT"]."/log/";
+		//$this->directory = $_SERVER["DOCUMENT_ROOT"]."/log/";
+		$this->directory = "../../../log/";
 		//echo $this->directory;
 		//echo $_SERVER['DOCUMENT_ROOT'];
 	}
@@ -86,7 +88,4 @@ class Logger {
 	}
 
 }
-
-
-?>
 

@@ -108,7 +108,7 @@ session_start();
                     <div class="row">
                         <div class="col-md-12">
                             <br>
-                            <input class="btn btn-primary" type="submit" name="submit" value="Register" id="signup_Submit"/>
+                            <input class="btn btn-success" type="submit" name="submit" value="Register" id="submit"/>
                         </div>
                     </div>
                 </div>

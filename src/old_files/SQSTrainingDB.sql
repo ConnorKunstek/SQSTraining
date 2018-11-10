@@ -419,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `first_name` varchar(25) NOT NULL,
   `last_name` varchar(25) NOT NULL,
   `email` varchar(254) NOT NULL,
-  `role` varchar(64) NOT NULL DEFAULT 'user',
+  `role` varchar(64) NOT NULL DEFAULT 'ROLE_USER',
   `password` varchar(64) NOT NULL,
   `level` int(11) NOT NULL DEFAULT 3,
   `gender` varchar(6) DEFAULT NULL,

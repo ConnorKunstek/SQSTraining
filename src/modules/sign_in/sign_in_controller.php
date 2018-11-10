@@ -22,12 +22,11 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
     // error checking 
     sanitized();
 
-    noneMissing(); 
-    //passwordsChecked();
+    noneMissing();
 
     verifyLogin();
 
-    header("Location: ../home/home_controller.php");
+    header("Location: ../landing/landing_controller.php");
     exit();
 } else {
     //echo "here";
@@ -57,12 +56,6 @@ function noneMissing() {
     }
 }
 
-function passwordsChecked() {
-    if($_POST['password'] != $_POST['password']){
-        error("Error: Passwords do not match");
-    }
-}
-
 function error($message){
     $_SESSION['errorMessage'] = $message;
     header("Location: sign_in_view.php");
@@ -78,12 +71,17 @@ function verifyLogin() {
     $returned = verifyUserInfo($array);
 
     if (!is_null($returned)) {
-        $_SESSION['uid'] = $returned['UID'];
-        $_SESSION['first_name'] = $returned['first_name'];
-        $_SESSION['last_name'] = $returned['last_name'];
-        $_SESSION['verified'] = $returned['verified'];
+
+        if($returned['verified']){
+            $_SESSION['uid'] = $returned['UID'];
+            $_SESSION['first_name'] = $returned['first_name'];
+            $_SESSION['last_name'] = $returned['last_name'];
+            $_SESSION['role'] = $returned['role'];
+        }else{
+            error("This account has not been verified. Please check your email (and junk folder) and follow the link provided");
+        }
     } else {
-        error("Error: ". $returned);
+        error("Error: Email does not exist");
     }
 
 }

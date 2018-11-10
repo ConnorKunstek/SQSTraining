@@ -1,8 +1,9 @@
 <?php 
-  include ("landing_controller.php");
+  //include ("landing_controller.php");
 
+    session_start();
 
-  include("../../views/header.php"); 
+  include("../../views/header.php");
 ?>
 
 <script type="text/javascript">document.title += " Home"</script>
