@@ -41,12 +41,12 @@ class AccountVerification {
      * @param string $type Verification method (currently always overridden to 'email')
      * @return void
      */
-    public function __construct($id, $type)
+    public function __construct($email)
     {
-        $this->id = $id;
+        $this->email = $email;
         $this->verificationType = "email"; //overriding verification type to email since that's the only method currently implemented
         
-        $this->init();
+        //$this->init();
     }
 
     /**
@@ -54,12 +54,21 @@ class AccountVerification {
      * @return void
      */
     private function init(){
-        $this->email = $this->getEmail($this->id); // getting the email address from the database  
+        //$this->email = $this->getEmail($this->id); // getting the email address from the database  
     }
 
 
     public function sendVerification()
     {
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        $to = $this->email;
+        $subject = "Verify your email address";
+        $url = $this->createURL($this->email);
+        $message = $this->createMessage($url);
+
+        mail($to, $subject, $message, $headers);
     }
 
     public function sendVerification_TEST()
@@ -135,7 +144,5 @@ class AccountVerification {
     }
 }
 
-$verification = new AccountVerification("1234", 'email');
-$verification->sendVerification_TEST();
 
 ?>
