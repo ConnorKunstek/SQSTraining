@@ -1,19 +1,13 @@
-<?php
-/**
- *
- *
- *
- */
-
-include("../../views/header.php"); # HTML header
-
+<?php 
+  include("../../views/header.php"); 
 ?>
 
+<script type="text/javascript">document.title += " Home"</script>
 
 <div class="container">
 
   <div id="welcome_message">
-    <h1>Welcome <?php echo $model->get_username(); ?>!</h1>
+    <h1>Welcome <?php echo $username; ?></h1>
     <p>This website has been created to serve as a sandbox environment for users to test both their
        manual and automated testing strategies.  To begin, press the "Start Testing" button below.</p>
   </div>
@@ -46,10 +40,9 @@ include("../../views/header.php"); # HTML header
                 allowfullscreen>
         </iframe>
     </div>
-
-
+    
     <!-- Google Map Feature -->
-    <div id="googleMap" style="width:100%;height:400px;"></div>
+    <div id="googleMap" class="py-5" style="width:100%;height:400px;"></div>
     <script>
         function myMap() {
             var mapProp= {
@@ -61,7 +54,6 @@ include("../../views/header.php"); # HTML header
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
     <br>
-
 
 </div>
 
