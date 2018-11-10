@@ -24,7 +24,9 @@ class Logger {
 	 */
 	public function __construct()
 	{
-		
+		$this->directory = $_SERVER["DOCUMENT_ROOT"]."/log/";
+		//echo $this->directory;
+		//echo $_SERVER['DOCUMENT_ROOT'];
 	}
 
 	/**
@@ -33,10 +35,9 @@ class Logger {
 	 */
 	public function log($msg)
 	{
-
 		// Prefixing message with datetime stamp
 		$date = date('Y-m-d H:i:s');
-		$txt = $date." ".$msg;
+		$txt = $date." ".$_SERVER["REMOTE_ADDR"]." ".$msg;
 
 		// Appending message to log file with EOL character, and locking file while being written to prevent 
 		// writings at the same time.  I got this off the internet, but it seems to work lmao.
@@ -85,6 +86,7 @@ class Logger {
 	}
 
 }
+
 
 ?>
 
