@@ -1,36 +1,33 @@
 <?php
 /**
- * 
+ * Controller for the landing page.
  * @author Stephen Ritchie <stephen.ritchie@uky.edu>
  */ 
 
 session_start();
-require_once("landing_model.php");
+
 require_once ("../../lib/Logger.php");
 $logger = new Logger();
 
-// TODO: move parsing of config elsewhere?
-$config_ini = parse_ini_file("../../config/config.ini", True);
-$_SESSION['version'] = $config_ini['env']['version'];
-$_SESSION['env'] = $config_ini['env']['env'];
+
+// Parsing config.ini to get store version and development in session variable
+$config_filename = $_SERVER['DOCUMENT_ROOT']."/src/config/confg.ini";
+if (file_exists($config_filename)){
+	$config_ini = parse_ini_file($config_filename, True);
+	$_SESSION['version'] = $config_ini['env']['version'];
+	$_SESSION['env'] = $config_ini['env']['env'];	
+} else {
+	$logger->log_error("could not find config file:".$config_filename);
+}
 
 
-# TODO: Check if the user is logged in
-$loggedIn = True;
-if ($loggedIn){
-
-	$username = "Stephen";
+// Making sure client is logged in 
+if ($_SESSION['uid'] != null){
+	include_once ("landing_view.php");
 
 } else {
-	$logger->log_warning("Landing page loaded by but was redirected due to not being logged in.");
 	header("Location: /index.php");
     exit();
 }
-
-/*echo '<pre>';
-var_dump($_SESSION);
-echo '</pre>';*/
-
-include('landing_view.php');
 
 ?>

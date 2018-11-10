@@ -1,63 +1,37 @@
 <?php
 /**
  * AccountVerification class
+ * @link https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824 Source for email verification design
  */
-
 
 require_once(__DIR__.'/../config/config.php');
-
-
-// https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824 
-
+require_once ("Connector.php");
+require_once ("Logger.php");
 
 /**
- * Class to allow creation of a verification email to be sent to a user when they
- * register with the platform.  This is class is designed to be able to extend
- * its verification method to other types (i.e text message, phone call, carrier pigeon) but for
- * now will only be able to send an email verification.
+ * Class to allow sending of a verification email to an email.
  * @author Stephen Ritchie <stephen.ritchie@uky.edu>
- * @version GIT: $Id$
+ * @todo review all code
  */
 class AccountVerification {
-    /**
-     * @var string ID number of the user.
-     */
-    private $id;
 
-    /**
-     * @var string Verification type (email, sms, phone), but since no other methods are currently implemented
-     * it's always overridden to be an email.
-     */
-    private $verificationType;
-
-    /**
-     * @var string Email address of the user.
-     */
     private $email;
+    private $logger;
 
     /**
      * Constructor that should be used.
      * @param string $id ID number of the user. 
-     * @param string $type Verification method (currently always overridden to 'email')
      * @return void
      */
     public function __construct($email)
     {
         $this->email = $email;
-        $this->verificationType = "email"; //overriding verification type to email since that's the only method currently implemented
-        
-        //$this->init();
+        $this->logger = new Logger();
     }
 
     /**
-     * Initializes the object
-     * @return void
+     * 
      */
-    private function init(){
-        //$this->email = $this->getEmail($this->id); // getting the email address from the database  
-    }
-
-
     public function sendVerification()
     {
         $headers = "MIME-Version: 1.0" . "\r\n";
@@ -69,6 +43,7 @@ class AccountVerification {
         $message = $this->createMessage($url);
 
         mail($to, $subject, $message, $headers);
+        $this->logger->log("Email verification sent to ".$this->email);
     }
 
     public function sendVerification_TEST()
@@ -87,22 +62,17 @@ class AccountVerification {
         echo '<p><b>headers:</b> '.$headers.'</p>';
         echo '<p><b>url:</b> '.$url.'</p>';
         
-
-        /*if (!mail($to, $subject, $message, $headers)){
-            echo "<h1>EMAIL SENDING FAILED</h1>";
-        }*/
-
         echo '<p>Email preview will be populated below...</p><br>';
         echo $message;
     }
 
     /**
-     * Description
-     * @param type $url 
-     * @return type
+     * Creates the body of the email using mail compatible HMTL markup.
+     * @param string $url verification url for the email
+     * @return string Entire email message as string
+     * @todo make email look prettier
      */
     private function createMessage($url){
-
         $msg = "<!DOCTYPE html><html><body>";
         $msg .= "<h2>Welcome to SQS Training!</h2>";
         $msg .= "<p>To finish setting up your account, we just need to make sure this email address is yours.</p>";
@@ -115,34 +85,41 @@ class AccountVerification {
     }
 
     /**
-     * Retrieves a user's email address from the database.
-     * @param string $id user id number 
-     * @return string email address of user
-     * @todo Add database support.
-     */
-    private function getEmail($id){
-        
-        // TODO: Get the user's email from the database instead of hard-coding.
-        $email = "stephenfritchie@gmail.com";
-
-        return (string)$email;    
-    }
-
-    /**
      * Creates a unique url that is associated with the user via the database
      * @param string $email user's email address
      * @return string unique url that has been associated with the user
-     * @todo Add database support.
+     * @todo add error handling for getting hash
      */
     private function createURL($email){
-
         $filename = "src/modules/verify/verify_controller.php"; // TODO: Figure out how to better define the URL handler than a hard-coded value.
-        $hash = md5( rand(0,1000) ); // TODO: Get the user's hash from the database based instead of hard-coding.
+        $hash = $this->getHash(); // getting the hash
 
         // TODO: Verify that the HTTP_POST server variable creates the right value for the url.
         return 'http://'.$_SERVER['HTTP_HOST'].'/'.$filename.'?email='.$email.'&hash='.$hash;
     }
-}
 
+    /**
+     * Creates a unique hash that is also stored in the database
+     * @return string 32 character hash
+     */
+    private function getHash(){
+        $hash = md5( rand(0,1000) );
+        $email = $this->email;
+
+        # Store hash into database
+        try {
+            $base = Connector::getDatabase();
+            $sql = "UPDATE user SET hash='$hash' WHERE email = '$email';";
+            $stmt = $base->prepare($sql);
+            $stmt->execute();
+            $this->logger->log_debug("Added hash to user ".$this->email);
+        } catch (Exception $e){
+            $this->logger->log_error("Could not add hash to database. Exception: ".$e);
+            return False;
+        }
+
+        return $hash;
+    }
+}
 
 ?>
