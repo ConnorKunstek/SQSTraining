@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `assigned_features`
 --
-
+DROP TABLE IF EXISTS 'assigned_features';
 CREATE TABLE IF NOT EXISTS `assigned_features` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `feature_number` int(11) DEFAULT NULL,
@@ -76,7 +76,7 @@ DELIMITER ;
 --
 -- Table structure for table `assigned_group_features`
 --
-
+DROP TABLE IF EXISTS 'assigned_group_features';
 CREATE TABLE IF NOT EXISTS `assigned_group_features` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `feature_number` int(11) NOT NULL,
@@ -100,8 +100,8 @@ INSERT INTO `assigned_group_features` (`id`, `feature_number`, `group_id`, `time
 --
 -- Table structure for table `auditTable`
 --
-
-CREATE TABLE IF NOT EXISTS `auditTable` (
+DROP TABLE IF EXISTS 'audit_table';
+CREATE TABLE IF NOT EXISTS `audit_table` (
   `UID` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `changed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -109,10 +109,10 @@ CREATE TABLE IF NOT EXISTS `auditTable` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `auditTable`
+-- Dumping data for table `audit_table`
 --
 
-INSERT INTO `auditTable` (`UID`, `user_id`, `changed_on`) VALUES
+INSERT INTO `audit_table` (`UID`, `user_id`, `changed_on`) VALUES
 (5, 6, '2018-04-16 15:12:00'),
 (6, 92, '2018-04-23 16:10:22');
 
@@ -121,7 +121,7 @@ INSERT INTO `auditTable` (`UID`, `user_id`, `changed_on`) VALUES
 --
 -- Table structure for table `features_available`
 --
-
+DROP TABLE IF EXISTS 'features_available';
 CREATE TABLE IF NOT EXISTS `features_available` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
@@ -159,7 +159,7 @@ INSERT INTO `features_available` (`id`, `name`, `description`, `file`, `target`)
 --
 -- Table structure for table `groups`
 --
-
+DROP TABLE IF EXISTS 'groups';
 CREATE TABLE IF NOT EXISTS `groups` (
   `UID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
@@ -183,7 +183,7 @@ INSERT INTO `groups` (`UID`, `name`, `date_established`) VALUES
 --
 -- Table structure for table `group_members`
 --
-
+DROP TABLE IF EXISTS 'group_members';
 CREATE TABLE IF NOT EXISTS `group_members` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) DEFAULT NULL,
@@ -215,7 +215,7 @@ INSERT INTO `group_members` (`id`, `group_id`, `leader`, `date_joined`, `uid`) V
 --
 -- Table structure for table `hardware_skills`
 --
-
+DROP TABLE IF EXISTS 'hardware_skills';
 CREATE TABLE IF NOT EXISTS `hardware_skills` (
   `UID` int(11) NOT NULL AUTO_INCREMENT,
   `skill` char(30) NOT NULL,
@@ -245,7 +245,7 @@ INSERT INTO `hardware_skills` (`UID`, `skill`) VALUES
 --
 -- Table structure for table `levels`
 --
-
+DROP TABLE IF EXISTS 'levels';
 CREATE TABLE IF NOT EXISTS `levels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(25) DEFAULT NULL,
@@ -270,7 +270,7 @@ INSERT INTO `levels` (`id`, `title`) VALUES
 --
 -- Table structure for table `phone_list`
 --
-
+DROP TABLE IF EXISTS 'phone_list';
 CREATE TABLE IF NOT EXISTS `phone_list` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `phone_number` varchar(20) DEFAULT NULL,
@@ -307,7 +307,7 @@ INSERT INTO `phone_list` (`id`, `phone_number`, `user_id`, `date_added`, `carrie
 --
 -- Table structure for table `session_users`
 --
-
+DROP TABLE IF EXISTS 'session_users';
 CREATE TABLE IF NOT EXISTS `session_users` (
   `session_id` varchar(128) NOT NULL,
   `user_id` varchar(11) NOT NULL,
@@ -328,7 +328,7 @@ INSERT INTO `session_users` (`session_id`, `user_id`) VALUES
 --
 -- Table structure for table `software_skills`
 --
-
+DROP TABLE IF EXISTS 'software_skills';
 CREATE TABLE IF NOT EXISTS `software_skills` (
   `UID` int(11) NOT NULL AUTO_INCREMENT,
   `skill` varchar(30) NOT NULL,
@@ -382,7 +382,7 @@ INSERT INTO `software_skills` (`UID`, `skill`) VALUES
 --
 -- Table structure for table `subscriber`
 --
-
+DROP TABLE IF EXISTS 'subscriber';
 CREATE TABLE IF NOT EXISTS `subscriber` (
   `phone_number` varchar(20) NOT NULL,
   `carrier` varchar(10) NOT NULL,
@@ -429,6 +429,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `zip` int(5) DEFAULT NULL,
   `photo` varchar(256) DEFAULT NULL,
   `progress` int(11) NOT NULL DEFAULT 50,
+  `hash` varchar(32) DEFAULT NULL,
+  `verified` boolean default false,
+
   PRIMARY KEY (`UID`),
   UNIQUE KEY `UID` (`UID`),
   UNIQUE KEY `Email` (`Email`(54))
@@ -439,8 +442,19 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`UID`, `first_name`, `last_name`, `Email`, `Password`, `level`, `gender`, `dateofbirth`, `address`, `city`, `state`, `zip`, `photo`, `progress`) VALUES
+(6, 'John', 'Doe', 'test@test.com', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),
+(19, 'Lebron', 'James', 'king@test.com', 'hairloss', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),
+(12, 'Zion', 'Williamson', 'bigdick@test.com', 'holdmynuts', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),
+(30, 'RJ', 'Barret', 'rj@test.com', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),
+(50, 'Slim', 'Shady', 'eminem@test.com', 'fuckkelly', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),
+(92, 'Drake', 'drizzy', 'soft@test.com', 'fuckmeek', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),
+(69, 'Jeff', 'Chartos', 'sqs@sqs.com', 'idratherteach498', 3, 'Male', '1900-01-01', 'Testing', 'test', 'KY', 40503, NULL, 80);
+
+
+
+INSERT INTO `user` (`UID`, `first_name`, `last_name`, `Email`, `Password`, `level`, `gender`, `dateofbirth`, `address`, `city`, `state`, `zip`, `photo`, `progress`) VALUES
 (6, '', '', 'test@test.com', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),
-(8, 'John', 'Doe', 'johndoe@example.com', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 3, 'Male', '0199-11-29', '111 Main Street', 'Lexington', 'KY', 40504, 'Parker.jpg', 100),
+(8, 'John', 'Doe', 'johndoe@example.com', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 3, 'Male', '0199-11-29', '111 Main Street', 'Lexington', 'KY', 40504, 'Parker.jpg', 100);
 (12, 'Hanker', 'Hill', 'hank@example.com', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 2, 'Male', '1993-11-29', '', '', '', 0, NULL, 0),
 (18, 'Robinson', 'Crueso', 'test4@example.com', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 3, 'Male', '1993-11-29', NULL, NULL, NULL, NULL, NULL, 0),
 (19, 'Peter', 'The Great', 'test5@example.com', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 3, 'Male', '1993-11-29', NULL, NULL, NULL, NULL, NULL, 0),

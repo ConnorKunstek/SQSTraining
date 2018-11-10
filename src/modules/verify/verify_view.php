@@ -5,6 +5,8 @@
 
 
 session_start();
+
+
 ?>
 
 
@@ -31,11 +33,12 @@ session_start();
 
 	<?php
 		// Choose message to display based on if account can be verified.
-		if (activateAccount($email, $conn)){
+		if (activateAccount($email, $hash)){
 			include ("success.html");
 		} else {
 			include ("failure.html"); 
-		}	
+		}
+			
 	?>
 
 

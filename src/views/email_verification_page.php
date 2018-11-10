@@ -1,3 +1,12 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ConnorKunstek
+ * Date: 11/9/18
+ * Time: 11:52 PM
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,10 +21,10 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
-        <link href="assets/css/main.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.css">
+        <link href="../../assets/css/main.css" rel="stylesheet">
 
-        <title>SQS Training Site</title>
+        <title>SQS Training Site - Email Verification</title>
 
         <style>
             body {
@@ -29,7 +38,7 @@
             <!-- Navbar -->
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
-                <a class="navbar-brand" href="#"><img src="assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
+                <a class="navbar-brand" href="#"><img src="../../assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,10 +53,8 @@
         </div>
         <div>
             <div class="welcome">
-                <h1 id="WelcomeHead">Welcome to the SQS Training Website!</h1>
-                <p id="DirectionPara">This website is for testing automated script to find different errors throughout the site. Sign in or sign up to begin!</p><br><br>
-                <button class="btn" id="LoginBut" onclick="location.href='src/modules/sign_in/sign_in_controller.php'">Sign In</button>
-                <button class="btn" id="RegisterBut" onclick="location.href='src/modules/sign_up/sign_up_controller.php'">Sign Up</button>
+                <h1 id="WelcomeHead">Thank you for creating an account!</h1>
+                <p id="DirectionPara">Please check your email and follow the link provided to verify your account <?php echo $_SESSION['uid']?></p><br><br>
             </div>
         </div>
     </body>
