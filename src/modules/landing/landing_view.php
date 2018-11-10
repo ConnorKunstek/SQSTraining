@@ -1,4 +1,7 @@
 <?php 
+  include ("landing_controller.php");
+
+
   include("../../views/header.php"); 
 ?>
 
@@ -7,7 +10,7 @@
 <div class="container">
 
   <div id="welcome_message">
-    <h1>Welcome <?php echo $username; ?></h1>
+    <h1>Welcome <?php echo $_SESSION['first_name']; ?></h1>
     <p>This website has been created to serve as a sandbox environment for users to test both their
        manual and automated testing strategies.  To begin, press the "Start Testing" button below.</p>
   </div>
