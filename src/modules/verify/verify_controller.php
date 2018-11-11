@@ -13,7 +13,7 @@ if (isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && 
     include ("verify_view.php");
 }
 else {
-	header("Location: /src/views/error.php");
+	header("Location: " . $_SESSION['base_path'] . "/src/views/error.php");
     exit();
 }
 

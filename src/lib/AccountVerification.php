@@ -91,7 +91,7 @@ class AccountVerification {
      * @todo add error handling for getting hash
      */
     private function createURL($email){
-        $filename = "src/modules/verify/verify_controller.php"; // TODO: Figure out how to better define the URL handler than a hard-coded value.
+        $filename = $_SESSION['base_path']."/src/modules/verify/verify_controller.php"; // TODO: Figure out how to better define the URL handler than a hard-coded value.
         $hash = $this->getHash(); // getting the hash
 
         // TODO: Verify that the HTTP_POST server variable creates the right value for the url.
