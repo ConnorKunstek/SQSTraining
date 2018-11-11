@@ -2,10 +2,19 @@
 
 require_once ("../../lib/Connector.php");
 require_once ("../../lib/Logger.php");
+
 session_start();
 
-$database = new Connector();
-$conn = $database->getDatabase();
+
+
+function getStatusPage($email, $hash){
+
+	if (activateAccount($email, $hash)){
+		include ("success.html");
+	} else {
+		include ("failure.html"); 
+	}
+}
 
 
 /**
@@ -14,7 +23,6 @@ $conn = $database->getDatabase();
  * @return boolean True if account was activaged, false otherwise
  */
 function activateAccount($email, $hash){
-
 
 	# Check the user exists based on provided email
 	if (!userExists($email)){
@@ -31,8 +39,6 @@ function activateAccount($email, $hash){
 		return False;
 	}
 
-
-
 	return True;
 }
 
@@ -47,12 +53,20 @@ function activateAccount($email, $hash){
 function hashesMatch($email, $hash){
 
 	try {
-		$base = Connector::getDatabase();
 
+		# Throw exception if hash is not 32 characters
+		if (strlen($hash) != 32){
+			throw new Exception("Hash value must be 32 character");
+		}
+
+
+		# Query database to see if $email exists
+		$base = Connector::getDatabase();
 		$sql = "SELECT * FROM user WHERE email = '$email';";
 		$stmt = $base->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->fetch();
+		
 		if ($result['hash'] == $hash){
 			return True;
 		} else {
@@ -60,21 +74,26 @@ function hashesMatch($email, $hash){
 		}
 
 	} catch (Exception $e){
-		return $e;
+		error_log($e);
+		header("Location: /src/views/error.php");
+    	exit();
 	}
-
 
 	return True;
 }
 
 
-
+/**
+ * Checks that an email exists in the database.
+ * @param string $email email address
+ * @return boolean True if email exists, false otherwise.
+ * @throws Exception if mysql query fails
+ */
 function verifyUser($email){
+
 	try {
 		$base = Connector::getDatabase();
-
 		$sql = "UPDATE user SET verified=1 WHERE email = '$email';";
-
 		$stmt = $base->prepare($sql);
 
 		if ($stmt->execute()){
@@ -84,7 +103,9 @@ function verifyUser($email){
 		}
 
 	} catch (Exception $e){
-		return $e;
+		error_log($e);
+		header("Location: /src/views/error.php");
+    	exit();
 	}
 }
 
@@ -106,7 +127,9 @@ function userExists($email){
 		}
 
 	} catch (Exception $e){
-		return $e;
+		error_log($e);
+		header("Location: /src/views/error.php");
+    	exit();
 	}
 }
 
