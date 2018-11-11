@@ -1,92 +1,84 @@
 <?php
-/**
- * Logger class
- */
+
+require_once(__DIR__.'/../config/config.php');
 
 /**
- * A custom logger to be able to log messages while the application is running.
- * @author  Stephen Ritchie <stephen.ritchie@uky.edu>
- * @todo  Add ability to set custom directory or log file name
- * @todo  Add support for logs to be generated for just warnings, just errors, etc
- * @version  GIT: $Id$
+ * Custom logger class that should work from any location in the repository.  Use the getInstance()
+ * method (see example) to get a handler to the Logger.  This is done to keep the Logger as a 
+ * singleton, which is helpful to ensure the log file path is alwyays able to be produced.
+ * @example $myLogger = Logger::getInstance(); 
+ * @author Stephen Ritchie <stephen.ritchie@uky.edu>
+ * @todo Create constructor to allow for a custom logging location to be defined
  */
-class Logger {
-
-	/** @var string name of log file (with extension)*/
-	private $filename = 'log'; 
-
-	/** @var string directory to where log file(s) reside */
-	private $directory = '../../log/';
+class Logger
+{
+	private static $instance;
+	private $logfile = "sqstraining.log";
+	private $logpath;
 
 	/**
 	 * Default Constructor
-	 * @todo  Check to see if backup location will work.
 	 */
-	public function __construct()
-	{
-		$this->directory = $_SERVER["DOCUMENT_ROOT"]."/log/";
-		//echo $this->directory;
-		//echo $_SERVER['DOCUMENT_ROOT'];
+	private function __construct(){
+		$this->logpath = BASE_PATH."/log/".$this->logfile;
 	}
 
 	/**
-	 * Appends the provided message to the defined log file.
-	 * @param  string $msg Message to be logged.
+	 * Logs a message to the defined log file.
+	 * @param string $msg message to be logged
 	 */
-	public function log($msg)
-	{
-		// Prefixing message with datetime stamp
+	public function log($msg){
 		$date = date('Y-m-d H:i:s');
-		$txt = $date." ".$_SERVER["REMOTE_ADDR"]." ".$msg;
+		$message = $date." ".$msg;
 
-		// Appending message to log file with EOL character, and locking file while being written to prevent 
-		// writings at the same time.  I got this off the internet, but it seems to work lmao.
-		$myfile = file_put_contents($this->directory.$this->filename, $txt.PHP_EOL , FILE_APPEND | LOCK_EX);
+		if (!file_put_contents($this->logpath, $message.PHP_EOL , FILE_APPEND | LOCK_EX)){
+			error_log("Log file could not be written to. path=".$this->logpath);
+		}
 	}
 
 	/**
-	 * Prefixes message with error indentifier before logging
-	 * @param  string $msg Message to be logged.
-	 * @return void
+	 * Prefaces message with a warning indication before logging.
+	 * @param type $msg warning message
+	 * @todo Have warnings log to their own file as well.
 	 */
-	public function log_error($msg)
-	{
-		$this->log('[ERROR] '.$msg);
-	}
-
-	/**
-	 * Prefixes message with warning indentifier before logging
-	 * @param  string $msg Message to be logged.
-	 * @return void
-	 */
-	public function log_warning($msg)
-	{
+	public function log_warning($msg){
 		$this->log('[WARNING] '.$msg);
 	}
 
 	/**
-	 * Prefixes message with debug indentifier before logging
-	 * @param  string $msg Message to be logged.
-	 * @return void
+	 * Prefaces message with an error indication before logging.
+	 * @param type $msg error message
+	 * @todo Have errors log to their own file as well.
 	 */
-	public function log_debug($msg)
-	{
+	public function log_error($msg){
+		$this->log('[ERROR] '.$msg);
+	}
+
+	/**
+	 * Prefaces message with a debug indication before logging.
+	 * @param type $msg debug message
+	 * @todo Have debugs log to their own file as well.
+	 */
+	public function log_debug($msg){
 		$this->log('[DEBUG] '.$msg);
 	}
 
 	/**
-	 * Prefixes message with custom identifier before logging
-	 * @param string $msg Message to be logged.
-	 * @param string $header custom prefix 
-	 * @return void
+	 * Gets a handler to the logger class.  This allows the Logger to be passed
+	 * around as a singleton.
+	 * @return handler $instance Handler to a Logger instance.
 	 */
-	public function log_custom($msg, $header)
-	{
-		$this->log('['.$header.'] '.$msg);
+	public static function getInstance(){
+		// Check is $_instance has been set
+        if(!isset(self::$instance)) 
+        {
+            // Creates sets object to instance
+            self::$instance = new Logger();
+        }
+
+        return self::$instance;
 	}
-
 }
-
 
 ?>
 
