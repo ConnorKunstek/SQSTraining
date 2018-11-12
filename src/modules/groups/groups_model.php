@@ -53,12 +53,25 @@ function getMyGroupMembers($uid){
 function getInnerGroupMembers($uid){
     try{
         $base = Connector::getDatabase();
-        $sql = "SELECT user.UID, user.first_name, user.Email, group_members.leader FROM user INNER JOIN group_members ON user.uid=group_members.uid WHERE group_members.group_id=$uid ORDER BY leader DESC;";
+        $sql = "SELECT user.UID, user.first_name, user.last_name, user.Email, group_members.leader FROM user INNER JOIN group_members ON user.uid=group_members.uid WHERE group_members.group_id=$uid ORDER BY leader DESC;";
         $stmt = $base->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;
     }catch(Exception $e){
+        return $e;
+    }
+}
+
+function getAllUsers(){
+    try{
+        $base = Connector::getDatabase();
+        $sql = "SELECT * FROM user ORDER BY first_name";
+        $stmt = $base->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }catch( Exception $e){
         return $e;
     }
 }

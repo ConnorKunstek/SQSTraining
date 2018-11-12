@@ -23,3 +23,7 @@ function getInnerGroups($uid){
     $result = getInnerGroupMembers($uid);
     return $result;
 }
+function getUsers(){
+    $result = getAllUsers();
+    return $result;
+}
