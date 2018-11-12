@@ -22,3 +22,5 @@ define('DB_PORT', '3306');
 
 //define('DB_DSN', 'mysql:dbname=' . DB_NAME . ';host=' . DB_SERVER);
 define('DB_DSN', 'mysql:dbname=' . DB_NAME . ';host=' . DB_SERVER . ';port=' . DB_PORT);
+
+define('BASE_PATH', $_SERVER['DOCUMENT_ROOT'].'/');

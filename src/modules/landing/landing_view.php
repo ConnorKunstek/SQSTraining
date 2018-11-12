@@ -1,8 +1,11 @@
 <?php 
-  include ("landing_controller.php");
+/**
+ * View for the landing page
+ * @author Stephen Ritchie <stephen.ritchie@uky.edu>
+ */ 
 
-
-  include("../../views/header.php"); 
+include_once("landing_controller.php");
+include_once("../../views/header.php"); 
 ?>
 
 <script type="text/javascript">document.title += " Home"</script>
@@ -60,4 +63,4 @@
 
 </div>
 
-<?php include("../../views/footer.php"); #HTML footer ?>
+<?php include_once("../../views/footer.php"); #HTML footer ?>
