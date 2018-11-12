@@ -9,10 +9,19 @@
 //require_once(__DIR__.'/../config/config.ini');
 require_once(__DIR__.'/../config/config.php');
 
+/**
+ * Class Connector
+ *
+ *
+ */
+
 class Connector extends PDO{
 
     private static $conn;
 
+    /**
+     * Connector constructor.
+     */
     public function __construct(){
 
         //$config = parse_ini_file("../config/config.ini");
@@ -38,6 +47,9 @@ class Connector extends PDO{
         }
     }
 
+    /**
+     * @return Connector
+     */
     public function getDatabase(){
         // Create the connection if not already created
         if (self::$conn == null) {
