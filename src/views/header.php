@@ -42,7 +42,7 @@
             <a class="nav-link" href="<?php echo $_SESSION['base_path']; ?>/src/modules/landing/landing_controller.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" href="../profile/profile_controller.php">Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Groups</a>
@@ -55,6 +55,10 @@
            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
          </form>
+          <div class="">  </div>
+          <form class = "for-inline my-2 my-lg-0" action="../sign_out/sign_out_controller.php">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Out</button>
+          </form>
       </div>
     </nav>
 

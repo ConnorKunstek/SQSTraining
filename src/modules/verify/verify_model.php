@@ -11,10 +11,10 @@ $conn = $database->getDatabase();
 /**
  * Activate a user account based on an email.
  * @param string $email Email address of the account to activate
- * @return boolean True if account was activaged, false otherwise
+ * @param string $hash
+ * @return boolean True if account was activated, false otherwise
  */
 function activateAccount($email, $hash){
-
 
 	# Check the user exists based on provided email
 	if (!userExists($email)){
@@ -30,8 +30,6 @@ function activateAccount($email, $hash){
 	if (!verifyUser($email)){
 		return False;
 	}
-
-
 
 	return True;
 }
@@ -88,8 +86,6 @@ function verifyUser($email){
 	}
 }
 
-
-
 function userExists($email){
 	try {
 		$base = Connector::getDatabase();
@@ -109,9 +105,3 @@ function userExists($email){
 		return $e;
 	}
 }
-
-
-
-
-
-?>
