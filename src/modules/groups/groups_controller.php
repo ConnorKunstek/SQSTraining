@@ -27,3 +27,46 @@ function getUsers(){
     $result = getAllUsers();
     return $result;
 }
+function addNewGroup($group_Name){
+    addGroup($group_Name);
+}
+
+function addNewUserGroup($user, $group, $leader){
+    addUserToGroup($user,$group,$leader);
+}
+function removeUserFromGroup($user, $group){
+    removeUser($user,$group);
+}
+
+function demoteUser($uid,$gid,$isLeader){
+    changeLeader($uid,$gid,$isLeader);
+}
+
+function promoteUser($uid,$gid,$isLeader){
+    changeLeader($uid,$gid,$isLeader);
+}
+if(isset($_POST['group_name'])){
+    $groupName = $_POST['group_name'];
+    addNewGroup($groupName);
+}
+else if(isset($_POST['user']) && isset($_POST['group']) && isset($_POST['leader'])){
+    $user = ($_POST['user']);
+    $groupid = ($_POST['group']);
+    $isleader = ($_POST['leader']);
+    addNewUserGroup($user, $groupid, $isleader);
+}
+else if(isset($_POST['user_remove']) && isset($_POST['group_remove'])){
+    $uidr = $_POST['user_remove'];
+    $gidr = $_POST['group_remove'];
+    removeUserFromGroup($uidr, $gidr);
+}
+else if(isset($_POST['user_p_id']) && isset($_POST['group_p_id']) && isset($_POST['is_leader'])){
+    $uid = $_POST['user_p_id'];
+    $gid = $_POST['group_p_id'];
+    $leader = $_POST['is_leader'];
+    if($leader == "1"){
+        demoteLeader($uid, $gid, 0);
+    }else{
+        promoteLeader($uid, $gid, 1);
+    }
+}

@@ -75,3 +75,63 @@ function getAllUsers(){
         return $e;
     }
 }
+
+function addGroup($newGroup){
+    try{
+        $base = Connector::getDatabase();
+        $sql = "INSERT INTO groups (name) VALUES ('$newGroup')";
+        $stmt = $base->prepare($sql);
+        $stmt->execute();
+    }catch( Exception $e){
+        return $e;
+    }
+}
+
+function addUserToGroup($uid,$gid, $isLeader){
+    try{
+        $base = Connector::getDatabase();
+        $sql = "INSERT INTO group_members (group_id, uid, leader) VALUES('$gid', '$uid', '$isLeader')";
+        $stmt = $base->prepare($sql);
+        $stmt->execute();
+    }catch( Exception $e){
+        return $e;
+    }
+}
+
+function removeUser($uid, $gid){
+    try {
+        $base = Connector::getDatabase();
+        $sql = "DELETE FROM group_members WHERE uid = '$uid' AND group_id = '$gid'";
+        $stmt = $base->prepare($sql);
+        $stmt->execute();
+    } catch (Exception $e) {
+        return $e;
+    }
+}
+
+function changeLeader($uid,$gid,$isLeader){
+    try {
+        $base = Connector::getDatabase();
+        if($isLeader == "1"){
+            try{
+                $sql = "UPDATE group_members SET leader = 0 WHERE group_id='$gid' AND uid='$uid'";
+                $stmt = $base->prepare($sql);
+                $stmt->execute();
+            }catch( Exception $e){
+                return $e;
+            }
+        }
+        else{
+            try{
+                $sql2 = "UPDATE group_members SET leader = 1 WHERE group_id='$gid' AND uid='$uid'";
+                $stmt2 = $base->prepare($sql2);
+                $stmt2->execute();
+            }catch( Exception $e){
+                return $e;
+            }
+        }
+    } catch (Exception $e) {
+        return $e;
+    }
+
+}
