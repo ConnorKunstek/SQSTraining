@@ -16,6 +16,7 @@ include_once("../../views/header.php");
     <h1>Welcome <?php echo $_SESSION['first_name']; ?></h1>
     <p>This website has been created to serve as a sandbox environment for users to test both their
        manual and automated testing strategies.  To begin, press the "Start Testing" button below.</p>
+      <?php echo $model->getGoogleMap()['latitude']; ?>
   </div>
 
   <button type="button" class="btn btn-primary" disabled>Start Testing</button>
@@ -51,14 +52,15 @@ include_once("../../views/header.php");
     <div id="googleMap" class="py-5" style="width:100%;height:400px;"></div>
     <script>
         function myMap() {
+            var uluru = {lat: <?php echo $model->getGoogleMap()['latitude']; ?>, lng: <?php echo $model->getGoogleMap()['longitude'];?>};
             var mapProp= {
-                center:new google.maps.LatLng(51.508742,-0.120850),
-                zoom:5,
+                center:uluru,
+                zoom:<?php echo $model->getGoogleMap()['zoom'];?>,
             };
             var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $google_maps_token; ?>&callback=myMap"></script>
     <br>
 
 </div>
