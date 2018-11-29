@@ -1,6 +1,7 @@
 <?php
 
-
+require_once ("../src/config/config.php");
+require_once ("../src/lib/Logger.php");
 require_once ("../src/lib/Connector.php");
 
 
