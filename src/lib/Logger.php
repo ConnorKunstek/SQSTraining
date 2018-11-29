@@ -91,8 +91,14 @@ class Logger{
      */
 	public function log_debug($msg)
     {
-        $this->prefix = "DEBUG";
-        return $this->log($msg);
+
+        if (LOG_LEVEL != "DEBUG"){
+            return true;
+        } else {
+            $this->prefix = "DEBUG";
+            return $this->log($msg);
+        }
+
 	}
 
     /**
