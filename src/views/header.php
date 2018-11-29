@@ -56,14 +56,14 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
-      <a class="navbar-brand" href="#"><img src="<?php echo $_SESSION['base_path']; ?>/assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
+      <a class="navbar-brand" href="#"><img src="/assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo $_SESSION['base_path']; ?>/src/modules/landing/landing_controller.php">Home</a>
+            <a class="nav-link" href="/src/modules/landing/landing_controller.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../profile/profile_controller.php">Profile</a>

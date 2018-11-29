@@ -1,17 +1,22 @@
 <?php
-/**
- * Logger class
- */
+
+require_once(__DIR__.'/../config/config.php');
 
 /**
- * A custom logger to be able to log messages while the application is running.
- * @author  Stephen Ritchie <stephen.ritchie@uky.edu>
- * @todo  Add ability to set custom directory or log file name
- * @todo  Add support for logs to be generated for just warnings, just errors, etc
- * @version  GIT: $Id$
+ * Custom logging class designed to be able to log information in a local logfile.  This class is designed to be used as
+ * a singleton, so instead of using the 'new' keyword to instantiate a new object, use the Logger::getInstance() method
+ * to get a handle to the singleton.  This is done so that only one object will ever be writing to the logfiles.
+ *
+ * @author Stephen Ritchie <stephen.ritchie@uky.edu>
+ * @example $myLogger = Logger::getInstance();
  */
 
-class Logger {
+class Logger{
+	private static $instance;
+	private $logfile;
+	private $logpath;
+	private $prefix;
+	private $config;
 
 	/** @var string name of log file (with extension)*/
 	private $filename = 'log'; 
@@ -21,71 +26,89 @@ class Logger {
 
 	/**
 	 * Default Constructor
-	 * @todo  Check to see if backup location will work.
 	 */
-	public function __construct()
-	{
-		//$this->directory = $_SERVER["DOCUMENT_ROOT"]."/log/";
-		$this->directory = "../../../log/";
-		//echo $this->directory;
-		//echo $_SERVER['DOCUMENT_ROOT'];
-	}
 
-	/**
-	 * Appends the provided message to the defined log file.
-	 * @param  string $msg Message to be logged.
-	 */
+	private function __construct()
+    {
+        // Attempting to retrieve logfile name from config file, but defaulting to sqstraining.log if for whatever reason
+        // the config file cannot be opened.
+        if ($config = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/config/config.ini', true)) {
+            $this->logfile = $config['logging']['filename'];
+        } else {
+            $this->logfile = "sqstraining.log";
+        }
+
+        $this->logpath = $_SERVER['DOCUMENT_ROOT'] . "/log/" . $this->logfile;
+        $this->prefix = "INFO";
+    }
+
+    /**
+     * Writes a provided message to a defined logfile location.
+     * @param $msg string Message to be recorded.
+     * @return bool True if writing to log succeeds, false otherwise.
+     */
 	public function log($msg)
-	{
-		// Prefixing message with datetime stamp
+    {
 		$date = date('Y-m-d H:i:s');
-		$txt = $date." ".$_SERVER["REMOTE_ADDR"]." ".$msg;
+		$message = $date." [".getmypid()."]   ".$this->prefix." - ".basename(__FILE__,'.php')." - ".$msg;
 
-		// Appending message to log file with EOL character, and locking file while being written to prevent 
-		// writings at the same time.  I got this off the internet, but it seems to work lmao.
-		$myfile = file_put_contents($this->directory.$this->filename, $txt.PHP_EOL , FILE_APPEND | LOCK_EX);
+		if (!file_put_contents($this->logpath, $message.PHP_EOL , FILE_APPEND | LOCK_EX)){
+			error_log("Log file could".$_SERVER['DOCUMENT_ROOT']."not be written to. path=".$this->logpath);
+            $this->prefix = "INFO";
+			return false;
+		} else {
+            $this->prefix = "INFO";
+		    return true;
+        }
 	}
 
-	/**
-	 * Prefixes message with error indentifier before logging
-	 * @param  string $msg Message to be logged.
-	 * @return void
-	 */
-	public function log_error($msg)
-	{
-		$this->log('[ERROR] '.$msg);
-	}
-
-	/**
-	 * Prefixes message with warning indentifier before logging
-	 * @param  string $msg Message to be logged.
-	 * @return void
-	 */
+    /**
+     * Writes a provided message to the logfile with a prefix indicating it's a warning message.
+     * @param $msg string Message to be recorded.
+     * @return bool True if writing to log succeeds, false otherwise.
+     */
 	public function log_warning($msg)
-	{
-		$this->log('[WARNING] '.$msg);
+    {
+	    $this->prefix = "WARNING";
+		return $this->log($msg);
 	}
 
-	/**
-	 * Prefixes message with debug indentifier before logging
-	 * @param  string $msg Message to be logged.
-	 * @return void
-	 */
+    /**
+     * Writes a provided message to the logfile with a prefix indicating it's an error message.
+     * @param $msg string Message to be recorded.
+     * @return bool True if writing to log succeeds, false otherwise.
+     */
+	public function log_error($msg)
+    {
+        $this->prefix = "ERROR";
+        return $this->log($msg);
+	}
+
+    /**
+     * Writes a provided message to the logfile with a prefix indicating it's a debug message.
+     * @param $msg string Message to be recorded.
+     * @return bool True if writing to log succeeds, false otherwise.
+     */
 	public function log_debug($msg)
-	{
-		$this->log('[DEBUG] '.$msg);
+    {
+        $this->prefix = "DEBUG";
+        return $this->log($msg);
 	}
 
-	/**
-	 * Prefixes message with custom identifier before logging
-	 * @param string $msg Message to be logged.
-	 * @param string $header custom prefix 
-	 * @return void
-	 */
-	public function log_custom($msg, $header)
-	{
-		$this->log('['.$header.'] '.$msg);
-	}
+    /**
+     * Returns a handle to a Logger instance, creates a new one if one doesn't already exists.
+     * @return Logger
+     */
+	public static function getInstance()
+    {
+		// Check is $_instance has been set
+        if(!isset(self::$instance)) 
+        {
+            // Creates sets object to instance
+            self::$instance = new Logger();
+        }
 
+        return self::$instance;
+	}
 }
 
