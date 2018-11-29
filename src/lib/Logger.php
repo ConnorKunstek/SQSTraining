@@ -10,30 +10,37 @@ require_once(__DIR__.'/../config/config.php');
  * @author Stephen Ritchie <stephen.ritchie@uky.edu>
  * @example $myLogger = Logger::getInstance();
  */
-class Logger
-{
+
+class Logger{
 	private static $instance;
 	private $logfile;
 	private $logpath;
 	private $prefix;
 	private $config;
 
+	/** @var string name of log file (with extension)*/
+	private $filename = 'log'; 
+
+	/** @var string directory to where log file(s) reside */
+	private $directory = '../../log/';
+
 	/**
 	 * Default Constructor
 	 */
+
 	private function __construct()
     {
         // Attempting to retrieve logfile name from config file, but defaulting to sqstraining.log if for whatever reason
         // the config file cannot be opened.
-        if ($config = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/config/config.ini', true)){
+        if ($config = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/config/config.ini', true)) {
             $this->logfile = $config['logging']['filename'];
         } else {
             $this->logfile = "sqstraining.log";
         }
 
-        $this->logpath = $_SERVER['DOCUMENT_ROOT']."/log/".$this->logfile;
-		$this->prefix = "INFO";
-	}
+        $this->logpath = $_SERVER['DOCUMENT_ROOT'] . "/log/" . $this->logfile;
+        $this->prefix = "INFO";
+    }
 
     /**
      * Writes a provided message to a defined logfile location.

@@ -8,3 +8,8 @@
 
 header("Location: profile_view.php");
 exit();
+
+
+function getProgress(){
+
+}

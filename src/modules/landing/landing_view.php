@@ -1,11 +1,11 @@
-<?php 
+<?php
 /**
  * View for the landing page
  * @author Stephen Ritchie <stephen.ritchie@uky.edu>
  */ 
 
 include_once("landing_controller.php");
-include_once("../../views/header.php"); 
+include_once("../../views/header.php");
 ?>
 
 <script type="text/javascript">document.title += " Home"</script>

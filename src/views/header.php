@@ -1,4 +1,4 @@
-5<?php
+<?php
   /**
    *
    *
@@ -15,10 +15,16 @@
     <meta charset="utf-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+      <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
 
     <title>SQS Training Site - </title>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="../../assets/js/jquery.min.js"><\/script>')</script>
+      <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
 
     <style>
       body {
@@ -26,6 +32,24 @@
       }
     </style>
 
+      <script type="text/javascript">
+          $(document).ready(function(){
+
+              if($(window).width() > 767){
+                  $('.navbar .dropdown').hover(function() {
+                      $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+
+                  }, function() {
+                      $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp();
+
+                  });
+
+                  $('.navbar .dropdown > a').click(function(){
+                      location.href = this.href;
+                  });
+              }
+          });
+      </script>
   </head>
   <body>
 
@@ -42,7 +66,7 @@
             <a class="nav-link" href="/src/modules/landing/landing_controller.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" href="../profile/profile_controller.php">Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Groups</a>
@@ -55,6 +79,10 @@
            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
          </form>
+          <div class="">  </div>
+          <form class = "for-inline my-2 my-lg-0" action="../sign_out/sign_out_controller.php">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Out</button>
+          </form>
       </div>
     </nav>
 

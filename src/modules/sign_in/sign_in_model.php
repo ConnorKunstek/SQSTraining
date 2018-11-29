@@ -24,7 +24,7 @@ function verifyUserInfo($data) {
         $result = $stmt->fetch();
 
         if ($result['password'] == $password) {
-            $sql = "SELECT UID, first_name, last_name, verified FROM user WHERE email = '$email';";
+            $sql = "SELECT UID, first_name, last_name, verified, role FROM user WHERE email = '$email';";
             $stmt = $base->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetch();

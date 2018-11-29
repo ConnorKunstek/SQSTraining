@@ -419,6 +419,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `first_name` varchar(25) NOT NULL,
   `last_name` varchar(25) NOT NULL,
   `email` varchar(254) NOT NULL,
+  `role` varchar(64) NOT NULL DEFAULT 'ROLE_USER',
   `password` varchar(64) NOT NULL,
   `level` int(11) NOT NULL DEFAULT 3,
   `gender` varchar(6) DEFAULT NULL,
@@ -441,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`UID`, `first_name`, `last_name`, `Email`, `Password`, `level`, `gender`, `dateofbirth`, `address`, `city`, `state`, `zip`, `photo`, `progress`) VALUES
+INSERT INTO `user` (`UID`, `first_name`, `last_name`, `email`, `password`, `level`, `gender`, `dateofbirth`, `address`, `city`, `state`, `zip`, `photo`, `progress`) VALUES
 (6, 'John', 'Doe', 'test@test.com', 'f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),
 (19, 'Lebron', 'James', 'king@test.com', 'hairloss', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),
 (12, 'Zion', 'Williamson', 'bigdick@test.com', 'holdmynuts', 3, 'Female', '1993-11-29', 'Testing', 'test', 'KY', 40509, NULL, 80),

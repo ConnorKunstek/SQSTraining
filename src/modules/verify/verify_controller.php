@@ -38,5 +38,3 @@ else {
 	header("Location: ../../views/error.php");
     exit();
 }
-
-?>
