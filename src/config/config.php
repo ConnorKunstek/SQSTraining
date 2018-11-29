@@ -1,9 +1,12 @@
 <?php
+/**
+ * 
+ */
 
 
 // Loading configuration file.  If the configuration file cannot be opened an error page is displayed to the user and
 // the error is logged internally.
-$config_filename = $_SERVER['DOCUMENT_ROOT']."/config/config.ini";
+$config_filename = __DIR__."/../../config/config.ini";
 if ($config_ini = parse_ini_file($config_filename, true)){
 
     // Defining some constants from the config file.
@@ -22,17 +25,17 @@ if ($config_ini = parse_ini_file($config_filename, true)){
 
 // Now that the config file has been parsed the Logger is instantiated, since parts of the Logger depend on values
 // being parsed from the config file.
-require_once ($_SERVER['DOCUMENT_ROOT']."/src/lib/Logger.php");
+require_once (__DIR__."/../../src/lib/Logger.php");
 $logger = Logger::getInstance();
-$logger->log_debug("Configuration file successfully parsed.");
+$logger->log_debug("Configuration file successfully parsed.", basename(__FILE__));
 
 
 // Loading database credentials from separate file outside of root.  If the database credentials cannot be found an
 // error page is displayed to the user and the error is logged internally.
 // TODO: Remove hard-coded database values below.
-if ($ini = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/../'.DATABASE_FILENAME, true)){
+if ($ini = parse_ini_file(__DIR__.'/../../../'.DATABASE_FILENAME, true)){
 
-    $logger->log_debug("Successfully parsed database file.");
+    $logger->log_debug("Successfully parsed database file.", basename(__FILE__));
 
     if (ENV != "development" and ENV != "production"){
         $logger->log_error("ENV is set to an invalid value=".ENV." Needs to be set to 'production' or 'development'");
@@ -40,7 +43,7 @@ if ($ini = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/../'.DATABASE_FILENAME, tr
         exit();
     }
 
-    $logger->log_debug("Using a ".ENV." database.");
+    $logger->log_debug("Using a ".ENV." database.", basename(__FILE__));
 
     $DB_SERVER = $ini[ENV]['hostname'];
     $DB_USER = $ini[ENV]['username'];
@@ -50,14 +53,14 @@ if ($ini = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/../'.DATABASE_FILENAME, tr
 
     // Checking to see if the database file has been configured.
     if ($DB_SERVER == "XXX"){
-        $logger->log_error("Looks like the database .ini file has not been configured.");
+        $logger->log_error("Looks like the database .ini file has not been configured.", basename(__FILE__));
         header("Location: /src/views/error.php");
         exit();
     }
 
 } else {
 
-    $logger->log_warning("Using hard-coded values for database credentials.");
+    $logger->log_warning("Using hard-coded values for database credentials.", basename(__FILE__));
 
     $DB_SERVER = '10.163.140.98';
     $DB_USER = 'remote';
