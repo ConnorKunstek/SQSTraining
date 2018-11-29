@@ -1,23 +1,71 @@
 <?php
-/**
- *
- */
 
-// Attempting to parse database file, with hard-coded values as fall back for now
-// TODO: Get rid of fallback values for production.
-if ($ini = parse_ini_file('../../database.ini', true)){
-    $DB_SERVER = $ini['database']['hostname'];
-    $DB_USER = $ini['database']['username'];
-    $DB_PASSWORD = $ini['database']['password'];
-    $DB_NAME = $ini['database']['name'];
-    $DB_PORT = $ini['database']['port'];
+
+// Loading configuration file.  If the configuration file cannot be opened an error page is displayed to the user and
+// the error is logged internally.
+$config_filename = $_SERVER['DOCUMENT_ROOT']."/config/config.ini";
+if ($config_ini = parse_ini_file($config_filename, true)){
+
+    // Defining some constants from the config file.
+    define("VERSION", $config_ini['env']['version']);
+    define("ENV", $config_ini['env']['env']);
+    define("SENDMAIL", $config_ini['mail']['sendMail']);
+    define("DATABASE_FILENAME", $config_ini['database']['filename']);
+    define("LOG_LEVEL", $config_ini['logging']['minimumLevel']);
+
 } else {
+    error_log("Could not open config file.");
+    header("Location: /src/views/error.php");
+    exit();
+}
+
+
+// Now that the config file has been parsed the Logger is instantiated, since parts of the Logger depend on values
+// being parsed from the config file.
+require_once ($_SERVER['DOCUMENT_ROOT']."/src/lib/Logger.php");
+$logger = Logger::getInstance();
+$logger->log_debug("Configuration file successfully parsed.");
+
+
+// Loading database credentials from separate file outside of root.  If the database credentials cannot be found an
+// error page is displayed to the user and the error is logged internally.
+// TODO: Remove hard-coded database values below.
+if ($ini = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/../'.DATABASE_FILENAME, true)){
+
+    $logger->log_debug("Successfully parsed database file.");
+
+    if (ENV != "development" and ENV != "production"){
+        $logger->log_error("ENV is set to an invalid value=".ENV." Needs to be set to 'production' or 'development'");
+        header("Location: /src/views/error.php");
+        exit();
+    }
+
+    $logger->log_debug("Using a ".ENV." database.");
+
+    $DB_SERVER = $ini[ENV]['hostname'];
+    $DB_USER = $ini[ENV]['username'];
+    $DB_PASSWORD = $ini[ENV]['password'];
+    $DB_NAME = $ini[ENV]['name'];
+    $DB_PORT = $ini[ENV]['port'];
+
+    // Checking to see if the database file has been configured.
+    if ($DB_SERVER == "XXX"){
+        $logger->log_error("Looks like the database .ini file has not been configured.");
+        header("Location: /src/views/error.php");
+        exit();
+    }
+
+} else {
+
+    $logger->log_warning("Using hard-coded values for database credentials.");
+
     $DB_SERVER = '10.163.140.98';
     $DB_USER = 'remote';
     $DB_PASSWORD = 'password123';
     $DB_NAME = 'SQSTrainingDB';
     $DB_PORT = '3306';
 }
+
 
 // Defining database constants
 define('DB_SERVER', $DB_SERVER);
