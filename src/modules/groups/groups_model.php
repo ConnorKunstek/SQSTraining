@@ -110,9 +110,10 @@ function removeUser($uid, $gid){
 }
 
 function changeLeader($uid,$gid,$isLeader){
+    echo"change Called";
     try {
         $base = Connector::getDatabase();
-        if($isLeader == "1"){
+        if($isLeader == 1){
             try{
                 $sql = "UPDATE group_members SET leader = 0 WHERE group_id='$gid' AND uid='$uid'";
                 $stmt = $base->prepare($sql);

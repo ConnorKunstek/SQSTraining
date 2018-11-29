@@ -70,3 +70,4 @@ else if(isset($_POST['user_p_id']) && isset($_POST['group_p_id']) && isset($_POS
         promoteLeader($uid, $gid, 1);
     }
 }
+
