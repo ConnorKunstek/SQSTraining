@@ -1,8 +1,8 @@
 <?php
 
 session_start();
+require_once ("src/config/config.php");
 
-$_SESSION['base_path'] = "/Classes/CS499/SQSTraining";
 
 ?>
 
@@ -21,7 +21,7 @@ $_SESSION['base_path'] = "/Classes/CS499/SQSTraining";
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="<?php echo $_SESSION['base_path']; ?>/assets/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
         <link href="assets/css/main.css" rel="stylesheet">
 
         <title>SQS Training Site</title>
@@ -38,7 +38,7 @@ $_SESSION['base_path'] = "/Classes/CS499/SQSTraining";
             <!-- Navbar -->
             <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
-                <a class="navbar-brand" href="#"><img src="<?php echo $_SESSION['base_path']; ?>/assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
+                <a class="navbar-brand" href="#"><img src="/assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
