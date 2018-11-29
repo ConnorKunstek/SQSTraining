@@ -79,14 +79,10 @@
            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
          </form>
-<<<<<<< HEAD
           <div class="">  </div>
           <form class = "for-inline my-2 my-lg-0" action="../sign_out/sign_out_controller.php">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Out</button>
           </form>
-=======
-
->>>>>>> origin/task/06/grouptransfer
       </div>
     </nav>
 
