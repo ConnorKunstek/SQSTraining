@@ -47,10 +47,10 @@ class Logger{
      * @param $msg string Message to be recorded.
      * @return bool True if writing to log succeeds, false otherwise.
      */
-	public function log($msg)
+	public function log($msg, $filename="Logger")
     {
 		$date = date('Y-m-d H:i:s');
-		$message = $date." [".getmypid()."]   ".$this->prefix." - ".basename(__FILE__,'.php')." - ".$msg;
+		$message = $date." [".getmypid()."]   ".$this->prefix." - ".$filename." - ".$msg;
 
 		if (!file_put_contents($this->logpath, $message.PHP_EOL , FILE_APPEND | LOCK_EX)){
 			error_log("Log file could".$_SERVER['DOCUMENT_ROOT']."not be written to. path=".$this->logpath);
@@ -67,10 +67,10 @@ class Logger{
      * @param $msg string Message to be recorded.
      * @return bool True if writing to log succeeds, false otherwise.
      */
-	public function log_warning($msg)
+	public function log_warning($msg, $filename="Logger")
     {
 	    $this->prefix = "WARNING";
-		return $this->log($msg);
+		return $this->log($msg, $filename);
 	}
 
     /**
@@ -78,10 +78,10 @@ class Logger{
      * @param $msg string Message to be recorded.
      * @return bool True if writing to log succeeds, false otherwise.
      */
-	public function log_error($msg)
+	public function log_error($msg, $filename="Logger")
     {
         $this->prefix = "ERROR";
-        return $this->log($msg);
+        return $this->log($msg, $filename);
 	}
 
     /**
@@ -89,10 +89,16 @@ class Logger{
      * @param $msg string Message to be recorded.
      * @return bool True if writing to log succeeds, false otherwise.
      */
-	public function log_debug($msg)
+	public function log_debug($msg, $filename="Logger")
     {
-        $this->prefix = "DEBUG";
-        return $this->log($msg);
+
+        if (LOG_LEVEL != "DEBUG"){
+            return true;
+        } else {
+            $this->prefix = "DEBUG";
+            return $this->log($msg, $filename);
+        }
+
 	}
 
     /**

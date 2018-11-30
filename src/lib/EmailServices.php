@@ -14,10 +14,10 @@ class EmailServices {
     private $logger;
     private $headers;
     private $to;
-    private $send_mail = true;
+    private $send_mail = SENDMAIL;
 
     /**
-     * EmailServices constructor.
+     * Constructor
      * @param $email string Email address of the user
      */
     public function __construct($email)
@@ -119,9 +119,9 @@ class EmailServices {
             $sql = "UPDATE user SET hash='$hash' WHERE email = '$email';";
             $stmt = $base->prepare($sql);
             $stmt->execute();
-            $this->logger->log_debug("Added hash to user ".$this->email);
+            $this->logger->log_debug("Added hash to user ".$this->email, basename(__FILE__));
         } catch (Exception $e){
-            $this->logger->log_error("Could not add hash to database. Exception: ".$e);
+            $this->logger->log_error("Could not add hash to database. Exception: ".$e, basename(__FILE__));
             return False;
         }
 
@@ -139,16 +139,18 @@ class EmailServices {
     {
         if ($this->send_mail){
             if(mail($to, $subject, $message, $headers)){
-                $this->logger->log("Email notification sent to ".$to);
+                $this->logger->log("Email notification sent to ".$to, basename(__FILE__));
                 return true;
             } else {
-                $this->logger->log_error("Email notification send failure to ".$to);
+                $this->logger->log_error("Email notification send failure to ".$to, basename(__FILE__));
                 return false;
             }
         } else {
-            $this->logger->log_debug("Email notification created, but not sent to ".$to." due to a flag being set");
+            $this->logger->log_warning("Email created, but not sent to ".$to." due to SENDMAIL being set", basename(__FILE__));
             return true;
         }
     }
 }
+
+
 

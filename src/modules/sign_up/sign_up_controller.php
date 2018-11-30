@@ -7,7 +7,7 @@
  */
 
 require_once("sign_up_model.php");
-require_once("../../lib/AccountVerification.php");
+require_once("../../lib/EmailServices.php");
 
 session_start();
 
@@ -59,9 +59,8 @@ function createNewUser(){
     if(is_numeric($returned)){
         $_SESSION['UID'] = $returned;
         try {
-            $verification = new AccountVerification($array['email']);
-            $verification->sendVerification();
-            //$verification->sendVerification_TEST();
+            $verification = new EmailServices($array['email']);
+            $verification->sendAccountVerification();
         }catch(Exception $e){
             error("Error: " . $e);
         }
