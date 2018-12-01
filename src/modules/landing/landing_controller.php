@@ -7,6 +7,7 @@
 session_start();
 
 require_once ("../../lib/Logger.php");
+require_once ("../../lib/FeatureLoader.php");
 require_once ("landing_model.php");
 
 $model = new LandingModel();
