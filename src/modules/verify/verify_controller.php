@@ -1,29 +1,40 @@
 <?php
 /**
- * 
- * 
+ * Controller for handling email verification links.
+ * @author Stephen Ritchie <stephen.ritchie@uky.edu>
+ * @todo Have redirects happen after a certain amount of time.
  */
 
-session_start();
+require_once ("../../lib/Logger.php");
+$logger = Logger::getInstance();
 
-include("verify_model.php");
-
-$activated = false;
+include ("verify_model.php");
 
 // Make sure the required GET values have been provided
-if (isset($_GET['email']) AND !empty($_GET['email']) AND isset($_GET['hash']) AND !empty($_GET['hash'])){
-	// TODO: sanitize and validate inputs
+if (isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !empty($_GET['hash'])){
+
+	# Sanitize and validate email
 	$email = $_GET['email'];
-    $hash = $_GET['hash'];
+	$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+	if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+		$logger->log_warning("Verification link email failed sanitization.");
+		header("Location: ../../views/error.php");
+		exit();
+	}
 
-    $_SESSION['email'] = $email;
-    $_SESSION['hash'] = $hash;
-
-    $_SESSION['verified'] = activateAccount($email, $hash);
-
-    header("Location: verify_view.php");
-    exit();
-}else {
-	header("Location: " . $_SESSION['base_path'] . "/src/views/error.php");
+	# Sanitize and validate hash
+	$hash = $_GET['hash'];
+	$hash = filter_var($hash, FILTER_SANITIZE_STRING);
+	if (strlen($_GET['hash']) != 32){
+		$logger->log_warning("Verification link hash failed sanitization.");
+		header("Location: ../../views/error.php");
+    	exit();
+	}
+    
+    include ("verify_view.php");
+}
+else {
+	$logger->log_warning("Incorrect verification link provided...redirecting to sign in.");
+	header("Location: ../../views/error.php");
     exit();
 }

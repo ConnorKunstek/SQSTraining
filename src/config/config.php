@@ -1,24 +1,56 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: connor
- * Date: 10/9/18
- * Time: 1:35 AM
+ * This script handles the bulk of retrieving values from configuration files.
+ *
+ * @author Stephen Ritchie <stephen.ritchie@uky.edu>
+ * @author Connor Kunstek
  */
 
-define('DB_SERVER', '10.163.140.98');
+require_once (__DIR__."/../../src/lib/ConfigurationInterface.php");
 
-//define('DB_SERVER', 'localhost');
 
-//define('DB_USER', 'dev');
+// ---------------------------------------------------
+// Loading the system configuration file
+// ---------------------------------------------------
+// Get parsed config file from the ConfigurationInterface
+$config_ini = ConfigurationInterface::getInterface()->getSystemConfig();
 
-define('DB_USER', 'remote');
+// Define a few key constants using config files.  Also the entire config is stored in CONFIG as
+// an associative array.
+define("CONFIG", $config_ini);
+define("VERSION", $config_ini['env']['version']);
+define("ENV", $config_ini['env']['env']);
+define("SENDMAIL", $config_ini['mail']['sendMail']);
+define("DATABASE_FILENAME", $config_ini['database']['filename']);
+define("LOG_LEVEL", $config_ini['logging']['minimumLevel']);
 
-define('DB_PASSWORD', 'password123');
+Logger::getInstance()->log_debug("system configuration loaded", basename(__FILE__));
 
-define('DB_NAME', 'SQSTrainingDB');
 
-define('DB_PORT', '3306');
+// ---------------------------------------------------
+// Loading the database configuration file
+// ---------------------------------------------------
+// Get parsed config file from the ConfigurationInterface
+$database_ini = ConfigurationInterface::getInterface()->getDatabaseConfig();
 
-//define('DB_DSN', 'mysql:dbname=' . DB_NAME . ';host=' . DB_SERVER);
+// TODO: Remove this 'if' statement before initial release
+if (!file_exists(__DIR__.'/../../../'.$config_ini['database']['filename'])){
+    $database_ini = parse_ini_file("database.ini", true);
+    Logger::getInstance()->log_warning("Local database configuration being used...please create an .ini file outside root", basename(__FILE__));
+}
+
+// Define database credentials in CONSTANTS so that Connector can use them.
+$DB_SERVER = $database_ini[ENV]['hostname'];
+$DB_USER = $database_ini[ENV]['username'];
+$DB_PASSWORD = $database_ini[ENV]['password'];
+$DB_NAME = $database_ini[ENV]['name'];
+$DB_PORT = $database_ini[ENV]['port'];
+
+define('DB_SERVER', $DB_SERVER);
+define('DB_USER', $DB_USER);
+define('DB_PASSWORD', $DB_PASSWORD);
+define('DB_NAME', $DB_NAME);
+define('DB_PORT', $DB_PORT);
 define('DB_DSN', 'mysql:dbname=' . DB_NAME . ';host=' . DB_SERVER . ';port=' . DB_PORT);
+
+Logger::getInstance()->log_debug("database configuration loaded", basename(__FILE__));

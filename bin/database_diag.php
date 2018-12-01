@@ -1,6 +1,7 @@
 <?php
 
-
+require_once ("../src/config/config.php");
+require_once ("../src/lib/Logger.php");
 require_once ("../src/lib/Connector.php");
 
 
@@ -8,6 +9,23 @@ $servername = constant("DB_SERVER");
 $dbname = constant("DB_NAME");
 $username = constant("DB_USER");
 $password = constant("DB_PASSWORD");
+
+
+if (isset($_POST['uid'])){
+
+    $uid = $_POST['uid'];
+
+    try {
+        $base = Connector::getDatabase();
+
+        $sql = "DELETE FROM user WHERE uid = '$uid';";
+        $stmt = $base->prepare($sql);
+        $stmt->execute();
+    } catch (Exception $e){
+        echo $e;
+    }
+}
+
 
 // Attempting database connection
 try {
@@ -28,6 +46,8 @@ catch(PDOException $e){
     $status = $e->getMessage();
     $color = "#FF0000";
 }
+
+
 
 
 function userExists($email){
@@ -76,6 +96,7 @@ function printDatabase(){
     echo "<th>progress</th>";
     echo "<th>hash</th>";
     echo "<th>verified</th>";
+    echo "<th>delete</th>";
     echo "</tr>";
     foreach($stmt->fetchAll() as $k=>$v) { 
       //print_r($v);
@@ -108,6 +129,12 @@ function printUser($arry){
   echo "<td>".$arry['progress']."</td>";
   echo "<td>".$arry['hash']."</td>";
   echo "<td>".$arry['verified']."</td>";
+
+  echo "<form action='database_diag.php' method='post'>";
+  echo "<input type='hidden' id='uid' name='uid' value='".$arry['UID']."'>";
+  echo "<td><input type=\"submit\" value=\"delete\"></td>";
+  echo "</form>";
+
   echo "</tr>";
 
 }
