@@ -7,19 +7,22 @@
  */
     require('groups_controller.php');
     include('../../views/header.php');
+
 //    $_SESSION['role'] = "ROLE_SUPERUSER";
 //    $_SESSION['role'] = "ROLE_USER";
-    $_SESSION['uid'] = 6;
+//    $_SESSION['uid'] = 6;
 //    $_SESSION['role'] = "ROLE_RESTRICTED";
-    $_SESSION['role'] = "ROLE_ADMIN";
-//    $_SESSION['role'] = "ROLE_SUPERADMIN";
+//    $_SESSION['role'] = "ROLE_ADMIN";
+    $_SESSION['role'] = "ROLE_SUPERADMIN";
 //    print_r($_SESSION);
 //    echo $_SESSION['first_name'];
 //    echo $_SESSION['role'];
+
 ?>
 <div class="container">
     <h3 id="GroupHead">My Groups</h3>
     <hr>
+
     <?php
     if($_SESSION['role'] == "ROLE_USER"){
         $groups = getCurrentGroup($_SESSION['uid']);
@@ -44,11 +47,17 @@
                     }
                 }
             }
+            else{
+                echo "<div style = \"margin-top: 10rem\" class=\"text-center\">
+                        <h2>You are not currently in a group</h2>
+                    </div>";
+            }
         }catch(Exception $e){
             return $e;
         }
         echo "</div>";
     }
+
     else if($_SESSION['role'] == "ROLE_RESTRICTED") {
         $groups = getCurrentGroup($_SESSION['uid']);
         try {
@@ -76,79 +85,79 @@
         //renders groups
         if(sizeof($allGroups) > 0){
             foreach($allGroups as $group){
-                echo "<div class=\"groups\">
+                echo "<div class=\"my-group-container\">
                     <div class='row'>
                        <h5 id=\"Group".$group['name']."Namehead\"><u>".$group['name']."</u></h5>";
-                echo "<form action=\"group_operations/remove_group.php\" id=\"RemoveGroup".$count."\" method=\"post\">";
-                echo "<input type=\"text\" id=\"Group".$group['name']."\" name=\"group\" value=\"".$group['UID']."\" style=\"display:none;\">";
+                echo "<form name=\"removeGroup\" id=\"RemoveGroup".$count."\" method=\"post\">";
+                echo "<input type=\"text\" id=\"Group".$group['name']."\" name=\"groupR\" value=\"".$group['UID']."\" style=\"display:none;\">";
                 echo "<button style=\"display:inline-block;margin-left:10px;\" id=\"removeGroup".$count."\" type=\"submit\" name=\"removeGroup\" class=\"btn btn-sm btn-danger\" data-group=\"".$group['UID']."\">Remove Group</button>";
                 echo "</form></div><br>";
                 $innerGroups = getInnerGroups($group['UID']);
                 $countInner = 0;
                 //renders inner groups by groupID
                 if(sizeof($innerGroups) > 0){
+                echo "<ul class = \"list-group list-group-flush\">";
                     foreach ($innerGroups as $innerGroup) {
                         $leadership = "";
                         if ($innerGroup['leader'] == 1) {
                             $leadership = "(Leader) ";
                         }
-                        echo "
-                         <div class=\"row\">
-                            <div class=\"group-info\">" . $leadership . $innerGroup['first_name'] . " ". $innerGroup['last_name'] . "</div>
-                         </div>
-                         <div class =\"group-info\">
-                         " . $innerGroup['Email'] . "
-                         </div>
-                         <div class=\"group-btn\">
-                           <form action=\"\" id=\"Group".$innerGroup['name'].">UserActions\" method=\"post\">
-                            <input 
-                            type=\"text\" 
-                            name=\"user_p_id\" 
-                            value=\"".$innerGroup['UID']."\" 
-                            style=\"display:none;\">
-                           <input 
-                            type=\"text\" 
-                            name=\"group_p_id\" 
-                            value=\"".$group['UID']."\" 
-                            style=\"display:none;\">";
-
-                        if($innerGroup['leader'] == 1){
                             echo "
-                                <input type=\"text\"  name=\"is_leader\" value=\"".$innerGroup['leader']."\" style=\"display:none;\">
-                                <button type=\"submit\" id=\"Demote\" class=\"btn btn-sm btn-info\"'>Demote&nbsp;</button>
-                                ";
-                            }
-                            else{
-                                echo "
-                                <input type=\"text\"name=\"is_leader\" value=\"".$innerGroup['leader']."\" style=\"display:none;\">
-                                <button type=\"submit\" id=\"Promote\" class=\"btn btn-sm btn-info\"'>Promote&nbsp;</button>
-                                ";
-                            }
-                            echo"</form>
-                            </div>";
+                                    <!--<span style =\"vertical-align: center\" class=\"badge badge-success\">" . $leadership . $innerGroup['first_name'] . " ". $innerGroup['last_name'] . "</span>
+                                    <span style= \"vertical-align: center; margin: 0rem 2rem 0rem 2rem\" class=\"badge badge-success\">" . $innerGroup['Email'] . "</span>-->
+                                    <li  class=\"list-group-item\">" . $leadership . $innerGroup['first_name'] . " ". $innerGroup['last_name'] . " " . $innerGroup['Email'] . "
+                                    <div class=\"group-btn\">
+                                        <form action=\"\" id=\"Group".$innerGroup['name'].">UserActions\" method=\"post\">
+                                        <input 
+                                        type=\"text\" 
+                                        name=\"user_p_id\" 
+                                        value=\"".$innerGroup['UID']."\" 
+                                        style=\"display:none;\">
+                                       <input 
+                                        type=\"text\" 
+                                        name=\"group_p_id\" 
+                                        value=\"".$group['UID']."\" 
+                                        style=\"display:none;\">";
 
-                            echo"
-                            <div class=\"group-btn\">
-                                <form action=\"\" id=\"userFormRemove".$countInner."\" method=\"post\">
-                                <input type=\"text\" id=\"userRemoveInput".$countInner."\" name=\"user_remove\" value =\"".$innerGroup['UID']."\" style=\"display:none;\">
-                                <input type=\"text\" id=\"groupRemoveInput".$countInner."\" name=\"group_remove\" value =\"".$group['UID']."\" style=\"display:none;\">
-                                <button type=\"submit\" id=\"remove".$countInner."\" name=\"button\" class=\"btn btn-sm btn-danger\">Remove</button>
-                            </form>
-                            </div>";
+                                    if($innerGroup['leader'] == 1)
+                                    {
+                                        echo "
+                                        <input type=\"text\"  name=\"is_leader\" value=\"".$innerGroup['leader']."\" style=\"display:none;\">
+                                        <button type=\"submit\" id=\"Demote\" class=\"btn btn-sm btn-info\"'>Demote&nbsp;</button>
+                                        ";
+                                    }
+                                    else{
+                                        echo "
+                                        <input type=\"text\"name=\"is_leader\" value=\"".$innerGroup['leader']."\" style=\"display:none;\">
+                                        <button type=\"submit\" id=\"Promote\" class=\"btn btn-sm btn-info\"'>Promote&nbsp;</button>
+                                        ";
+                                    }
+                                    echo"</form>
+                                    </div>";
 
+                                    echo"
+                                    <div class=\"group-btn\">
+                                        <form action=\"\" id=\"userFormRemove".$countInner."\" method=\"post\">
+                                            <input type=\"text\" id=\"userRemoveInput".$countInner."\" name=\"user_remove\" value =\"".$innerGroup['UID']."\" style=\"display:none;\">
+                                            <input type=\"text\" id=\"groupRemoveInput".$countInner."\" name=\"group_remove\" value =\"".$group['UID']."\" style=\"display:none;\">
+                                            <button type=\"submit\" id=\"remove".$countInner."\" name=\"button\" class=\"btn btn-sm btn-danger\">Remove</button>
+                                        </form>
+                                    </div>
+                                </li>";
+                        }
                             $countInner++;
+                        echo "</ul>";
                     }
-                    echo "</div>";
+                    else{
+                        echo "<h5>No Current Users</h5></div>";
+                     }
                     $count++;
-                }
-                else{
-                    echo "<h5>No Current Users</h5></div>";
+                    echo "</div>";
                 }
             }
-        }
-        else{
-            echo "<h5>No Current Groups</h5></div>";
-        }
+            else{
+                echo "<h5>No Current Groups</h5></div>";
+            }
     }
     else{
         echo "<h3> NO USER LOGGED IN </h3></div>";

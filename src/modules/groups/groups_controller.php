@@ -32,18 +32,22 @@ function addNewGroup($group_Name){
 }
 
 function addNewUserGroup($user, $group, $leader){
+    echo "Called Add New User";
     addUserToGroup($user,$group,$leader);
 }
 function removeUserFromGroup($user, $group){
     removeUser($user,$group);
 }
 
-function demoteUser($uid,$gid,$isLeader){
+function demoteLeader($uid,$gid,$isLeader){
     changeLeader($uid,$gid,$isLeader);
 }
 
-function promoteUser($uid,$gid,$isLeader){
+function promoteLeader($uid,$gid,$isLeader){
     changeLeader($uid,$gid,$isLeader);
+}
+function removeGroup($gid){
+    removeCurrentGroup($gid);
 }
 if(isset($_POST['group_name'])){
     $groupName = $_POST['group_name'];
@@ -64,10 +68,14 @@ else if(isset($_POST['user_p_id']) && isset($_POST['group_p_id']) && isset($_POS
     $uid = $_POST['user_p_id'];
     $gid = $_POST['group_p_id'];
     $leader = $_POST['is_leader'];
-    if($leader == "1"){
-        demoteLeader($uid, $gid, 0);
+    if($leader == 1){
+        demoteLeader($uid, $gid, $leader);
     }else{
-        promoteLeader($uid, $gid, 1);
+        promoteLeader($uid, $gid, $leader);
     }
+}
+else if(isset($_POST['groupR'])){
+    $groupID = $_POST['groupR'];
+    removeGroup($groupID);
 }
 

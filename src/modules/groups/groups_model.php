@@ -110,27 +110,46 @@ function removeUser($uid, $gid){
 }
 
 function changeLeader($uid,$gid,$isLeader){
-    echo"change Called";
     try {
         $base = Connector::getDatabase();
         if($isLeader == 1){
+            echo "is a leader";
             try{
                 $sql = "UPDATE group_members SET leader = 0 WHERE group_id='$gid' AND uid='$uid'";
                 $stmt = $base->prepare($sql);
                 $stmt->execute();
             }catch( Exception $e){
+                echo $e;
                 return $e;
             }
         }
         else{
+            echo "is a not a leader";
+
             try{
                 $sql2 = "UPDATE group_members SET leader = 1 WHERE group_id='$gid' AND uid='$uid'";
                 $stmt2 = $base->prepare($sql2);
                 $stmt2->execute();
             }catch( Exception $e){
+                echo $e;
                 return $e;
             }
         }
+    } catch (Exception $e) {
+        echo $e;
+        return $e;
+    }
+}
+
+function removeCurrentGroup($gid){
+    try {
+        $base = Connector::getDatabase();
+        $sql = "DELETE FROM group_members WHERE group_id = '$gid'";
+        $stmt = $base->prepare($sql);
+        $stmt->execute();
+        $sql = "DELETE FROM groups WHERE UID = '$gid'";
+        $stmt = $base->prepare($sql);
+        $stmt->execute();
     } catch (Exception $e) {
         return $e;
     }
