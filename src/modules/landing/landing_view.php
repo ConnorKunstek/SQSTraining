@@ -6,6 +6,7 @@
 
 include_once("landing_controller.php");
 include_once("../../views/header.php");
+
 ?>
 
 <script type="text/javascript">document.title += " Home"</script>
@@ -18,13 +19,17 @@ include_once("../../views/header.php");
        manual and automated testing strategies.  To begin, press the "Start Testing" button below.</p>
   </div>
 
-  <button type="button" class="btn btn-primary" disabled>Start Testing</button>
+  <form action="landing_controller.php" method="post">
+      <input type="hidden" id="testing" value="1">
+      <input type="submit" value="Start Testing" class="btn btn-primary">
+  </form>
+
 
     <!-- YouTube Feature -->
-    <?php include (FeatureLoader::getInterface()->getFeature("1234", "youtube_video")); ?>
+    <?php include (FeatureLoader::getInterface()->getFeature($_SESSION['uid'], "youtube_video")); ?>
 
     <!-- Google Map Feature -->
-    <?php include (FeatureLoader::getInterface()->getFeature("1234", "google_map")); ?>
+    <?php include (FeatureLoader::getInterface()->getFeature($_SESSION['uid'], "google_map")); ?>
 
     <br>
 
