@@ -3,7 +3,6 @@
 require_once ("Connector.php");
 
 session_start();
-$_SESSION["TESTING_MODE"] = 1;
 
 
 class FeatureLoader
@@ -16,7 +15,7 @@ class FeatureLoader
     public function getFeature($UID, $feature)
     {
 
-        if ($_SESSION['TESTING_MODE']){
+        if ($_SESSION['testing_mode']){
 
             $version = $this->default;
 
