@@ -7,7 +7,7 @@
  */
 include('../../views/header.php');
 session_start();
-print("<pre>".print_r($_SESSION,true)."</pre>");
+//print("<pre>".print_r($_SESSION,true)."</pre>");
 ?>
 
 <div style ="margin-top: 3rem" class = "container-fluid">
