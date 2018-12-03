@@ -1,3 +1,4 @@
+
 # ************************************************************
 # Sequel Pro SQL dump
 # Version 4541
@@ -5,9 +6,9 @@
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 10.163.140.98 (MySQL 5.7.24-0ubuntu0.18.04.1)
-# Database: SQSTrainingDB
-# Generation Time: 2018-12-03 11:32:08 +0000
+# Host: 127.0.0.1 (MySQL 5.7.23)
+# Database: sqs_web_sandbox
+# Generation Time: 2018-12-03 12:24:24 +0000
 # ************************************************************
 
 
@@ -67,12 +68,7 @@ VALUES
 	(27,7,5,'2018-12-03 03:22:05'),
 	(28,103,5,'2018-12-03 02:54:41'),
 	(29,110,5,'2018-12-03 02:54:42'),
-	(30,115,5,'2018-12-03 02:54:43'),
-	(31,3,10,'2018-12-03 02:54:40'),
-	(32,7,10,'2018-12-03 03:22:05'),
-	(33,103,10,'2018-12-03 02:54:41'),
-	(34,110,10,'2018-12-03 02:54:42'),
-	(35,115,10,'2018-12-03 02:54:43');
+	(30,115,5,'2018-12-03 02:54:43');
 
 /*!40000 ALTER TABLE `assigned_features` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -293,40 +289,6 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table subscriber
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `subscriber`;
-
-CREATE TABLE `subscriber` (
-  `phone_number` varchar(20) NOT NULL,
-  `carrier` varchar(10) NOT NULL,
-  `international_code` varchar(4) NOT NULL,
-  PRIMARY KEY (`phone_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-LOCK TABLES `subscriber` WRITE;
-/*!40000 ALTER TABLE `subscriber` DISABLE KEYS */;
-
-INSERT INTO `subscriber` (`phone_number`, `carrier`, `international_code`)
-VALUES
-	('12312312','AT&T','1'),
-	('1231231234','VERIZON','1'),
-	('1233142345','VERIZON','1'),
-	('1234567890','VERIZON','1'),
-	('3456781234','VERIZON','1'),
-	('4562655625','VERIZON','1'),
-	('6781234567','VERIZON','1'),
-	('85912345687','VERIZON','1'),
-	('8593141592','VERIZON','1'),
-	('8598661234','VERIZON','1'),
-	('98765432','VERIZON','1'),
-	('9876543210','VERIZON','1');
-
-/*!40000 ALTER TABLE `subscriber` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
 # Dump of table user
 # ------------------------------------------------------------
 
@@ -365,8 +327,7 @@ VALUES
 	(3,'SuperUser','SuperUser','SuperUser@sqs.com','SUPERUSER','super',3,'Male','2001-01-01','1234 SuperUser Ln.','SuperUserVille','AL',9999,NULL,50,NULL,1),
 	(4,'User','User','User@sqs.com','USER','password',2,'Male','2001-01-01','1234 User Ln.','UserVille','AL',9999,NULL,50,NULL,1),
 	(5,'RestricedUser','RestrictedUser','RestrictedUser@sqs.com','RESTRICTED','password',1,'Male','2001-01-01','1234 Restricted Ln.','RestrictedVille','AL',9999,NULL,50,NULL,1),
-	(6,'Nick','Sladic','nsl223@g.uky.edu','SUPERADMIN','password1',3,'Male','2018-12-25','123','LEx','FL',40503,NULL,50,NULL,1),
-	(10,'Stephen','Ritchie','stephenfritchie@gmail.com','USER','password',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,'0f840be9b8db4d3fbd5ba2ce59211f55',1);
+	(6,'Nick','Sladic','nsl223@g.uky.edu','SUPERADMIN','password1',3,'Male','2018-12-25','123','LEx','FL',40503,NULL,50,NULL,1);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

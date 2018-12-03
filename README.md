@@ -287,6 +287,6 @@ Installation has been drastically changed from what used to be a manual setup to
     Change Password
         --> verified old password and that new passwords match, then changes accordinly
     Reset Password
-        --> sends reandomly generated temporary password to given email to sign in
+        --> sends randomly generated temporary password to given email to sign in
     Feature Loader
-    	-->
+    	--> Allows Admins to load specific errored features to the users
