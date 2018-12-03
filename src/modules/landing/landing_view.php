@@ -4,7 +4,7 @@
  * @author Stephen Ritchie <stephen.ritchie@uky.edu>
  */ 
 
-include_once("landing_controller.php");
+//include_once("landing_controller.php");
 include_once("../../views/header.php");
 ?>
 
@@ -16,7 +16,7 @@ include_once("../../views/header.php");
     <h1>Welcome <?php echo $_SESSION['first_name']; ?></h1>
     <p>This website has been created to serve as a sandbox environment for users to test both their
        manual and automated testing strategies.  To begin, press the "Start Testing" button below.</p>
-      <?php echo $model->getGoogleMap()['latitude']; ?>
+      <?php //echo $model->getGoogleMap()['latitude']; ?>
   </div>
 
   <button type="button" class="btn btn-primary" disabled>Start Testing</button>

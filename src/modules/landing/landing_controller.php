@@ -13,9 +13,6 @@ $model = new LandingModel();
 $logger = Logger::getInstance();
 
 
-
-
-
 // Parsing config.ini to get store version and development in session variable
 $config_filename = "../../../config/config.ini";
 
