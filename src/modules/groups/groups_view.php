@@ -1,4 +1,4 @@
-<?php
+                                                                                                                                                                                                                                                                                  <?php
 /**
  * Created by PhpStorm.
  * User: connor
@@ -8,12 +8,12 @@
     require('groups_controller.php');
     include('../../views/header.php');
 
-//    $_SESSION['role'] = "ROLE_SUPERUSER";
-//    $_SESSION['role'] = "ROLE_USER";
+//    $_SESSION['role'] = "SUPERUSER";
+//    $_SESSION['role'] = "USER";
 //    $_SESSION['uid'] = 6;
-//    $_SESSION['role'] = "ROLE_RESTRICTED";
-//    $_SESSION['role'] = "ROLE_ADMIN";
-    $_SESSION['role'] = "ROLE_SUPERADMIN";
+//    $_SESSION['role'] = "RESTRICTED";
+//    $_SESSION['role'] = "ADMIN";
+//    $_SESSION['role'] = "SUPERADMIN";
 //    print_r($_SESSION);
 //    echo $_SESSION['first_name'];
 //    echo $_SESSION['role'];
@@ -24,14 +24,14 @@
     <hr>
 
     <?php
-    if($_SESSION['role'] == "ROLE_USER"){
+    if($_SESSION['role'] == "USER"){
         $groups = getCurrentGroup($_SESSION['uid']);
         try{
             if(sizeof($groups) > 0){
                 foreach($groups as $groupName){
                     echo "<div class=\"my-group-container\">";
                     echo "<h5>" . $groupName['name'] . "</h5>";
-                    if($_SESSION['role'] == "ROLE_USER"){
+                    if($_SESSION['role'] == "USER"){
                         $groupMembers = getMyGroupMembers($groupName['UID']);
                         if(sizeof($groupMembers) > 0){
                             try{
@@ -58,7 +58,7 @@
         echo "</div>";
     }
 
-    else if($_SESSION['role'] == "ROLE_RESTRICTED") {
+    else if($_SESSION['role'] == "RESTRICTED") {
         $groups = getCurrentGroup($_SESSION['uid']);
         try {
             if (sizeof($groups) > 0) {
@@ -72,7 +72,7 @@
             return $e;
         }
     }
-    else if($_SESSION['role'] == "ROLE_SUPERUSER" || $_SESSION['role'] == "ROLE_ADMIN" || $_SESSION['role'] == "ROLE_SUPERADMIN"){
+    else if($_SESSION['role'] == "SUPERUSER" || $_SESSION['role'] == "ADMIN" || $_SESSION['role'] == "SUPERADMIN"){
         echo "
             <h3 id=\"groupsHead\" style=\"display:inline\">Groups</h3>
           <button style=\"display:inline;margin-left:20px;\" id=\"addgroupBut\" type=\"button\" name=\"addGroup\" class=\"btn btn-sm btn-success\" data-toggle=\"modal\" data-target=\"#addGroupModal\">Add Group</button>
@@ -86,9 +86,9 @@
         if(sizeof($allGroups) > 0){
             foreach($allGroups as $group){
                 echo "<div class=\"my-group-container\">
-                    <div class='row'>
-                       <h5 id=\"Group".$group['name']."Namehead\"><u>".$group['name']."</u></h5>";
-                echo "<form name=\"removeGroup\" id=\"RemoveGroup".$count."\" method=\"post\">";
+                    <div>
+                       <h5 style = \"display: inline-block;\" id=\"Group".$group['name']."Namehead\"><u>".$group['name']."</u></h5>";
+                echo "<form class = \"float-right\" name=\"removeGroup\" id=\"RemoveGroup".$count."\" method=\"post\">";
                 echo "<input type=\"text\" id=\"Group".$group['name']."\" name=\"groupR\" value=\"".$group['UID']."\" style=\"display:none;\">";
                 echo "<button style=\"display:inline-block;margin-left:10px;\" id=\"removeGroup".$count."\" type=\"submit\" name=\"removeGroup\" class=\"btn btn-sm btn-danger\" data-group=\"".$group['UID']."\">Remove Group</button>";
                 echo "</form></div><br>";
@@ -108,15 +108,15 @@
                                     <li  class=\"list-group-item\">" . $leadership . $innerGroup['first_name'] . " ". $innerGroup['last_name'] . " " . $innerGroup['Email'] . "
                                     <div class=\"group-btn\">
                                         <form action=\"\" id=\"Group".$innerGroup['name'].">UserActions\" method=\"post\">
-                                        <input 
-                                        type=\"text\" 
-                                        name=\"user_p_id\" 
-                                        value=\"".$innerGroup['UID']."\" 
+                                        <input
+                                        type=\"text\"
+                                        name=\"user_p_id\"
+                                        value=\"".$innerGroup['UID']."\"
                                         style=\"display:none;\">
-                                       <input 
-                                        type=\"text\" 
-                                        name=\"group_p_id\" 
-                                        value=\"".$group['UID']."\" 
+                                       <input
+                                        type=\"text\"
+                                        name=\"group_p_id\"
+                                        value=\"".$group['UID']."\"
                                         style=\"display:none;\">";
 
                                     if($innerGroup['leader'] == 1)
@@ -200,7 +200,7 @@
                 <input id=\"SubmitUserGroup\" type=\"submit\" name=\"addUserGroupSub\" value=\"Add User\" class=\"btn btn-success\">
               </div>
           </form>
-          
+
       </div>
     </div>
   </div>";
@@ -233,4 +233,3 @@
 <?php
     include('../../views/footer.php');
 ?>
-

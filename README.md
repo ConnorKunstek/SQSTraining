@@ -1,3 +1,4 @@
+
 # CS499 Team 2 SQS Training Site README
 
 
@@ -13,9 +14,155 @@ https://github.com/ConnorKunstek/SeniorDesignProject
 
 ## Directory Structure
 
+Bellow is the tree directory of the source code
 
+```
+├───SQSTraining/
+│   ├───assets/
+│   │   ├───css/
+│   │   │   ├───bootstrap-grid.css
+│   │   │   ├───bootstrap-grid.css.map
+│   │   │   ├───bootstrap-grid.css.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap-grid.css~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap-grid.min.css
+│   │   │   ├───bootstrap-grid.min.css.map
+│   │   │   ├───bootstrap-grid.min.css.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap-grid.min.css~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap-reboot.css
+│   │   │   ├───bootstrap-reboot.css.map
+│   │   │   ├───bootstrap-reboot.css.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap-reboot.css~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap-reboot.min.css
+│   │   │   ├───bootstrap-reboot.min.css.map
+│   │   │   ├───bootstrap-reboot.min.css.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap-reboot.min.css~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap.css
+│   │   │   ├───bootstrap.css.map
+│   │   │   ├───bootstrap.css.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap.css~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap.min.css
+│   │   │   ├───bootstrap.min.css.map
+│   │   │   ├───bootstrap.min.css.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───bootstrap.min.css~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───ie10-viewport-bug-workaround.css
+│   │   │   └───main.css
+│   │   ├───fonts/
+│   │   │   ├───glyphicons-halflings-regular.eot
+│   │   │   ├───glyphicons-halflings-regular.svg
+│   │   │   ├───glyphicons-halflings-regular.svg~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │   │   ├───glyphicons-halflings-regular.ttf
+│   │   │   ├───glyphicons-halflings-regular.woff
+│   │   │   └───glyphicons-halflings-regular.woff2
+│   │   ├───images/
+│   │   │   ├───Header-Home.png
+│   │   │   ├───logo.png
+│   │   │   └───sprite.png
+│   │   ├───img/
+│   │   │   ├───Header-Home.png
+│   │   │   ├───alien.svg
+│   │   │   ├───astronaut.svg
+│   │   │   ├───logo.png
+│   │   │   └───sprite.png
+│   │   └───js/
+│   │       ├───bootstrap.bundle.js
+│   │       ├───bootstrap.bundle.js.map
+│   │       ├───bootstrap.bundle.js.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │       ├───bootstrap.bundle.js~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │       ├───bootstrap.bundle.min.js
+│   │       ├───bootstrap.bundle.min.js.map
+│   │       ├───bootstrap.bundle.min.js.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │       ├───bootstrap.bundle.min.js~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │       ├───bootstrap.js
+│   │       ├───bootstrap.js.map
+│   │       ├───bootstrap.js.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │       ├───bootstrap.js~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │       ├───bootstrap.min.js
+│   │       ├───bootstrap.min.js.map
+│   │       ├───bootstrap.min.js.map~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │       ├───bootstrap.min.js~3e7a75c83d0bb2da77b8c336c8c47179a39b9462
+│   │       ├───customjs.js
+│   │       ├───ie10-viewport-bug-workaround.js
+│   │       ├───jquery.min.js
+│   │       └───npm.js
+│   ├───bin/
+│   │   ├───DEMO-V1.sql
+│   │   ├───SANDBOX-V1.sql
+│   │   ├───SQSInstallation.sh
+│   │   ├───VANILLA-V1.sql
+│   │   ├───config_dump.php
+│   │   ├───database_diag.php
+│   │   └───phpunit.phar
+│   ├───config/
+│   │   └───config.ini
+│   ├───log/
+│   │   ├───.gitkeep
+│   │   ├───log
+│   │   └───run.log
+│   ├───src/
+│   │   ├───config/
+│   │   │   ├───config.ini
+│   │   │   ├───config.php
+│   │   │   └───database.ini
+│   │   ├───lib/
+│   │   │   ├───ConfigurationInterface.php
+│   │   │   ├───Connector.php
+│   │   │   ├───EmailServices.php
+│   │   │   ├───FeatureLoader.php
+│   │   │   └───Logger.php
+│   │   ├───modules/
+│   │   │   ├───change_password/
+│   │   │   │   ├───change_password_controller.php
+│   │   │   │   └───change_password_model.php
+│   │   │   ├───groups/
+│   │   │   │   ├───groups_controller.php
+│   │   │   │   ├───groups_model.php
+│   │   │   │   └───groups_view.php
+│   │   │   ├───home/
+│   │   │   │   ├───home_controller.php
+│   │   │   │   ├───home_model.php
+│   │   │   │   └───home_view.php
+│   │   │   ├───landing/
+│   │   │   │   ├───landing_controller.php
+│   │   │   │   ├───landing_model.php
+│   │   │   │   └───landing_view.php
+│   │   │   ├───profile/
+│   │   │   │   ├───profile_controller.php
+│   │   │   │   ├───profile_model.php
+│   │   │   │   ├───profile_view.php
+│   │   │   │   └───profile_view_edit.php
+│   │   │   ├───sign_in/
+│   │   │   │   ├───sign_in_controller.php
+│   │   │   │   ├───sign_in_model.php
+│   │   │   │   └───sign_in_view.php
+│   │   │   ├───sign_out/
+│   │   │   │   └───sign_out_controller.php
+│   │   │   ├───sign_up/
+│   │   │   │   ├───sign_up_controller.php
+│   │   │   │   ├───sign_up_model.php
+│   │   │   │   ├───sign_up_view.php
+│   │   │   │   └───sign_up_view_2.php
+│   │   │   └───verify/
+│   │   │       ├───failure.html
+│   │   │       ├───success.html
+│   │   │       ├───verify_controller.php
+│   │   │       ├───verify_model.php
+│   │   │       └───verify_view.php
+│   │   ├───views/
+│   │   │   ├───email_verification_page.php
+│   │   │   ├───error.php
+│   │   │   ├───footer.php
+│   │   │   └───header.php
+│   │   |
+│   ├───test/
+│   │   ├───ConnectorTest.php
+│   │   ├───EmailServicesTest.php
+│   │   └───LoggerTest.php
+│   ├───.gitignore
+│   ├───README.md
+│   ├───SQSInstallation.sh
+│   ├───index.php
 
->Training_site/
+```
 
 
 
@@ -57,224 +204,81 @@ JQuery and Bootstrap are not listed as dependencies as the necessary files are i
 
 
 
-## Installation Instructions - TODO
+## Installation Instructions
 
 
 
-### LAMP Stack - NEEDS EDITING
+### Setup
 
+This section will walk you through the steps needed to take in order to use the custom installation script.
 
+First we must clone the repo or download the zip  
 
-- Install and configure Apache according to the guidelines of your distribution.
+`$ git clone https://github.com/ConnorKunstek/SQSTraining.git`  
 
-- Install and configure MySQL or MariaDB through the appropriate package as per your distribution.
+Next move into the bin directory inside the repo  
 
-- Install and configure PHP through the appropriate package as per your distribution.
+`$ cd SQSTraining/bin`  
 
+Now we can run the install script inside `SQSTraining/bin` using bash  
 
+`$ bash ./SQSInstallation.sh`
 
-These three steps are detailed more fully [here](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-16-04), in a tutorial for Ubuntu systems. It also may be useful to install and configure a management program such as [PHP My Admin](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-16-04) to make it easier to add to and edit the SQL database.
+You will then be prompted with some choices to make
+![alt_text](https://i.imgur.com/rfC8lId.png)
 
+#### Full Installation
+This will install all the required dependencies for the application.
+> Note: some installs require root permissions so you might have to type your password for you local machine
 
+Once all dependencies are install the script will then prompt you to decide if you would like to setup the database  
 
-### Project Specific Instructions - NEEDS EDITING
+`Would you like to setup a predefined database? - y/n: <USER CHOICE>`  
 
+If you choose yes then you proceed to [Setup Database](#SetupDatabase)
 
+#### Setup Database  
 
-- Create a table named 'cs499' (without quotes) in the MySQL database.
+The installation script allows you to setup and choose between three different pre-set data for the databases,
 
-- Individually run all the .sql files located in either 'schemas' or 'DDL_with_data'. check to see that all eleven tables have been created. Start with 'user_schema.sql' so as to avoid foreign key constraint conflicts.
+- [Vanilla](#Vanilla)
+- [Sandbox](#Sandbox)
+- [Demo](#Demo)
 
-- Prepare the installation location. This is
+##### Vanilla
+This database setup will populate the database with the bare bones required for the application to run. It includes all required tables needed and populates one user which will be a Super Admin that has the overarching control over the application
 
+##### Sandbox
+This database setup will populate the database with all types of users that can be within the application. All types (Super Admin, Admin, Super User, User, Restricted) will be put into the database and will be able to play around with.
 
+##### Demo
+This database setup will populate the database will a randomly generate set of users and fake data associated will the whole functionality of the application.
 
->/var/www/html/
+#### Update Repository
+This will simply update and pull changes from the master branch the repository is associated with. It will pull the master branch and all its changes
 
 
+## Fall 2018 Updates
 
-on most distributions, but could be locations such as '/srv/http/' on ArchLinux/Slackware distributions, or other locations. Check where Apache serves files from on your system.
 
+Based on the previous version of the application, there was no structure or documentation the version we were given. We decided to go with a Vanilla AMP stack in order to create a maintainable and sustainable application. We retrofit the entire code base to a Module View Controller Architecture (MVC) to allow modularity and better control over the functionality. Along side the retrofit, we added third party applications that allow automated documentation based on comment styling to ensure documentation would not be lost for the future of this application
 
 
-- if your system does not use '/var/www/' to serve files, create a symlink from your serve location to '/var/www/html'. It is important to leave off the trailing '/' in this path. A sample symlink command would look like this:
 
+Installation has been drastically changed from what used to be a manual setup to an automated setup utilizing command line scripting languages. This script allows the full installation of all dependencies, hosting setup, and database population for the entirety of the application for UNIX based systems. Thus, eliminating human error and time waste trying.
 
 
-> sudo ln -s /srv/http/ /var/www/html
+#### Features added
 
-
-
-where /srv/http/ is the location your Apache installation serves files from. Create the /var/www/ directory before running this command, if need be.
-
-
-
-- Download the sqsg6 repository to your installation location. On systems with Git installed simply run this command:
-
-
-
-> git clone https://github.com/Robert8944/sqsg6
-
-
-
-or alternatively
-
-
-
-> wget https://github.com/Robert8944/sqsg6/archive/master.zip
-
-
-
-and
-
-
-
-> unzip master.zip
-
-
-
-- Test that your installation was successful by navigating to the 'Training_site/' directory in your browser, usually [http://localhost/sqsg6/Training_site/](http://localhost/sqsg6/Training_site/) if you are running the LAMP stack on your local machine. This URL should load 'index.php' automatically.
-
-
-
-- Create a file in the root /sqsg6/ directory named 'config.ini' (without quotes).
-
-
-
-- In 'config.ini' write one line with the format
-
-
-
-> password = "Demo Password"
-
-
-
-Where "Demo Password" is the root password to your MySQL database. Keep the quotes in the config.ini file. If you wish to use a different user, edit the 'sql_connector.php' file to use a differnt string other than 'root' on the line containing 'DB_USER'.
-
-
-
-- Test the connection to the SQL database by running
-
-
-
-> php sql_connector.php
-
-
-
-from the command line. The file should execute without error.
-
-
-
-
-
-## Continued Development - NEEDS EDITING
-
-
-
-All code changes made over the course of the 2017 Spring Semester development have an associated pull request and refrenced issue on the GitHub page. To trace a code alteration find the file changed, view its history through the GitHub interface, and find the associated commit and pull request name.
-
-
-
-
-
-## Fall 2017 Updates - NEEDS UPDATING
-
-
-
-Instead of using the traditional LAMP stack, we decided to go with XAMPP due to group members having different operating systems and previous experience with XAMP over LAMP.
-
-All dependencies and directory structure should be the same as listed above.
-
-
-
-Installation has not changed. Using XAMPP and phpMyAdmin allowed us to comment out the use of the config file when connecting to the database.
-
-Thus, the only difference between our code and previous semesters code is the file paths used and excluding the use of the config file.
-
-
-
-Only files with altered file paths are as follows...
-
-
-
-sql_connector.php				--> Lines 4 & 6
-
-feature_connector.php			--> Lines 8, 11, & 14
-
-features_loader.php				--> Line 10
-
-
-
-Required to alter for features to load properly.
-
-
-
-groupdisplay_0_profile_d.php	--> Lines 3 & 5
-
-groupdisplay_1_profile_d.php	--> Lines 7 & 9
-
-phonedisplay_0_profile_d.php	--> Lines 3 & 5
-
-phonedisplay_1_profile_d.php	--> Lines 3 & 5
-
-addressdisplay_0_profile_d.php	--> Lines 3 & 5
-
-
-
-All files have comments indicating what the file path was from previous semester for ease of installation in the future.
-
-
-
-All new files added contain comments for ease of continuted development.
-
-Added files...
-
-
-
-user_register.php	--> Not new code but split and altered into multiple files.
-
-user register2.php	--> Used some code from original user_register.php, added some new code.
-
-user_register3.php	--> All New code, based off previous user_register.php design.
-
-user_register4.php	--> All New code, based off previous user_register.php design.
-
-skillsinfo.php		--> All New code. Used to update information in database from user profile.
-
-header.php			--> Added code for new features.
-
-
-
-If using XAMPP on Windows. Simply install XAMPP. Place the sqsg6 folder into the htdocs folder in XAMPP.
-
-
-
-XAMPP/htdocs/[Folder Here]
-
-
-
-Run the XAMPP Control Panel, Start Apache and MySQL, click on Admin in the MySQL row, click on the databases tab and create a new database called cs499,
-
-navigate to the import tab, and import either sql files from schemas or ddl_with_data folder to get the initial database set up and you're ready.
-
-
-
-Then simply connect to the webpage by using the URL
-
-
-
-localhost/sqsg6/Training_site/
-
-
-
-Features added...
-
-	Registration Progress Bar		--> Indicates progress through new registration process.
-
-	Element ID Tags					--> For automation team to automate the site.
-
-	Skills Bank Idea				--> Pages 3 & 4 of registration process and skills displayed on user profile page.
-
-	Individual User Progress Bar	--> Indicates how complete a users profile is.
-
-		 Individual user progress shows the percentage of profile completed by user, the code embeded in Header.php in config folder but the feature still need some work and passing the testing procedure, currently we get error when we login and doesn't show user prograss for user Admin. also in order to show the prograss pie graph the server requrired to access to internet since we used feature google drawchart api. 
+	Installation Script				
+    	--> Indicates progress through new registration process.
+	Account Verification (via email)				
+    	--> For automation team to automate the site.
+	Email Notifications
+    	--> Set up email Notifications class that is dynamic modular
+	Unit Testing
+    	--> Php unit testing cases
+    Inline Comment Documentation
+    	-->	Php Documenter which will runs against the source code to create a organize documentation file to view
+    Feature Loader
+    	-->

@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.23)
-# Database: sqs_init
-# Generation Time: 2018-12-01 21:15:41 +0000
+# Database: sqs_web_sandbox
+# Generation Time: 2018-12-02 19:58:30 +0000
 # ************************************************************
 
 
@@ -33,20 +33,6 @@ CREATE TABLE `assigned_features` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-DELIMITER ;;
-/*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO" */;;
-/*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `UserAssignedChangeTrigger` AFTER INSERT ON `assigned_features` FOR EACH ROW BEGIN
-DELETE FROM auditTable WHERE user_id=NEW.user_id;
-INSERT INTO auditTable (user_id) VALUES (NEW.user_id);
-END */;;
-/*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO" */;;
-/*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `UserAssignedDeleteTrigger` BEFORE DELETE ON `assigned_features` FOR EACH ROW BEGIN
-DELETE FROM auditTable WHERE user_id=OLD.user_id;
-INSERT INTO auditTable (user_id) VALUES (OLD.user_id);
-END */;;
-DELIMITER ;
-/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;
 
 
 # Dump of table assigned_group_features
@@ -159,7 +145,7 @@ INSERT INTO `groups` (`UID`, `name`, `date_established`)
 VALUES
 	(1,'Group A','2017-03-23 21:40:57'),
 	(2,'Group B','2017-03-23 21:43:25'),
-  (3,'Group C','2017-03-23 21:43:25');
+	(3,'Group C','2017-03-23 21:43:25');
 
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -234,10 +220,10 @@ LOCK TABLES `phone_list` WRITE;
 INSERT INTO `phone_list` (`id`, `phone_number`, `user_id`, `date_added`, `carrier`, `international_code`, `primary_phone`)
 VALUES
 	(1,'11111111111',1,'2018-12-01 16:13:40','AT&T','1',1),
-  (2,'22222222222',2,'2018-12-01 16:13:40','AT&T','1',1),
-  (3,'33333333333',3,'2018-12-01 16:13:40','AT&T','1',1),
-  (4,'44444444444',4,'2018-12-01 16:13:40','AT&T','1',1),
-  (5,'55555555555',5,'2018-12-01 16:13:40','AT&T','1',1);
+	(2,'22222222222',2,'2018-12-01 16:13:40','AT&T','1',1),
+	(3,'33333333333',3,'2018-12-01 16:13:40','AT&T','1',1),
+	(4,'44444444444',4,'2018-12-01 16:13:40','AT&T','1',1),
+	(5,'55555555555',5,'2018-12-01 16:13:40','AT&T','1',1);
 
 /*!40000 ALTER TABLE `phone_list` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -361,10 +347,10 @@ LOCK TABLES `user` WRITE;
 INSERT INTO `user` (`UID`, `first_name`, `last_name`, `email`, `role`, `password`, `level`, `gender`, `dateofbirth`, `address`, `city`, `state`, `zip`, `photo`, `progress`, `hash`, `verified`)
 VALUES
 	(1,'SuperAdmin','SuperAdmin','SuperAdmin@sqs.com','SUPERADMIN','superadmin',5,'Male','2001-01-01','1234 SuperAdmin Ln.','SuperAdminVille','AL',9999,NULL,50,NULL,1),
-  (2,'Admin','Admin','Admin@sqs.com','ADMIN','admin',4,'Male','2001-01-01','1234 Admin Ln.','AdminVille','AL',9999,NULL,50,NULL,1),
-  (3,'SuperUser','SuperUser','SuperUser@sqs.com','SUPERUSER','super',3,'Male','2001-01-01','1234 SuperUser Ln.','SuperUserVille','AL',9999,NULL,50,NULL,1),
-  (3,'User','User','User@sqs.com','USER','password',2,'Male','2001-01-01','1234 User Ln.','UserVille','AL',9999,NULL,50,NULL,1),
-  (3,'RestricedUser','RestrictedUser','RestrictedUser@sqs.com','RESTRICTED','password',1,'Male','2001-01-01','1234 Restricted Ln.','RestrictedVille','AL',9999,NULL,50,NULL,1);
+	(2,'Admin','Admin','Admin@sqs.com','ADMIN','admin',4,'Male','2001-01-01','1234 Admin Ln.','AdminVille','AL',9999,NULL,50,NULL,1),
+	(3,'SuperUser','SuperUser','SuperUser@sqs.com','SUPERUSER','super',3,'Male','2001-01-01','1234 SuperUser Ln.','SuperUserVille','AL',9999,NULL,50,NULL,1),
+	(4,'User','User','User@sqs.com','USER','password',2,'Male','2001-01-01','1234 User Ln.','UserVille','AL',9999,NULL,50,NULL,1),
+	(5,'RestricedUser','RestrictedUser','RestrictedUser@sqs.com','RESTRICTED','password',1,'Male','2001-01-01','1234 Restricted Ln.','RestrictedVille','AL',9999,NULL,50,NULL,1);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
