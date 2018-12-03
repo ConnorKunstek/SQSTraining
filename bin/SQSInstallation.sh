@@ -13,7 +13,8 @@ Purple='\033[0;35m'       # Purple
 Blue='\033[0;34m'         # Blue
 
 # Constraints
-HOSTPATH="/var/http/www"  # Default Apache2 root folder
+HOSTPATH="/var/www/html
+"  # Default Apache2 root folder
 GITPATH=$(which git)      # Default git root folder
 
 # Dependencies
