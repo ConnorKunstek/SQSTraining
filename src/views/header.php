@@ -16,13 +16,15 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <!-- Bootstrap CSS -->
-      <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
-      <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
+<!--      <link rel="stylesheet" type="text/css" href="/assets/css/main.css">-->
+<!--      <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">-->
+      <link rel="stylesheet" type="text/css" href="../../../assets/css/main.css">
+      <link rel="stylesheet" type="text/css" href="../../../assets/css/bootstrap.css">
 
     <title>SQS Training Site - </title>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="../../assets/js/jquery.min.js"><\/script>')</script>
+      <script>window.jQuery || document.write('<script src="../../../assets/js/jquery.min.js"><\/script>')</script>
       <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
 
@@ -56,20 +58,20 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
-      <a class="navbar-brand" href="#"><img src="/assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
+      <a class="navbar-brand" href="#"><img src="../../../assets/img/logo.png" class="figure-img img-fluid rounded" width="45" height="45" alt="The SQS company logo."></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/src/modules/landing/landing_controller.php">Home</a>
+            <a class="nav-link" href="../landing/landing_controller.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../profile/profile_controller.php">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Groups</a>
+            <a class="nav-link" href="../groups/groups_controller.php">Groups</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://www.sqs.com/en/index.php" target="_blank">Corporate Site</a>

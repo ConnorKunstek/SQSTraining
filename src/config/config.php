@@ -5,7 +5,8 @@
 
 // Attempting to parse database file, with hard-coded values as fall back for now
 // TODO: Get rid of fallback values for production.
-if ($ini = parse_ini_file('../../database.ini', true)){
+//if ($ini = parse_ini_file('../../../database.ini', true)){
+if(false){
     $DB_SERVER = $ini['database']['hostname'];
     $DB_USER = $ini['database']['username'];
     $DB_PASSWORD = $ini['database']['password'];

@@ -10,6 +10,12 @@ require_once ("../../lib/Connector.php");
 
 session_start();
 
+/**
+ * gets all user data
+ * @param  data
+ * @return users autocreated UID
+ */
+
 function newUser($data){
 
     try{

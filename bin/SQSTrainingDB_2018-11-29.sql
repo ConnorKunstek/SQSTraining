@@ -316,10 +316,11 @@ VALUES
 	(19,'3152456920',31,'2017-04-09 15:10:02',NULL,NULL,1),
 	(21,'9999999999',34,'2018-02-08 18:05:03',NULL,NULL,1),
 	(34,'8594320046',50,'2018-02-27 08:27:33',NULL,NULL,0),
-	(38,'8593589125',8,'2018-02-27 21:09:53',NULL,NULL,0),
-	(39,'8592487759',8,'2018-02-27 21:10:06',NULL,NULL,0),
-	(41,'2596563214',8,'2018-03-01 20:25:42',NULL,NULL,0),
-	(42,'8593213211',6,'2018-04-16 11:15:36',NULL,NULL,0);
+	(38,'8593589125',12,'2018-02-27 21:09:53',NULL,NULL,0),
+	(39,'8592487759',12,'2018-02-27 21:10:06',NULL,NULL,0),
+	(41,'2596563214',12,'2018-03-01 20:25:42',NULL,NULL,0),
+	(42,'2596565214',12,'2018-03-01 20:25:42',NULL,NULL,0),
+	(43,'8593213211',12,'2018-04-16 11:15:36',NULL,NULL,0);
 
 /*!40000 ALTER TABLE `phone_list` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -450,7 +451,7 @@ CREATE TABLE `user` (
   `first_name` varchar(25) NOT NULL,
   `last_name` varchar(25) NOT NULL,
   `email` varchar(254) NOT NULL,
-  `role` varchar(64) NOT NULL DEFAULT 'ROLE_USER',
+  `role` varchar(64) NOT NULL DEFAULT 'User',
   `password` varchar(64) NOT NULL,
   `level` int(11) NOT NULL DEFAULT '3',
   `gender` varchar(6) DEFAULT NULL,
@@ -473,16 +474,16 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`UID`, `first_name`, `last_name`, `email`, `role`, `password`, `level`, `gender`, `dateofbirth`, `address`, `city`, `state`, `zip`, `photo`, `progress`, `hash`, `verified`)
 VALUES
-	(6,'John','Doe','test@test.com','ROLE_USER','f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
-	(12,'Zion','Williamson','bigdick@test.com','ROLE_USER','holdmynuts',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
-	(19,'Lebron','James','king@test.com','ROLE_USER','hairloss',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
-	(30,'RJ','Barret','rj@test.com','ROLE_USER','f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
-	(50,'Slim','Shady','eminem@test.com','ROLE_USER','fuckkelly',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
-	(69,'Jeff','Chartos','sqs@sqs.com','ROLE_USER','idratherteach498',3,'Male','1900-01-01','Testing','test','KY',40503,NULL,80,NULL,0),
-	(92,'Drake','drizzy','soft@test.com','ROLE_USER','fuckmeek',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
-	(100,'Stephen','Ritchie','stephenfritchie@gmail.com','ROLE_USER','password',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,NULL,0),
-	(101,'Stephen','Ritchie','stephen.ritchie@uky.edu','ROLE_USER','password',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,'bf8229696f7a3bb4700cfddef19fa23f',1),
-	(102,'thomas','Hayes','gayboy123@gaylordfantasy.com','ROLE_USER','iamgay123',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,NULL,0);
+	(6,'John','Doe','test@test.com','User','f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
+	(12,'Zion','Williamson','bigdick@test.com','Admin','holdmynuts',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,1),
+	(19,'Lebron','James','king@test.com','Super User','hairloss',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,1),
+	(30,'RJ','Barret','rj@test.com','Super Admin','f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,1),
+	(50,'Slim','Shady','eminem@test.com','Restricted User','fuckkelly',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
+	(69,'Jeff','Chartos','sqs@sqs.com','User','idratherteach498',3,'Male','1900-01-01','Testing','test','KY',40503,NULL,80,NULL,1),
+	(92,'Drake','drizzy','soft@test.com','User','fuckmeek',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
+	(100,'Stephen','Ritchie','stephenfritchie@gmail.com','User','password',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,NULL,0),
+	(101,'Stephen','Ritchie','stephen.ritchie@uky.edu','User','password',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,'bf8229696f7a3bb4700cfddef19fa23f',1),
+	(102,'thomas','Hayes','gayboy123@gaylordfantasy.com','User','iamgay123',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,NULL,0);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

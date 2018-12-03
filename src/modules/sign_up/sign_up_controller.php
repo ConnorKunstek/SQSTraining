@@ -28,22 +28,11 @@ if(!isset($_POST['hidden'])){
     exit();
 }
 
-//function addUserInfo(){
-//    $array = array(
-//        'gender' => $_POST['gender'],
-//        'dateofbirth' => $_POST['dateofbirth'],
-//        'phone_number' => $_POST['phone_number'],
-//        'street_number' => $_POST['street_number'],
-//        'street_name' => $_POST['street_name'],
-//        'city' => $_POST['city'],
-//        'state' => $_POST['state'],
-//        'zip' => $_POST['zip']
-//    );
-//    $returned = addInfo($array);
-//    if($returned != true){
-//        error($returned->getMessage(), 2);
-//    }
-//}
+/**
+ * creates new user
+ * @param  none
+ * @return data
+ */
 
 function createNewUser(){
 
@@ -70,12 +59,24 @@ function createNewUser(){
     }
 }
 
+/**
+ * checks if passwords given match
+ * @param  none
+ * @return data
+ */
+
 function passwordsChecked(){
     if($_POST['password'] != $_POST['confirm_password']){
         error("Error: Passwords do not match");
     }
 }
 
+
+/**
+ * ensure no fields are missing
+ * @param  none
+ * @return data
+ */
 function noneMissing(){
     foreach($_POST as $element){
         if(empty($element)){
@@ -83,6 +84,12 @@ function noneMissing(){
         }
     }
 }
+
+/**
+ * sanitized for SQL injections
+ * @param  none
+ * @return data
+ */
 
 function sanitized(){
 
@@ -100,6 +107,12 @@ function sanitized(){
     }
 }
 
+
+/**
+ * throws error with message
+ * @param  $message
+ * @return data
+ */
 function error($message){
     $_SESSION['errorMessage'] = $message;
     header("Location: sign_up_view.php");

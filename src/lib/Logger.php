@@ -32,7 +32,8 @@ class Logger{
     {
         // Attempting to retrieve logfile name from config file, but defaulting to sqstraining.log if for whatever reason
         // the config file cannot be opened.
-        if ($config = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/config/config.ini', true)) {
+//        if ($config = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/config/config.ini', true)) {
+        if (false){
             $this->logfile = $config['logging']['filename'];
         } else {
             $this->logfile = "sqstraining.log";
