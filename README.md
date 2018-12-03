@@ -130,6 +130,10 @@ Bellow is the tree directory of the source code
 │   │   │   │   ├───profile_model.php
 │   │   │   │   ├───profile_view.php
 │   │   │   │   └───profile_view_edit.php
+|   │   │   ├───reset_password/
+│   │   │   │   ├───reset_password_controller.php
+│   │   │   │   ├───reset_password_model.php
+│   │   │   │   └───reset_password_view.php
 │   │   │   ├───sign_in/
 │   │   │   │   ├───sign_in_controller.php
 │   │   │   │   ├───sign_in_model.php
@@ -280,5 +284,9 @@ Installation has been drastically changed from what used to be a manual setup to
     	--> Php unit testing cases
     Inline Comment Documentation
     	-->	Php Documenter which will runs against the source code to create a organize documentation file to view
+    Change Password
+        --> verified old password and that new passwords match, then changes accordinly
+    Reset Password
+        --> sends reandomly generated temporary password to given email to sign in
     Feature Loader
     	-->
