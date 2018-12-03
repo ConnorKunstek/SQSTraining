@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+$_SESSION['testing_mode'] = 0;
 require_once ("src/config/config.php");
 
 

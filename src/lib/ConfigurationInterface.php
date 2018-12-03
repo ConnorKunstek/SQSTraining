@@ -19,7 +19,7 @@ class ConfigurationInterface
     {
         $this->config_filename = "config.ini";
         $this->database_filename = $this->getSystemConfig()['database']['filename'];
-        Logger::getInstance()->log("created interface", basename(__FILE__));
+        Logger::getInstance()->log_debug("created interface", basename(__FILE__));
     }
 
     /**
