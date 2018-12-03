@@ -6,6 +6,7 @@
  * Time: 2:07 AM
  */
 require('groups_model.php');
+require('../../lib/EmailServices.php');
 
 /**
  * @function:       getCurrentGroup
@@ -77,9 +78,15 @@ function addNewGroup($group_Name){
  * @params:         $user = UID | $group - group_id | $leader - leader
  * @return:         NA
  * @Description:    setter a new user to be added to a group in the database
+ * then sends the user an email that they have been added to a group
  */
 function addNewUserGroup($user, $group, $leader){
-    addUserToGroup($user,$group,$leader);
+    $userEmail = addUserToGroup($user,$group,$leader);
+    $groupName = getGroup($group);
+    $emailService = new EmailServices($userEmail['email']);
+    $msg = "You have been added to " . $groupName['name'];
+    $msgSent = $emailService->sendNotification($msg);
+
 }
 
 /**
@@ -152,4 +159,3 @@ else if(isset($_POST['groupR'])){
     $groupID = $_POST['groupR'];
     removeGroup($groupID);
 }
-

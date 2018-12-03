@@ -71,8 +71,17 @@
             <a class="nav-link" href="../profile/profile_controller.php">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../groups/groups_controller.php">Groups</a>
+            <a class="nav-link" href="../groups/groups_view.php">Groups</a>
           </li>
+            <?php
+                if($_SESSION['role'] == "SUPERUSER" || $_SESSION['role'] == "ADMIN" || $_SESSION['role'] == "SUPERADMIN"){
+                    echo "
+                      <li class=\"nav-item\">
+                        <a class=\"nav-link\" href=\"../feature/feature_controller.php\">Feature Loader</a>
+                      </li>
+                    ";
+                }
+            ?>
           <li class="nav-item">
             <a class="nav-link" href="https://www.sqs.com/en/index.php" target="_blank">Corporate Site</a>
           </li>

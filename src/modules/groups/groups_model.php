@@ -144,6 +144,31 @@ function addUserToGroup($uid,$gid, $isLeader){
         $sql = "INSERT INTO group_members (group_id, uid, leader) VALUES('$gid', '$uid', '$isLeader')";
         $stmt = $base->prepare($sql);
         $stmt->execute();
+
+        $sql2 = "SELECT user.email FROM user WHERE user.UID = '$uid'";
+        $stmt = $base->prepare($sql2);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+    }catch( Exception $e){
+        return $e;
+    }
+}
+/**
+ * @function:       getGroup
+ * @params:         $gid = group_id
+ * @return          array|Exception
+ * @Description:    gets group based on group id passed
+ *
+ */
+function getGroup($gid){
+    try{
+        $base = Connector::getDatabase();
+        $sql3 = "SELECT groups.name FROM groups WHERE groups.UID = '$gid'";
+        $stmt = $base->prepare($sql3);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
     }catch( Exception $e){
         return $e;
     }

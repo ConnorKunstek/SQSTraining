@@ -7,17 +7,6 @@
  */
     require('groups_controller.php');
     include('../../views/header.php');
-
-//    $_SESSION['role'] = "SUPERUSER";
-//    $_SESSION['role'] = "USER";
-//    $_SESSION['uid'] = 6;
-//    $_SESSION['role'] = "RESTRICTED";
-//    $_SESSION['role'] = "ADMIN";
-//    $_SESSION['role'] = "SUPERADMIN";
-//    print_r($_SESSION);
-//    echo $_SESSION['first_name'];
-//    echo $_SESSION['role'];
-
 ?>
 <div class="container">
     <h3 id="GroupHead">My Groups</h3>
@@ -59,7 +48,7 @@
     }
 
     else if($_SESSION['role'] == "RESTRICTED") {
-        $groups = getCurrentGroup($_SESSION['uid']);
+        $groups = getCurrentGroup($_SESSION['UID']);
         try {
             if (sizeof($groups) > 0) {
                 foreach ($groups as $groupName) {
