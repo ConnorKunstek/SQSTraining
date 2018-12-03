@@ -8,17 +8,13 @@ session_start();
 
 require_once ("../../lib/Logger.php");
 require_once ("../../lib/FeatureLoader.php");
-require_once ("landing_model.php");
-
-$model = new LandingModel();
-
 
 
 // Checking if the 'start testing' button was clicked.
 if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $_SESSION['testing_mode'] = 1;
-    Logger::getInstance()->log("Testing started for ".$_SERVER['REMOTE_ADDR']);
+    Logger::getInstance()->log("Testing started for ".$_SERVER['REMOTE_ADDR'], basename(__FILE__));
 
     header("Location: landing_controller.php");
     exit();
