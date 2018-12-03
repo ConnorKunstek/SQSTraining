@@ -16,9 +16,6 @@ class FeatureLoader
     /** @var FeatureLoader Holds handler to single instance of class. */
     private static $instance;
 
-    /** @var string Defines what integer is the default version of a feature. */
-    private $default_version = "0";
-
     /**
      * FeatureLoader constructor
      * Nothing is done here.
