@@ -363,6 +363,34 @@ include("../../views/header.php");
 	        </div>
 	    </div>
      </div>
+    <div id="ResetPassword" class="modal" role="dialog">
+        <!-- Modal content -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Reset Password</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form id="ResetPasswordForm" name="ResetPasswordForm" action="../reset_password/reset_password_controller.php" method="post">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" for="email">Email</label><br><br />
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control" type="text" name="email">
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-success" id="Submit" type="submit" name="submit" value="Confirm">
+                        <button type="button" name="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </html>
 
 <script>
@@ -514,4 +542,5 @@ $('.deletePN').on('click', function(){
             e.preventDefault();
         });
     }(jQuery));
+
 </script>

@@ -72,6 +72,7 @@ session_start();
                     </div>
                 ";
         }
+        $_SESSION['errorMessage'] = null;
         ?>
   	    <form method="post" action="sign_in_controller.php">
             <br><h5 id="LogInWelcomeHead">Welcome to the SQS Training Site, please log in.</h5><br>

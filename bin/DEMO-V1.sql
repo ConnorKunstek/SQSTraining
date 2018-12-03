@@ -20,8 +20,8 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table assigned_features
-# ------------------------------------------------------------
+-- # Dump of table assigned_features
+-- # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `assigned_features`;
 
@@ -49,39 +49,38 @@ DELIMITER ;
 /*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;
 
 
-# Dump of table assigned_group_features
-# ------------------------------------------------------------
+-- # Dump of table assigned_group_features
+-- # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `assigned_group_features`;
-
-CREATE TABLE `assigned_group_features` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `feature_number` int(11) NOT NULL,
-  `group_id` int(11) NOT NULL,
-  `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `feature_number` (`feature_number`),
-  KEY `group_id` (`group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-
-
-# Dump of table auditTable
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `auditTable`;
-
-CREATE TABLE `auditTable` (
-  `UID` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `changed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`UID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-
-
-# Dump of table features_available
-# ------------------------------------------------------------
+-- DROP TABLE IF EXISTS `assigned_group_features`;
+--
+-- CREATE TABLE `assigned_group_features` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `feature_number` int(11) NOT NULL,
+--   `group_id` int(11) NOT NULL,
+--   `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--   PRIMARY KEY (`id`),
+--   KEY `feature_number` (`feature_number`),
+--   KEY `group_id` (`group_id`)
+-- ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+--
+--
+--
+-- # Dump of table auditTable
+-- # ------------------------------------------------------------
+-- DROP TABLE IF EXISTS `auditTable`;
+--
+-- CREATE TABLE `auditTable` (
+--   `UID` int(11) NOT NULL AUTO_INCREMENT,
+--   `user_id` int(11) NOT NULL,
+--   `changed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--   PRIMARY KEY (`UID`)
+-- ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+--
+--
+--
+-- # Dump of table features_available
+-- # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `features_available`;
 
@@ -89,8 +88,7 @@ CREATE TABLE `features_available` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
-  `file` varchar(50) NOT NULL,
-  `target` varchar(50) NOT NULL,
+  `group` int(11) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -98,31 +96,31 @@ CREATE TABLE `features_available` (
 LOCK TABLES `features_available` WRITE;
 /*!40000 ALTER TABLE `features_available` DISABLE KEYS */;
 
-INSERT INTO `features_available` (`id`, `name`, `description`, `file`, `target`)
-VALUES
-	(1,'Navigation','Provides the links in the menu bar used to navigate the site.','navigation_0.php','navigation'),
-	(2,'Credit','Writes at the bottom of the page the authors of the website.','credit_0.php','credit'),
-	(4,'Phone Sub','Messages shown when a phone subscription error occurs.','phonesub_0.php','phonesub'),
-	(5,'Phone Display','Displays a list of the user\'s phone numbers','phonedisplay_0.php','phonedisplay'),
-	(6,'Address Display','Displays the user\'s address','addressdisplay_0.php','addressdisplay'),
-	(7,'Group Display','Displays the groups the user belongs to','groupdisplay_0.php','groupdisplay'),
-	(8,'Name Display','Displays the user\'s name on the profile page','namedisplay_0.php','namedisplay'),
-	(100,'Phone Display (Error 1)','Display \"No Registered Numbers\", regardless of registered numbers','phonedisplay_1.php','phonedisplay'),
-	(101,'Credit (Error 1)','Makes credit div background RED','credit_1.php','credit'),
-	(102,'Credit (Error 2)','No text is displayed in the credit div','credit_2.php','credit'),
-	(103,'Navigation (Error 1)','Allows any user to see admin navigation','navigation_1.php','navigation'),
-	(104,'Navigation (Error 2)','Doesn\'t display profile link','navigation_2.php','navigation'),
-	(105,'Address Display (Error 1)','Displays no Address info, regardless if completed','addressdisplay_1.php','addressdisplay'),
-	(106,'Group Display (Error 1)','Displays \"None\" for user\'s group, regardless of assigned groups','groupdisplay_1.php','groupdisplay'),
-	(107,'Name Display (Error 1)','Blanks out the user\'s name','namedisplay_1.php','namedisplay'),
-	(108,'Index (Home Page)','Displays the full Home Page for the site','index_0.php','index');
+-- INSERT INTO `features_available` (`id`, `name`, `description`, `file`, `target`)
+-- VALUES
+-- 	(1,'Navigation','Provides the links in the menu bar used to navigate the site.','navigation_0.php','navigation'),
+-- 	(2,'Credit','Writes at the bottom of the page the authors of the website.','credit_0.php','credit'),
+-- 	(4,'Phone Sub','Messages shown when a phone subscription error occurs.','phonesub_0.php','phonesub'),
+-- 	(5,'Phone Display','Displays a list of the user\'s phone numbers','phonedisplay_0.php','phonedisplay'),
+-- 	(6,'Address Display','Displays the user\'s address','addressdisplay_0.php','addressdisplay'),
+-- 	(7,'Group Display','Displays the groups the user belongs to','groupdisplay_0.php','groupdisplay'),
+-- 	(8,'Name Display','Displays the user\'s name on the profile page','namedisplay_0.php','namedisplay'),
+-- 	(100,'Phone Display (Error 1)','Display \"No Registered Numbers\", regardless of registered numbers','phonedisplay_1.php','phonedisplay'),
+-- 	(101,'Credit (Error 1)','Makes credit div background RED','credit_1.php','credit'),
+-- 	(102,'Credit (Error 2)','No text is displayed in the credit div','credit_2.php','credit'),
+-- 	(103,'Navigation (Error 1)','Allows any user to see admin navigation','navigation_1.php','navigation'),
+-- 	(104,'Navigation (Error 2)','Doesn\'t display profile link','navigation_2.php','navigation'),
+-- 	(105,'Address Display (Error 1)','Displays no Address info, regardless if completed','addressdisplay_1.php','addressdisplay'),
+-- 	(106,'Group Display (Error 1)','Displays \"None\" for user\'s group, regardless of assigned groups','groupdisplay_1.php','groupdisplay'),
+-- 	(107,'Name Display (Error 1)','Blanks out the user\'s name','namedisplay_1.php','namedisplay'),
+-- 	(108,'Index (Home Page)','Displays the full Home Page for the site','index_0.php','index');
 
 /*!40000 ALTER TABLE `features_available` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table group_members
-# ------------------------------------------------------------
+-- # Dump of table group_members
+-- # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `group_members`;
 
@@ -253,8 +251,8 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table groups
-# ------------------------------------------------------------
+-- # Dump of table groups
+-- # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `groups`;
 
@@ -292,8 +290,8 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table hardware_skills
-# ------------------------------------------------------------
+-- # Dump of table hardware_skills
+-- # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `hardware_skills`;
 
@@ -325,20 +323,20 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table levels
+-- # Dump of table levels
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `levels`;
-
-CREATE TABLE `levels` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
-# Dump of table phone_list
+--
+-- DROP TABLE IF EXISTS `levels`;
+--
+-- CREATE TABLE `levels` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `title` varchar(25) DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--
+--
+--
+-- # Dump of table phone_list
 # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `phone_list`;
@@ -465,21 +463,21 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table session_users
-# ------------------------------------------------------------
+-- # Dump of table session_users
+-- # ------------------------------------------------------------
+--
+-- DROP TABLE IF EXISTS `session_users`;
+--
+-- CREATE TABLE `session_users` (
+--   `session_id` varchar(128) NOT NULL,
+--   `user_id` varchar(11) NOT NULL,
+--   PRIMARY KEY (`session_id`)
+-- ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `session_users`;
-
-CREATE TABLE `session_users` (
-  `session_id` varchar(128) NOT NULL,
-  `user_id` varchar(11) NOT NULL,
-  PRIMARY KEY (`session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
-
-# Dump of table software_skills
-# ------------------------------------------------------------
+-- # Dump of table software_skills
+-- # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `software_skills`;
 
@@ -535,18 +533,18 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table subscriber
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `subscriber`;
-
-CREATE TABLE `subscriber` (
-  `phone_number` varchar(20) NOT NULL,
-  `carrier` varchar(10) NOT NULL,
-  `international_code` varchar(4) NOT NULL,
-  PRIMARY KEY (`phone_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+-- # Dump of table subscriber
+-- # ------------------------------------------------------------
+--
+-- DROP TABLE IF EXISTS `subscriber`;
+--
+-- CREATE TABLE `subscriber` (
+--   `phone_number` varchar(20) NOT NULL,
+--   `carrier` varchar(10) NOT NULL,
+--   `international_code` varchar(4) NOT NULL,
+--   PRIMARY KEY (`phone_number`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--
 
 
 # Dump of table user
@@ -608,7 +606,7 @@ VALUES
 	(24,'Alison','Jones','medhurst.nicholaus@example.com','RESTRICTED','molestias',3,'Other','2007-01-21','06480 Rice Dam\nWest Clarissa, AL 40900','New Chelsea','Ge',6,NULL,50,'0e7494b7c5a0f514ece8af306951d3b3',0),
 	(25,'Shana','Hettinger','jordon53@example.com','RESTRICTED','quia',3,'Other','2000-03-15','16790 White Stream Suite 602\nCaesarview, WY 20840','Maximostad','Ha',3,NULL,50,'e0a45c2b7e8a0891415d72eef8d89a0b',1),
 	(26,'Ernesto','Kreiger','qweber@example.net','RESTRICTED','modi',3,'Other','2003-07-06','41303 Levi Corner\nNorth Pansyberg, WV 68260','South Wyman','Lo',7,NULL,50,'27ebe24dc41b9d42addd26361b4872e7',1),
-	(27,'Tyra','Hermann','tiffany.o\'keefe@example.org','SUPERUSER','accusantium',3,'Other','1982-05-29','843 Boehm Shore Apt. 078\nBeahanport, PA 16895','North Brendan','Ke',5,NULL,50,'9fb244380171de22993640cb301c2bd7',1),
+	(27,'Tyra','Hermann','tiffany.okeefe@example.org','SUPERUSER','accusantium',3,'Other','1982-05-29','843 Boehm Shore Apt. 078\nBeahanport, PA 16895','North Brendan','Ke',5,NULL,50,'9fb244380171de22993640cb301c2bd7',1),
 	(28,'Kody','Beer','pdonnelly@example.net','RESTRICTED','reiciendis',3,'Male','1985-05-06','27296 Barton Road\nMedhurstfort, WI 54407-8773','Faybury','Wi',2,NULL,50,'4ff80efd26076c16ae78609686787ad3',1),
 	(29,'Jennings','Champlin','reynolds.joelle@example.org','SUPERUSER','dolores',3,'Male','2002-03-28','25288 Dejon Trace Suite 970\nElenaberg, WA 33194-4013','New Vidal','Te',6,NULL,50,'7dc135850477935da61d66f5ad5628fd',1),
 	(30,'Elenora','Lebsack','eldridge35@example.net','SUPERUSER','sit',3,'Female','2005-11-02','59375 Dare Road Suite 320\nWest Raphaelle, CO 09752','North Alycia','Ne',3,NULL,50,'537fa698dba1820c0a751f21bedf5020',1),
@@ -639,10 +637,10 @@ VALUES
 	(55,'August','Streich','domingo.lebsack@example.com','SUPERUSER','libero',3,'Female','1980-02-14','20265 Mandy Course Apt. 089\nRempelmouth, IA 15512-5869','Hickleland','Ge',1,NULL,50,'26d9b3b5f253793d2fb10a392e981058',1),
 	(56,'Jalen','Nitzsche','harmon.bosco@example.net','SUPERUSER','est',3,'Other','2015-11-27','45119 Alyce Rest Suite 742\nHirtheside, CT 03336','East Kris','Ke',1,NULL,50,'ef0dbc847498580ed79926f410d8f403',1),
 	(57,'Diana','Renner','jbergnaum@example.com','SUPERUSER','est',3,'Female','1992-11-13','8352 West Run Apt. 699\nKeelinghaven, KY 26215','Beerview','Wa',9,NULL,50,'a0302da9379fc4a1e9e7348e6c103c55',1),
-	(58,'Chasity','Thiel','adriana.kuhic@example.com','USER','velit',3,'Other','2004-07-31','3542 O\'Connell Plains\nPort Tre, NC 48472-5396','Ebertshire','Wa',4,NULL,50,'e141c1f7cbab308b6056959d3deefff7',0),
+	(58,'Chasity','Thiel','adriana.kuhic@example.com','USER','velit',3,'Other','2004-07-31','3542 OConnell Plains\nPort Tre, NC 48472-5396','Ebertshire','Wa',4,NULL,50,'e141c1f7cbab308b6056959d3deefff7',0),
 	(59,'Filiberto','Terry','lhilpert@example.com','SUPERUSER','minima',3,'Female','1975-02-05','283 Zita Fall\nHaagside, RI 98122-9993','Turnerside','Ut',2,NULL,50,'15b190a67ec0a31bfdde95afd57587b4',1),
 	(60,'Raquel','Rath','yvonne64@example.org','USER','consequatur',3,'Other','1992-06-12','481 Cole Meadow Apt. 794\nNew Alhaven, MD 84757','Stammberg','Di',9,NULL,50,'d9b988cbb02401f1a8e51e1101181170',0),
-	(61,'Charlene','Stamm','o\'kon.dorian@example.com','RESTRICTED','aut',3,'Female','2002-08-13','5925 Ocie Prairie\nEast Gussieton, ME 41895-1289','Bartonport','So',4,NULL,50,'a4209e7383a201ec5e9cbff6d6afa668',0),
+	(61,'Charlene','Stamm','okon.dorian@example.com','RESTRICTED','aut',3,'Female','2002-08-13','5925 Ocie Prairie\nEast Gussieton, ME 41895-1289','Bartonport','So',4,NULL,50,'a4209e7383a201ec5e9cbff6d6afa668',0),
 	(62,'Bartholome','Nolan','yorn@example.org','USER','neque',3,'Female','2007-06-02','78801 Hayes Mill Apt. 470\nGreggport, WI 51478-1876','Port Lauren','Mi',7,NULL,50,'5eea581057b6950fc6da34008da0faf8',0),
 	(63,'Alexandrea','Armstrong','marlene24@example.net','SUPERUSER','laboriosam',3,'Male','1987-10-28','84681 Connelly Vista\nRowemouth, NC 84454-5866','Lake Remingtonborough','Co',4,NULL,50,'b78869c7671fc3abefcca0e8659832b7',1),
 	(64,'Rosemary','Kuhic','ksauer@example.org','RESTRICTED','cumque',3,'Other','2007-04-04','238 Neil Wells Suite 171\nPort Karolann, ID 19190','Elouisebury','In',1,NULL,50,'12ab8ec424db4a403880d565a0633b09',0),
@@ -687,8 +685,8 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table user_hardware_skills
-# ------------------------------------------------------------
+-- # Dump of table user_hardware_skills
+-- # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `user_hardware_skills`;
 
@@ -727,8 +725,8 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table user_software_skills
-# ------------------------------------------------------------
+-- # Dump of table user_software_skills
+-- # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `user_software_skills`;
 
