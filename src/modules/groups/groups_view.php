@@ -138,7 +138,7 @@
                         echo "</ul>";
                     }
                     else{
-                        echo "<h5>No Current Users</h5></div>";
+                        echo "<h5>No Current Users</h5>";
                      }
                     $count++;
                     echo "</div>";

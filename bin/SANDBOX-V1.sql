@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 127.0.0.1 (MySQL 5.7.23)
-# Database: sqs_web_sandbox
-# Generation Time: 2018-12-02 19:58:30 +0000
+# Host: 10.163.140.98 (MySQL 5.7.24-0ubuntu0.18.04.1)
+# Database: SQSTrainingDB
+# Generation Time: 2018-12-03 11:32:08 +0000
 # ************************************************************
 
 
@@ -33,37 +33,49 @@ CREATE TABLE `assigned_features` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `assigned_features` WRITE;
+/*!40000 ALTER TABLE `assigned_features` DISABLE KEYS */;
 
+INSERT INTO `assigned_features` (`id`, `feature_number`, `user_id`, `time_added`)
+VALUES
+	(1,2,6,'2018-12-03 02:54:40'),
+	(2,8,6,'2018-12-03 03:22:05'),
+	(3,105,6,'2018-12-03 02:54:41'),
+	(4,109,6,'2018-12-03 02:54:42'),
+	(5,116,6,'2018-12-03 02:54:43'),
+	(6,2,1,'2018-12-03 02:54:40'),
+	(7,8,1,'2018-12-03 03:22:05'),
+	(8,105,1,'2018-12-03 02:54:41'),
+	(9,109,1,'2018-12-03 02:54:42'),
+	(10,116,1,'2018-12-03 02:54:43'),
+	(11,2,2,'2018-12-03 02:54:40'),
+	(12,8,2,'2018-12-03 03:22:05'),
+	(13,105,2,'2018-12-03 02:54:41'),
+	(14,109,2,'2018-12-03 02:54:42'),
+	(15,116,2,'2018-12-03 02:54:43'),
+	(16,1,3,'2018-12-03 02:54:40'),
+	(17,6,3,'2018-12-03 03:22:05'),
+	(18,103,3,'2018-12-03 02:54:41'),
+	(19,109,3,'2018-12-03 02:54:42'),
+	(20,115,3,'2018-12-03 02:54:43'),
+	(21,3,4,'2018-12-03 02:54:40'),
+	(22,7,4,'2018-12-03 03:22:05'),
+	(23,103,4,'2018-12-03 02:54:41'),
+	(24,109,4,'2018-12-03 02:54:42'),
+	(25,115,4,'2018-12-03 02:54:43'),
+	(26,3,5,'2018-12-03 02:54:40'),
+	(27,7,5,'2018-12-03 03:22:05'),
+	(28,103,5,'2018-12-03 02:54:41'),
+	(29,110,5,'2018-12-03 02:54:42'),
+	(30,115,5,'2018-12-03 02:54:43'),
+	(31,3,10,'2018-12-03 02:54:40'),
+	(32,7,10,'2018-12-03 03:22:05'),
+	(33,103,10,'2018-12-03 02:54:41'),
+	(34,110,10,'2018-12-03 02:54:42'),
+	(35,115,10,'2018-12-03 02:54:43');
 
-# Dump of table assigned_group_features
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `assigned_group_features`;
-
-CREATE TABLE `assigned_group_features` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `feature_number` int(11) NOT NULL,
-  `group_id` int(11) NOT NULL,
-  `time_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `feature_number` (`feature_number`),
-  KEY `group_id` (`group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-
-
-# Dump of table auditTable
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `auditTable`;
-
-CREATE TABLE `auditTable` (
-  `UID` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `changed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`UID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
+/*!40000 ALTER TABLE `assigned_features` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table features_available
@@ -75,8 +87,8 @@ CREATE TABLE `features_available` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
-  `file` varchar(50) NOT NULL,
-  `target` varchar(50) NOT NULL,
+  `feature_group_name` varchar(45) DEFAULT '0',
+  `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -84,24 +96,33 @@ CREATE TABLE `features_available` (
 LOCK TABLES `features_available` WRITE;
 /*!40000 ALTER TABLE `features_available` DISABLE KEYS */;
 
-INSERT INTO `features_available` (`id`, `name`, `description`, `file`, `target`)
+INSERT INTO `features_available` (`id`, `name`, `description`, `feature_group_name`, `version`)
 VALUES
-	(1,'Navigation','Provides the links in the menu bar used to navigate the site.','navigation_0.php','navigation'),
-	(2,'Credit','Writes at the bottom of the page the authors of the website.','credit_0.php','credit'),
-	(4,'Phone Sub','Messages shown when a phone subscription error occurs.','phonesub_0.php','phonesub'),
-	(5,'Phone Display','Displays a list of the user\'s phone numbers','phonedisplay_0.php','phonedisplay'),
-	(6,'Address Display','Displays the user\'s address','addressdisplay_0.php','addressdisplay'),
-	(7,'Group Display','Displays the groups the user belongs to','groupdisplay_0.php','groupdisplay'),
-	(8,'Name Display','Displays the user\'s name on the profile page','namedisplay_0.php','namedisplay'),
-	(100,'Phone Display (Error 1)','Display \"No Registered Numbers\", regardless of registered numbers','phonedisplay_1.php','phonedisplay'),
-	(101,'Credit (Error 1)','Makes credit div background RED','credit_1.php','credit'),
-	(102,'Credit (Error 2)','No text is displayed in the credit div','credit_2.php','credit'),
-	(103,'Navigation (Error 1)','Allows any user to see admin navigation','navigation_1.php','navigation'),
-	(104,'Navigation (Error 2)','Doesn\'t display profile link','navigation_2.php','navigation'),
-	(105,'Address Display (Error 1)','Displays no Address info, regardless if completed','addressdisplay_1.php','addressdisplay'),
-	(106,'Group Display (Error 1)','Displays \"None\" for user\'s group, regardless of assigned groups','groupdisplay_1.php','groupdisplay'),
-	(107,'Name Display (Error 1)','Blanks out the user\'s name','namedisplay_1.php','namedisplay'),
-	(108,'Index (Home Page)','Displays the full Home Page for the site','index_0.php','index');
+	(1,'youtube_0.php','Default embedded YouTube video of SQS holiday video.','youtube',0),
+	(2,'youtube_1.php','Embedded YouTube video that does not autoplay.','youtube',1),
+	(4,'youtube_2.php','','youtube',2),
+	(5,'youtube_3.php','','youtube',3),
+	(6,'youtube_4.php','','youtube',4),
+	(7,'googlemap_0.php','Default embedded Google Map centered on Lexington, KY.','googlemap',0),
+	(8,'googlemap_1.php','','googlemap',1),
+	(100,'googlemap_2.php','','googlemap',2),
+	(101,'googlemap_3.php','','googlemap',3),
+	(102,'googlemap_4.php','','googlemap',4),
+	(103,'groupcard_0.php','','groupcard',0),
+	(104,'groupcard_1.php','','groupcard',1),
+	(105,'groupcard_2.php','','groupcard',2),
+	(106,'groupcard_3.php','','groupcard',3),
+	(107,'groupcard_4.php','','groupcard',4),
+	(109,'profilecard_0.php','','profilecard',0),
+	(110,'profilecard_1.php','','profilecard',1),
+	(111,'profilecard_2.php','','profilecard',2),
+	(112,'profilecard_3.php','','profilecard',3),
+	(113,'profilecard_4.php','','profilecard',4),
+	(114,'profileedit_0.php','','profileedit',0),
+	(115,'profileedit_1.php','','profileedit',1),
+	(116,'profileedit_2.php','','profileedit',2),
+	(117,'profileedit_3.php','','profileedit',3),
+	(118,'profileedit_4.php','','profileedit',4);
 
 /*!40000 ALTER TABLE `features_available` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -184,19 +205,6 @@ VALUES
 UNLOCK TABLES;
 
 
-# Dump of table levels
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `levels`;
-
-CREATE TABLE `levels` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
 # Dump of table phone_list
 # ------------------------------------------------------------
 
@@ -222,24 +230,10 @@ VALUES
 	(1,'11111111111',1,'2018-12-01 16:13:40','AT&T','1',1),
 	(2,'22222222222',2,'2018-12-01 16:13:40','AT&T','1',1),
 	(3,'33333333333',3,'2018-12-01 16:13:40','AT&T','1',1),
-	(4,'44444444444',4,'2018-12-01 16:13:40','AT&T','1',1),
 	(5,'55555555555',5,'2018-12-01 16:13:40','AT&T','1',1);
 
 /*!40000 ALTER TABLE `phone_list` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
-# Dump of table session_users
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `session_users`;
-
-CREATE TABLE `session_users` (
-  `session_id` varchar(128) NOT NULL,
-  `user_id` varchar(11) NOT NULL,
-  PRIMARY KEY (`session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 
 
 # Dump of table software_skills
@@ -311,6 +305,26 @@ CREATE TABLE `subscriber` (
   PRIMARY KEY (`phone_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+LOCK TABLES `subscriber` WRITE;
+/*!40000 ALTER TABLE `subscriber` DISABLE KEYS */;
+
+INSERT INTO `subscriber` (`phone_number`, `carrier`, `international_code`)
+VALUES
+	('12312312','AT&T','1'),
+	('1231231234','VERIZON','1'),
+	('1233142345','VERIZON','1'),
+	('1234567890','VERIZON','1'),
+	('3456781234','VERIZON','1'),
+	('4562655625','VERIZON','1'),
+	('6781234567','VERIZON','1'),
+	('85912345687','VERIZON','1'),
+	('8593141592','VERIZON','1'),
+	('8598661234','VERIZON','1'),
+	('98765432','VERIZON','1'),
+	('9876543210','VERIZON','1');
+
+/*!40000 ALTER TABLE `subscriber` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table user
@@ -323,7 +337,7 @@ CREATE TABLE `user` (
   `first_name` varchar(25) NOT NULL,
   `last_name` varchar(25) NOT NULL,
   `email` varchar(254) NOT NULL,
-  `role` varchar(64) NOT NULL DEFAULT 'ROLE_USER',
+  `role` varchar(64) NOT NULL DEFAULT 'USER',
   `password` varchar(64) NOT NULL,
   `level` int(11) NOT NULL DEFAULT '3',
   `gender` varchar(6) DEFAULT NULL,
@@ -350,7 +364,9 @@ VALUES
 	(2,'Admin','Admin','Admin@sqs.com','ADMIN','admin',4,'Male','2001-01-01','1234 Admin Ln.','AdminVille','AL',9999,NULL,50,NULL,1),
 	(3,'SuperUser','SuperUser','SuperUser@sqs.com','SUPERUSER','super',3,'Male','2001-01-01','1234 SuperUser Ln.','SuperUserVille','AL',9999,NULL,50,NULL,1),
 	(4,'User','User','User@sqs.com','USER','password',2,'Male','2001-01-01','1234 User Ln.','UserVille','AL',9999,NULL,50,NULL,1),
-	(5,'RestricedUser','RestrictedUser','RestrictedUser@sqs.com','RESTRICTED','password',1,'Male','2001-01-01','1234 Restricted Ln.','RestrictedVille','AL',9999,NULL,50,NULL,1);
+	(5,'RestricedUser','RestrictedUser','RestrictedUser@sqs.com','RESTRICTED','password',1,'Male','2001-01-01','1234 Restricted Ln.','RestrictedVille','AL',9999,NULL,50,NULL,1),
+	(6,'Nick','Sladic','nsl223@g.uky.edu','SUPERADMIN','password1',3,'Male','2018-12-25','123','LEx','FL',40503,NULL,50,NULL,1),
+	(10,'Stephen','Ritchie','stephenfritchie@gmail.com','USER','password',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,'0f840be9b8db4d3fbd5ba2ce59211f55',1);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

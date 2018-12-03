@@ -69,9 +69,7 @@ function getAssignedId($uid){
 function getAssignFeatures($uid){
     try{
         $base = Connector::getDatabase();
-        $sql = "SELECT features_available.id, features_available.name, features_available.feature_group_name
-                FROM features_available
-                JOIN assigned_features ON features_available.id = assigned_features.feature_number WHERE assigned_features.user_id = '$uid'";
+        $sql = "SELECT features_available.id, features_available.name, features_available.feature_group_name FROM features_available JOIN assigned_features ON features_available.id = assigned_features.feature_number WHERE assigned_features.user_id = '$uid'";
         $stmt = $base->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -91,7 +89,7 @@ function getAssignFeatures($uid){
 function setFeatures($uid,$fid,$aid){
     try{
         $base = Connector::getDatabase();
-        $sql = "UPDATE assigned_features SET feature_number = '$fid' WHERE assigned_features.id = '$aid' AND assigned_features.uid = '$uid';";
+        $sql = "UPDATE assigned_features SET feature_number = '$fid' WHERE assigned_features.id = '$aid' AND assigned_features.user_id = '$uid';";
         $stmt = $base->prepare($sql);
         $stmt->execute();
 
