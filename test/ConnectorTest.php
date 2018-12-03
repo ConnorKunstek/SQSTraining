@@ -8,7 +8,6 @@
 
 require_once(__DIR__.'/../src/lib/Connector.php');
 
-
 class ConnectorTest extends PHPUnit\Framework\TestCase
 {
 
@@ -28,7 +27,10 @@ class ConnectorTest extends PHPUnit\Framework\TestCase
     }
 
     public function testUpdate(){
-        //TODO
+        $base = Connector::getDatabase();
+        $sql = "UPDATE user SET first_name = 'test' WHERE 'first_name' = 'Zion';";
+        $stmt = $base->prepare($sql);
+        $this->assertTrue($stmt->execute());
     }
 
     public function testDelete(){
