@@ -70,7 +70,7 @@ function verifyLogin() {
     $returned = null;
     $returned = verifyUserInfo($array);
 
-    if (!is_null($returned)) {
+    if (is_array($returned)) {
 
         if($returned['verified']){
             $_SESSION['uid'] = $returned['UID'];
@@ -81,7 +81,7 @@ function verifyLogin() {
             error("This account has not been verified. Please check your email (and junk folder) and follow the link provided");
         }
     } else {
-        error("Error: Email does not exist");
+        error($returned);
     }
 
 }

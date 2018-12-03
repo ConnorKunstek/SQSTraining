@@ -22,9 +22,8 @@
       /* Not required for template or sticky footer method. */
 
       .container {
-        width: auto;
-        max-width: 780px;
-        padding: 0 15px;
+          width: auto;
+          padding: 0 15px;
       }
     </style>
 

@@ -6,8 +6,7 @@
  * @author Connor Kunstek
  */
 
-require_once (__DIR__."/../../src/lib/ConfigurationInterface.php");
-
+require_once(__DIR__."/../../src/lib/ConfigurationInterface.php");
 
 // ---------------------------------------------------
 // Loading the system configuration file

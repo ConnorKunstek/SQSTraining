@@ -4,7 +4,7 @@
  * @author Stephen Ritchie <stephen.ritchie@uky.edu>
  */ 
 
-include_once("landing_controller.php");
+//include_once("landing_controller.php");
 include_once("../../views/header.php");
 
 ?>

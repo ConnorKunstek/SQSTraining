@@ -228,6 +228,12 @@ table{
   margin-right: 5px;
 	display: inline-block;
 	padding-bottom: 5px;
+	float: right;
+}
+
+.rm-btn {
+	display: inline-block;
+	float: right !important;
 }
 /* =================================================
                 SIGN IN PAGE STYLE

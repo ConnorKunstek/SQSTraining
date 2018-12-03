@@ -28,7 +28,6 @@ class Logger
     {
         if (defined('CONFIG')){
             $this->logfile = CONFIG['logging']['filename'];
-
         } else {
             $this->logfile = "sqstraining.log";
         }

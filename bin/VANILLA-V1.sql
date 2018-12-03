@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 10.163.140.98 (MySQL 5.7.24-0ubuntu0.18.04.1)
-# Database: SQSTrainingDB
-# Generation Time: 2018-11-29 05:42:47 +0000
+# Host: 127.0.0.1 (MySQL 5.7.23)
+# Database: sqs_init
+# Generation Time: 2018-12-01 21:15:41 +0000
 # ************************************************************
 
 
@@ -33,19 +33,6 @@ CREATE TABLE `assigned_features` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `assigned_features` WRITE;
-/*!40000 ALTER TABLE `assigned_features` DISABLE KEYS */;
-
-INSERT INTO `assigned_features` (`id`, `feature_number`, `user_id`, `time_added`)
-VALUES
-	(1,1,8,'2017-03-12 22:30:12'),
-	(2,100,12,'2018-03-25 12:57:35'),
-	(4,106,8,'2018-03-25 18:46:28'),
-	(8,107,6,'2018-04-16 11:12:00'),
-	(9,107,92,'2018-04-23 12:10:22');
-
-/*!40000 ALTER TABLE `assigned_features` ENABLE KEYS */;
-UNLOCK TABLES;
 
 DELIMITER ;;
 /*!50003 SET SESSION SQL_MODE="NO_AUTO_VALUE_ON_ZERO" */;;
@@ -77,16 +64,6 @@ CREATE TABLE `assigned_group_features` (
   KEY `group_id` (`group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-LOCK TABLES `assigned_group_features` WRITE;
-/*!40000 ALTER TABLE `assigned_group_features` DISABLE KEYS */;
-
-INSERT INTO `assigned_group_features` (`id`, `feature_number`, `group_id`, `time_added`)
-VALUES
-	(9,2,2,'2018-03-01 15:49:28'),
-	(11,103,1,'2018-04-23 21:49:30');
-
-/*!40000 ALTER TABLE `assigned_group_features` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table auditTable
@@ -101,16 +78,6 @@ CREATE TABLE `auditTable` (
   PRIMARY KEY (`UID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-LOCK TABLES `auditTable` WRITE;
-/*!40000 ALTER TABLE `auditTable` DISABLE KEYS */;
-
-INSERT INTO `auditTable` (`UID`, `user_id`, `changed_on`)
-VALUES
-	(5,6,'2018-04-16 11:12:00'),
-	(6,92,'2018-04-23 12:10:22');
-
-/*!40000 ALTER TABLE `auditTable` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table features_available
@@ -169,28 +136,6 @@ CREATE TABLE `group_members` (
   UNIQUE KEY `membership` (`group_id`,`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `group_members` WRITE;
-/*!40000 ALTER TABLE `group_members` DISABLE KEYS */;
-
-INSERT INTO `group_members` (`id`, `group_id`, `leader`, `date_joined`, `uid`)
-VALUES
-	(14,2,1,'2018-11-10 00:17:28',8),
-	(22,2,1,'2018-02-24 01:13:41',19),
-	(35,1,0,'2018-02-25 15:11:27',30),
-	(38,2,0,'2018-02-27 08:30:33',50),
-	(39,4,0,'2018-03-31 22:51:45',8),
-	(41,1,0,'2018-03-31 22:59:15',8),
-	(43,4,1,'2018-04-16 11:15:13',6),
-	(44,1,0,'2018-04-22 22:25:58',92),
-	(46,6,1,'2018-11-23 20:16:13',92),
-	(47,1,1,'2018-11-23 20:18:51',12),
-	(48,1,1,'2018-11-23 20:32:11',19),
-	(50,13,0,'2018-11-23 20:33:03',12),
-	(51,12,1,'2018-11-23 20:33:15',50),
-	(52,14,1,'2018-11-28 23:55:41',50);
-
-/*!40000 ALTER TABLE `group_members` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table groups
@@ -212,13 +157,7 @@ LOCK TABLES `groups` WRITE;
 
 INSERT INTO `groups` (`UID`, `name`, `date_established`)
 VALUES
-	(1,'Group A','2017-03-23 21:40:57'),
-	(2,'Group B','2017-03-23 21:43:25'),
-	(4,'Group C','2018-02-21 13:53:30'),
-	(6,'Group J','2018-11-23 19:10:42'),
-	(12,'Group P','2018-11-23 19:15:48'),
-	(13,'Group F','2018-11-23 20:32:54'),
-	(14,'Group U','2018-11-28 23:55:26');
+	(1,'Group A','2017-03-23 21:40:57');
 
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -268,21 +207,6 @@ CREATE TABLE `levels` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `levels` WRITE;
-/*!40000 ALTER TABLE `levels` DISABLE KEYS */;
-
-INSERT INTO `levels` (`id`, `title`)
-VALUES
-	(0,'NULL'),
-	(1,'Not logged in'),
-	(2,'Restricted'),
-	(3,'User'),
-	(4,'Super user'),
-	(5,'Admin'),
-	(6,'Super Admin');
-
-/*!40000 ALTER TABLE `levels` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table phone_list
@@ -307,20 +231,7 @@ LOCK TABLES `phone_list` WRITE;
 
 INSERT INTO `phone_list` (`id`, `phone_number`, `user_id`, `date_added`, `carrier`, `international_code`, `primary_phone`)
 VALUES
-	(13,'4567891234',10,'2017-04-09 14:20:23',NULL,NULL,1),
-	(14,'9012345672',-1,'2017-04-09 14:59:15',NULL,NULL,1),
-	(15,'3141592653',27,'2017-04-09 15:02:59',NULL,NULL,1),
-	(16,'4857693021',28,'2017-04-09 15:06:13',NULL,NULL,1),
-	(17,'9786542310',29,'2017-04-09 15:07:18',NULL,NULL,1),
-	(18,'7143562934',30,'2017-04-09 15:08:42',NULL,NULL,1),
-	(19,'3152456920',31,'2017-04-09 15:10:02',NULL,NULL,1),
-	(21,'9999999999',34,'2018-02-08 18:05:03',NULL,NULL,1),
-	(34,'8594320046',50,'2018-02-27 08:27:33',NULL,NULL,0),
-	(38,'8593589125',12,'2018-02-27 21:09:53',NULL,NULL,0),
-	(39,'8592487759',12,'2018-02-27 21:10:06',NULL,NULL,0),
-	(41,'2596563214',12,'2018-03-01 20:25:42',NULL,NULL,0),
-	(42,'2596565214',12,'2018-03-01 20:25:42',NULL,NULL,0),
-	(43,'8593213211',12,'2018-04-16 11:15:36',NULL,NULL,0);
+	(1,'1233456789',1,'2018-12-01 16:13:40','AT&T','1',1);
 
 /*!40000 ALTER TABLE `phone_list` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -337,17 +248,6 @@ CREATE TABLE `session_users` (
   PRIMARY KEY (`session_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-LOCK TABLES `session_users` WRITE;
-/*!40000 ALTER TABLE `session_users` DISABLE KEYS */;
-
-INSERT INTO `session_users` (`session_id`, `user_id`)
-VALUES
-	('ekmgqa12rakiuo5na64mbfe697','6'),
-	('3h2n43lqjm3q2ia8bvr5r8thg0','8'),
-	('0thfi4lpli83r6idosfik1mki4','50');
-
-/*!40000 ALTER TABLE `session_users` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table software_skills
@@ -419,26 +319,6 @@ CREATE TABLE `subscriber` (
   PRIMARY KEY (`phone_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `subscriber` WRITE;
-/*!40000 ALTER TABLE `subscriber` DISABLE KEYS */;
-
-INSERT INTO `subscriber` (`phone_number`, `carrier`, `international_code`)
-VALUES
-	('12312312','AT&T','1'),
-	('1231231234','VERIZON','1'),
-	('1233142345','VERIZON','1'),
-	('1234567890','VERIZON','1'),
-	('3456781234','VERIZON','1'),
-	('4562655625','VERIZON','1'),
-	('6781234567','VERIZON','1'),
-	('85912345687','VERIZON','1'),
-	('8593141592','VERIZON','1'),
-	('8598661234','VERIZON','1'),
-	('98765432','VERIZON','1'),
-	('9876543210','VERIZON','1');
-
-/*!40000 ALTER TABLE `subscriber` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table user
@@ -451,7 +331,7 @@ CREATE TABLE `user` (
   `first_name` varchar(25) NOT NULL,
   `last_name` varchar(25) NOT NULL,
   `email` varchar(254) NOT NULL,
-  `role` varchar(64) NOT NULL DEFAULT 'User',
+  `role` varchar(64) NOT NULL DEFAULT 'ROLE_USER',
   `password` varchar(64) NOT NULL,
   `level` int(11) NOT NULL DEFAULT '3',
   `gender` varchar(6) DEFAULT NULL,
@@ -474,16 +354,7 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`UID`, `first_name`, `last_name`, `email`, `role`, `password`, `level`, `gender`, `dateofbirth`, `address`, `city`, `state`, `zip`, `photo`, `progress`, `hash`, `verified`)
 VALUES
-	(6,'John','Doe','test@test.com','User','f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
-	(12,'Zion','Williamson','bigdick@test.com','Admin','holdmynuts',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,1),
-	(19,'Lebron','James','king@test.com','Super User','hairloss',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,1),
-	(30,'RJ','Barret','rj@test.com','Super Admin','f0e4c2f76c58916ec258f246851bea091d14d4247a2fc3e18694461b1816e13b',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,1),
-	(50,'Slim','Shady','eminem@test.com','Restricted User','fuckkelly',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
-	(69,'Jeff','Chartos','sqs@sqs.com','User','idratherteach498',3,'Male','1900-01-01','Testing','test','KY',40503,NULL,80,NULL,1),
-	(92,'Drake','drizzy','soft@test.com','User','fuckmeek',3,'Female','1993-11-29','Testing','test','KY',40509,NULL,80,NULL,0),
-	(100,'Stephen','Ritchie','stephenfritchie@gmail.com','User','password',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,NULL,0),
-	(101,'Stephen','Ritchie','stephen.ritchie@uky.edu','User','password',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,'bf8229696f7a3bb4700cfddef19fa23f',1),
-	(102,'thomas','Hayes','gayboy123@gaylordfantasy.com','User','iamgay123',3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,50,NULL,0);
+	(1,'SuperAdmin','SuperAdmin','SuperAdmin@sqs.com','SUPERADMIN','superadmin',5,'Male','2001-01-01','1234 SuperAdmin Ln.','SuperAdminVille','AL',9999,NULL,50,NULL,1);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

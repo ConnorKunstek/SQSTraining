@@ -21,17 +21,20 @@ function verifyUserInfo($data) {
         $sql = "SELECT password FROM user WHERE email = '$email';";
         $stmt = $base->prepare($sql);
         $stmt->execute();
-        $result = $stmt->fetch();
-
-        if ($result['password'] == $password) {
-            $sql = "SELECT UID, first_name, last_name, verified, role FROM user WHERE email = '$email';";
-            $stmt = $base->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetch();
-            return $result;
-            // write a verified check after implementation
-        } else {
-            errorModel('password');
+        if($result = $stmt->fetch()) {
+            if ($result['password'] == $password) {
+                $sql = "SELECT UID, first_name, last_name, verified, role FROM user WHERE email = '$email';";
+                $stmt = $base->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetch();
+                return $result;
+                // write a verified check after implementation
+            } else {
+                return errorModel('password');
+            }
+        }
+        else{
+            return errorModel("email");
         }
     } catch (Exception $e) {
         throw ($e);
@@ -40,9 +43,10 @@ function verifyUserInfo($data) {
 
 function errorModel($var) {
     if ($var == 'password') {
-        $message = header("Invalid password! Please try again.");
+        $message = "Invalid password! Please try again.";
+    }else{
+        $message = "This email does not exist! Please try again.";
     }
-
     return $message;
 }
 ?>
