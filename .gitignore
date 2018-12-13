@@ -6,9 +6,6 @@
 # Ignoring temp save files created by macOS
 .DS_Store
 
-# Ignoring documentation for now to save time/space on commits
-documentation/
-
 # Ignoring local files created by Sublime plugin
 .phpintel/
 
