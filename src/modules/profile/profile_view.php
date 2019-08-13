@@ -96,7 +96,7 @@ include("../../views/header.php");
                                     echo "selected>";
                                 }else{echo ">";}?>Female</option>
 								<option value="Other" <?php
-                                if($_SESSION['gender'] == "Other"){
+                                if($_SESSION['gender'] == "other"){
                                     echo "selected>";
                                 }else{echo ">";}?>Other</option>
 							</select><br>
